@@ -16,12 +16,12 @@
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
+	'csrfToken' => csrf_token(),
+]); ?>
     </script>
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
 
@@ -34,7 +34,10 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <div class="navbar-brand">
+                    <img src="{{ asset('images/social-prayer-logo.png') }}" style="height: 25px;" />
+                </div>
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
             </div>
@@ -79,10 +82,12 @@
 
     @yield('content')
 
+
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script src="/js/sidebar.js"></script>
 
     @yield('footer')
-    
+
 </body>
 </html>

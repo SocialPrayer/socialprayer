@@ -14,7 +14,6 @@ $color_concrete_approx: #f3f3f3;
 	position: absolute;
 	left: 0;
 	margin-left: -15px;
-	width: 40rem;
 	height: 100%;
 	background-color: $color_desert_storm_approx;
 	border-right: 1px solid $color_mercury_approx;
@@ -31,6 +30,12 @@ $color_concrete_approx: #f3f3f3;
 			width: 100%;
 			border-bottom: 1px solid $color_mercury_approx;
 			a {
+				padding: 15px;
+				.glyphicon {
+					padding-right: 10px;
+				}
+			}
+			.sidebar-module {
 				padding: 15px;
 				.glyphicon {
 					padding-right: 10px;
@@ -148,15 +153,19 @@ $color_concrete_approx: #f3f3f3;
 .side-body {
 	margin-left: 310px;
 }
-@media(max-width: 768px) {
+@media(max-width: 1024px) {
 	.side-menu {
-		position: relative;
-		width: 100%;
+		position: absolute;
+		left: 0;
+		width: 20%;
 		height: 0;
 		border-right: 0;
 		border-bottom: 1px solid $color_mercury_approx;
 		.brand-name-wrapper .navbar-brand {
 			display: inline-block;
+		}
+		img {
+			display: none;
 		}
 	}
 	@-moz-keyframes slidein {
