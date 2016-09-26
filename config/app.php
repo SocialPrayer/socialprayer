@@ -12,7 +12,7 @@ return [
 		    | any other location as required by the application or its packages.
 	*/
 
-	'name' => 'Social Prayer',
+	'name' => 'SocialPrayer',
 
 	/*
 		    |--------------------------------------------------------------------------
@@ -178,6 +178,7 @@ return [
 		App\Providers\EventServiceProvider::class,
 		App\Providers\RouteServiceProvider::class,
 		Collective\Html\HtmlServiceProvider::class,
+		Laracasts\Flash\FlashServiceProvider::class,
 
 	],
 

@@ -2,27 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\BibleAPI;
+use App\Http\Controllers\PrayerController;
 
-class HomeController extends Controller
-{
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+class HomeController extends Controller {
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct() {
+		$this->middleware('auth');
+	}
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('home');
-    }
+	/**
+	 * Show the application dashboard.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index() {
+		$dbt = new BibleAPI(null, null, 'json');
+		$volumes = $dbt->getLibraryVolume(null, null, 'text', null, null, 'ENG');
+		$volumes = json_decode($volumes);
+		$prayers = new PrayerController;
+		return view('prayers/list', ['prayers' => $prayers->index()[0], 'privacysettings' => $prayers->index()[1], 'volumes' => $volumes]);
+
+	}
 }

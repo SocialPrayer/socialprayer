@@ -1,9 +1,12 @@
 
+
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
 // Variables
 @import "variables";
+
+$panel-default-heading-bg: #F0F0F0;
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
@@ -13,4 +16,23 @@
 
 .navbar {
     margin-bottom: 0;
+}
+
+.navbar-brand {
+    font-size: 20px;
+}
+
+.prayers-section {
+	margin: 25px;
+	margin-top: 60px;
+	/*width: 100%;*/
+}
+
+.row {clear: both;}
+
+@media(max-width: 768px) {
+	.prayers-section {
+		width: 100%;
+		margin-left: 0px;
+	}
 }
