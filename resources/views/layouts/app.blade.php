@@ -37,9 +37,9 @@
                 <div class="navbar-brand">
                     <img src="{{ asset('images/social-prayer-logo.png') }}" style="height: 25px;" />
                 </div>
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <span class="navbar-brand">
                     {{ config('app.name', 'Laravel') }}
-                </a>
+                </span>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -80,12 +80,18 @@
         </div>
     </nav>
 
-    @yield('content')
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+          @yield('content')
+        </div>
+      </div>
+    </div>
 
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
-    <script src="/js/sidebar.js"></script>
+    <!-- <script src="/js/sidebar.js"></script> -->
 
     @yield('footer')
 

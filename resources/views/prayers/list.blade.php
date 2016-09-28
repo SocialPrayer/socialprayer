@@ -1,6 +1,6 @@
-@extends('home')
+@extends('layouts.app')
 
-@section('rightcontent')
+@section('content')
 	<section class="prayers-section col-centered">
         @if (session()->has('flash_notification.message'))
             <div class="alert alert-{{ session('flash_notification.level') }}">
@@ -44,6 +44,7 @@
                     		  <span data-toggle="popover"
                                  data-html="true"
                                  title="<b>{{ $prayer->user->name }}</b>"
+                                 data-placement="top"
                                  data-content="<button class='btn btn-primary addfriend' data-id='{{ $prayer->user->id }}'>Add Friend</button>" style="border-bottom: 1px dashed #BDBDBD; cursor: pointer;">{{ $prayer->user->name }}</span>
 
                     	</div>
