@@ -5993,7 +5993,7 @@ button.close {
 .row {
   clear: both; }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .prayers-section {
     width: 100%;
     margin-left: 0px; } }
