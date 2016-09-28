@@ -14,21 +14,21 @@
             <div class="panel panel-default">
                 <div class="panel-body">
 	                <div class="form-group prayerText">
-	                	<textarea class="form-control" name="prayerText" rows="2" placeholder="New Prayer" required="required" oninvalid="setCustomValidity('Need to pray for something...')"></textarea>
+	                	<textarea class="form-control" name="prayerText" rows="2" placeholder="New Prayer" required="required" oninvalid="setCustomValidity('Need to pray for something...')" style="border-color: #5CACEE;"></textarea>
 	                </div>
 	                <div class="form-inline text-right">
-	                	<div>
+	                	<div class="form-group">
 			                <select class="form-control" name="privacy" style="margin-right: 5px;" required="required" oninvalid="setCustomValidity('Please select your privacy level for this prayer.')">
 			                	<option value="" disabled selected>Select Privacy Level</option>
 			                	@foreach ($privacysettings as $privacysetting)
 									<option value="{{ $privacysetting->id }}">{{ $privacysetting->name }}</option>
 								@endforeach
 							</select>
-			                <button type="submit" class="btn btn-info btn-md">
-			                	<img src="{{ asset('images/social-prayer-logo.png') }}" height="20px" />
-			                	Submit Prayer
-			                </a>
-			            </div>
+                        </div>
+		                <button type="submit" class="btn btn-info btn-md">
+		                	<img src="{{ asset('images/social-prayer-logo.png') }}" height="20px" />
+		                	Submit Prayer
+		                </a>
 	                </div>
 	                {{ csrf_field() }}
 	            </div>
@@ -41,7 +41,11 @@
                     <div class="panel-heading">
                     	<div class="h5" style="float: left; vertical-align: middle;">
                     		<span class="text-muted">Prayer From: </span>
-                    		{{ $prayer->user->name }}
+                    		  <span data-toggle="popover"
+                                 data-html="true"
+                                 title="<b>{{ $prayer->user->name }}</b>"
+                                 data-content="<button class='btn btn-primary addfriend' data-id='{{ $prayer->user->id }}'>Add Friend</button>" style="border-bottom: 1px dashed #BDBDBD; cursor: pointer;">{{ $prayer->user->name }}</span>
+
                     	</div>
                     	<div style="float: right;" class="text-muted h6">{{ $prayer->created_at->format('F j, Y g:i A') }}</div>
                     	<br />
@@ -98,10 +102,26 @@
 
 @section('footer')
 <script src="/js/vendor/jquery.ns-autogrow.js"></script>
-<script src="/js/vendor/bootstrap/tooltip.js"></script>
+<!-- <script src="/js/vendor/bootstrap/tooltip.js"></script>
+<script src="/js/vendor/bootstrap/popover.js"></script> -->
 <script src="/js/vendor/jquery.jscroll.min.js"></script>
 <script>
 $(function(){
+    $('[data-toggle="popover"]').popover({ trigger: "manual" , html: true, animation:false})
+        .on("mouseenter", function () {
+            var _this = this;
+            $(this).popover("show");
+            $(".popover").on("mouseleave", function () {
+                $(_this).popover('hide');
+            });
+        }).on("mouseleave", function () {
+            var _this = this;
+            setTimeout(function () {
+                if (!$(".popover:hover").length) {
+                    $(_this).popover("hide");
+                }
+            }, 300);
+    });
 	$('[data-toggle="tooltip"]').tooltip();
 	$('.prayerText textarea').autogrow({vertical: true, horizontal: false});
     //hides the default paginator
@@ -123,16 +143,31 @@ $(function(){
 
         }
     });
+
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+      });
+    }, 1500);
+
+    $('.prayalong').click(function(){
+        var prayer_id = $(this).data("id");
+        var $thisselector = $(this);
+        $(this).addClass("disabled");
+        $(this).removeClass("btn-default");
+        $(this).addClass("btn-info");
+        $.get('/prayer/pray-along/' + prayer_id, function( data ) {
+            $thisselector.prev('.prayedalongcount').html(data);
+        });
+    });
+
+    $(document).on("click", ".addfriend", function(){
+        var friend_id = $(this).data("id");
+        var $thisselector = $(this);
+        $(this).addClass("disabled");
+        $.get('/user/addfriend/' + friend_id);
+    });
 });
-$('.prayalong').click(function(){
-	var prayer_id = $(this).data("id");
-	var $thisselector = $(this);
-	$(this).addClass("disabled");
-	$(this).removeClass("btn-default");
-	$(this).addClass("btn-info");
-	$.get('/prayer/pray-along/' + prayer_id, function( data ) {
-		$thisselector.prev('.prayedalongcount').html(data);
-	});
-});
+
 </script>
 @endsection
