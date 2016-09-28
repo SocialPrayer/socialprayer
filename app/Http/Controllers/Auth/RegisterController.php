@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Config;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Request;
 use Validator;
 
 class RegisterController extends Controller {
@@ -52,7 +53,7 @@ class RegisterController extends Controller {
 		]);
 
 		$recaptcha = new \ReCaptcha\ReCaptcha(Config::get('services.google_reCaptcha.secret'));
-		$resp = $recaptcha->verify($data['gRecaptchaResponse'], $data['remoteIp']);
+		$resp = $recaptcha->verify($data['g-Recaptcha-Response'], Request::ip());
 		if ($resp->isSuccess()) {
 			$validation = $validation;
 		} else {
