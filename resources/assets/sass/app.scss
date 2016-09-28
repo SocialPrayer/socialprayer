@@ -27,3 +27,9 @@ $panel-default-heading-bg: #F0F0F0;
 }
 
 .row {clear: both;}
+
+@media (max-width: 768px) {
+    body {
+        margin-bottom: 50px;
+    }
+}
