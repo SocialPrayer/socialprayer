@@ -42,16 +42,14 @@ class User extends Authenticatable {
 
 	// friendship that I started
 	function friendsOfMine() {
-		return $this->belongsToMany('User', 'friends', 'user_id', 'friend_id')
-			->wherePivot('accepted', '=', 1) // to filter only accepted
-			->withPivot('accepted'); // or to fetch accepted value
+		return $this->belongsToMany('App\User', 'friends', 'user_id', 'friend_id')
+			->where('accepted', '=', 1); // to filter only accepted
 	}
 
 	// friendship that I was invited to
 	function friendOf() {
-		return $this->belongsToMany('User', 'friends', 'friend_id', 'user_id')
-			->wherePivot('accepted', '=', 1)
-			->withPivot('accepted');
+		return $this->belongsToMany('App\User', 'friends', 'friend_id', 'user_id')
+			->where('accepted', '=', 1);
 	}
 
 	// accessor allowing you call $user->friends
@@ -73,6 +71,16 @@ class User extends Authenticatable {
 
 	protected function mergeFriends() {
 		return $this->friendsOfMine->merge($this->friendOf);
+	}
+
+	function friends() {
+		return $this->belongsToMany('App\User', 'friends', 'user_id', 'friend_id');
+	}
+
+	public function isFriend($friendId) {
+		$friends = $this->friendsOfMine()->where('users.id', $friendId)->count();
+		$friends += $this->friendOf()->where('users.id', $friendId)->count();
+		return (boolean) $friends;
 	}
 
 }

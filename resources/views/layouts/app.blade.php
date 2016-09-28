@@ -22,7 +22,7 @@
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
+        <div class="container col-lg-8 col-lg-offset-2">
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->
