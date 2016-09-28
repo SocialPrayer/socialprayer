@@ -5986,7 +5986,6 @@ button.close {
   font-size: 20px; }
 
 .prayers-section {
-  margin: 25px;
   margin-top: 60px;
   /*width: 100%;*/ }
 
@@ -5995,7 +5994,6 @@ button.close {
 
 @media (max-width: 1024px) {
   .prayers-section {
-    width: 100%;
-    margin-left: 0px; } }
+    width: 100%; } }
 
 /*# sourceMappingURL=app.css.map */
