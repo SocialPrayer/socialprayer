@@ -44,10 +44,17 @@
             .content {
                 text-align: center;
             }
-
             .title {
                 font-size: 84px;
             }
+
+            @media (max-width: 768px) {
+                .title {
+                    font-size: 50px;
+                }
+            }
+
+
 
             .links > a {
                 color: #636b6f;
