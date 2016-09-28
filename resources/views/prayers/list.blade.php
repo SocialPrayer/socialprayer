@@ -1,7 +1,7 @@
 @extends('home')
 
 @section('rightcontent')
-	<section class="prayers-section">
+	<section class="prayers-section col-centered">
         @if (session()->has('flash_notification.message'))
             <div class="alert alert-{{ session('flash_notification.level') }}">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

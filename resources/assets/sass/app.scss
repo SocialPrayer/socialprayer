@@ -23,16 +23,7 @@ $panel-default-heading-bg: #F0F0F0;
 }
 
 .prayers-section {
-	margin: 25px;
 	margin-top: 60px;
-	/*width: 100%;*/
 }
 
 .row {clear: both;}
-
-@media(max-width: 1024px) {
-	.prayers-section {
-		width: 100%;
-		margin-left: 0px;
-	}
-}
