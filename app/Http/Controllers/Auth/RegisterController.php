@@ -61,7 +61,7 @@ class RegisterController extends Controller {
 			$errors = $resp->getErrorCodes();
 		}
 
-		return $validation;
+		return (bool) $validation;
 	}
 
 	/**
