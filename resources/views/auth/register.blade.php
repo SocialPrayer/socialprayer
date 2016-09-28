@@ -65,6 +65,9 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4 g-recaptcha" data-sitekey="6LdAAP8SAAAAAIqsdvjp_OBlTB7RWbIydIpUuEtJ"></div>
+                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
@@ -73,10 +76,15 @@
                                 </button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('footer')
+<script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection
