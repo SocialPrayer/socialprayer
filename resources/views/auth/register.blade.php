@@ -67,6 +67,11 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4 g-recaptcha" data-sitekey="6LdAAP8SAAAAAIqsdvjp_OBlTB7RWbIydIpUuEtJ"></div>
+                            @if ($errors->has('g-captcha-response'))
+                            <span class="help-block">
+                                <strong>You must prove you are not a computer.</strong>
+                            </span>
+                            @endif
                         </div>
 
                         <div class="form-group">
