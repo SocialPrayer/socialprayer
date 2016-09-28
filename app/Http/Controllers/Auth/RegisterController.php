@@ -50,8 +50,8 @@ class RegisterController extends Controller {
 			'password' => 'required|min:6|confirmed',
 		]);
 
-		$recaptcha = new \ReCaptcha\ReCaptcha($data->secret);
-		$resp = $recaptcha->verify($data->gRecaptchaResponse, $data->remoteIp);
+		$recaptcha = new \ReCaptcha\ReCaptcha($data['secret']);
+		$resp = $recaptcha->verify($data['gRecaptchaResponse'], $data['remoteIp']);
 		if ($resp->isSuccess()) {
 			$validation = $validation;
 		} else {
