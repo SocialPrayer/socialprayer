@@ -14,11 +14,11 @@
             <div class="panel panel-default">
                 <div class="panel-body">
 	                <div class="form-group prayerText">
-	                	<textarea class="form-control" name="prayerText" rows="2" placeholder="New Prayer" required="required" oninvalid="setCustomValidity('Need to pray for something...')" style="border-color: #5CACEE;"></textarea>
+	                	<textarea class="form-control" name="prayerText" rows="2" placeholder="New Prayer" required="required" style="border-color: #5CACEE;"></textarea>
 	                </div>
 	                <div class="form-inline text-right">
 	                	<div class="form-group">
-			                <select class="form-control" name="privacy" style="margin-right: 5px;" required="required" oninvalid="setCustomValidity('Please select your privacy level for this prayer.')">
+			                <select class="form-control" name="privacy" style="margin-right: 5px;" required="required">
 			                	<option value="" disabled selected>Select Privacy Level</option>
 			                	@foreach ($privacysettings as $privacysetting)
 									<option value="{{ $privacysetting->id }}">{{ $privacysetting->name }}</option>
@@ -37,7 +37,9 @@
         </div>
         <div class="prayers">
             @foreach ($prayers as $prayer)
-                <div class="panel panel-default prayer">
+                <?php if ($prayer->user->isFriend(Auth::id())) {$pannelclass = "panel-success";} else { $pannelclass = "panel-default";}?>
+
+                <div class="panel {{$pannelclass}} prayer">
                     <div class="panel-heading">
                     	<div class="h5" style="float: left; vertical-align: middle;">
                     		<span class="text-muted">Prayer From: </span>
