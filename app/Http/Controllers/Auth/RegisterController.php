@@ -55,13 +55,13 @@ class RegisterController extends Controller {
 		$recaptcha = new \ReCaptcha\ReCaptcha(Config::get('services.google_reCaptcha.secret'));
 		$resp = $recaptcha->verify($data['g-recaptcha-response'], Request::ip());
 		if ($resp->isSuccess()) {
-			$validation = $validation;
+			$validation = true;
 		} else {
 			$validation = false;
 			$errors = $resp->getErrorCodes();
 		}
 
-		return (bool) $validation;
+		return (boolean) $validation;
 	}
 
 	/**
