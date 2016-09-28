@@ -46,22 +46,24 @@ class RegisterController extends Controller {
 	 * @return \Illuminate\Contracts\Validation\Validator
 	 */
 	protected function validator(array $data) {
-		$validationresp = Validator::make($data, [
-			'name' => 'required|max:255',
-			'email' => 'required|email|max:255|unique:users',
-			'password' => 'required|min:6|confirmed',
-		]);
 
 		$recaptcha = new \ReCaptcha\ReCaptcha(Config::get('services.google_reCaptcha.secret'));
 		$resp = $recaptcha->verify($data['g-recaptcha-response'], Request::ip());
 		if ($resp->isSuccess()) {
-			$validationresp = true;
+			return Validator::make($data, [
+				'name' => 'required|max:255',
+				'email' => 'required|email|max:255|unique:users',
+				'password' => 'required|min:6|confirmed',
+			]);
 		} else {
-			$validationresp = false;
+			return Validator::make($data, [
+				'name' => 'required|max:255',
+				'email' => 'required|email|max:255|unique:users',
+				'password' => 'required|min:6|confirmed',
+				'g-recaptcha-response' => 'required|max:5',
+			]);
 			$errors = $resp->getErrorCodes();
 		}
-
-		return (boolean) $validationresp;
 	}
 
 	/**
