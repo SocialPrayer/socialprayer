@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row" style="margin-top: 75px;">
+    <div class="row" style="margin-top: 75px;@media (max-width: 768px) {margin-bottom: 800px; }">
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
