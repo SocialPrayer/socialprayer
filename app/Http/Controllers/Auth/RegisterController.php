@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Config;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Validator;
 
@@ -50,7 +51,7 @@ class RegisterController extends Controller {
 			'password' => 'required|min:6|confirmed',
 		]);
 
-		$recaptcha = new \ReCaptcha\ReCaptcha($data['secret']);
+		$recaptcha = new \ReCaptcha\ReCaptcha(Config::get('google_reCaptcha.secret'));
 		$resp = $recaptcha->verify($data['gRecaptchaResponse'], $data['remoteIp']);
 		if ($resp->isSuccess()) {
 			$validation = $validation;
