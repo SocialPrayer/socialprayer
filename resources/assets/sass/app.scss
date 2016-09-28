@@ -29,8 +29,8 @@ $panel-default-heading-bg: #F0F0F0;
 .row {clear: both;}
 
 @media (max-width: 768px) {
-    body {
-        margin-bottom: 200px;
+    .container {
+        margin-bottom: 500px;
     }
 }
 
