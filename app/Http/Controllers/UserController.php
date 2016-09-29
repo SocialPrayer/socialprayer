@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use Illuminate\Notifications\Messages\MailMessage as MailMessage;
 use \App\Friend as Friend;
 
 class UserController extends Controller {
@@ -13,14 +12,6 @@ class UserController extends Controller {
 		$friendRequest->friend_id = $friendid;
 		$friendRequest->save();
 
-		$url = url('/user/acceptfriend/' . Auth::id());
-
-		$friend = \App\User::find($friendid);
-
-		return (new MailMessage)
-			->greeting('Hello ' . $friend->name . '!')
-			->line(Auth::user()->name . ' has requested to be your friend and pray with you.')
-			->action('Accept Friendship', $url)
-			->line('Have a blessed day!');
+		Notification::send($users, new InvoicePaid($friendid));
 	}
 }
