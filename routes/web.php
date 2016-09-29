@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/user/addfriend/{friendid}', 'UserController@addFriendRequest');
 
-Route::get('/user/acceptfriend/{friendid}', 'UserController@acceptFriendRequest');
+Route::get('/user/acceptfriend/{friendshipid}', 'UserController@acceptFriendRequest');
 
 Route::resource('/prayer', 'PrayerController');
 
