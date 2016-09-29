@@ -111,10 +111,10 @@
 <script>
 $(function(){
     $('[data-toggle="popover"]').popover({ trigger: "manual" , html: true, animation:false})
-        .on("mouseenter", function () {
+        .on("click", function () {
             var _this = this;
             $(this).popover("show");
-            $(".popover").on("mouseleave", function () {
+            $(".popover").on("click", function () {
                 $(_this).popover('hide');
             });
         }).on("mouseleave", function () {
