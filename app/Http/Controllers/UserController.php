@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Notifications\FriendRequest;
 use Auth;
-use Notification;
 use \App\Friend as Friend;
 
 class UserController extends Controller {
@@ -15,7 +14,6 @@ class UserController extends Controller {
 		$friendRequest->save();
 
 		$friend = \App\User::find($$this->friendid);
-
-		Notification::send($friend, new FriendRequest($friendid));
+		$friend->notify(new FriendRequest($friendid));
 	}
 }
