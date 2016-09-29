@@ -23,7 +23,7 @@ class UserController extends Controller {
 		$friendRequest->accepted = true;
 		$friendRequest->save();
 
-		$friend->notify(new FriendRequest($friendid, $friendRequest->id, false));
+		$friend->notify(new FriendRequest($friendid, $friendRequest->id, true));
 	}
 
 	public function addFriendRequest($friendid) {
