@@ -18,9 +18,12 @@ class UserController extends Controller {
 	}
 
 	public function acceptFriendRequest($friendid) {
+
 		$friendRequest = Friend::find($friendid);
 		$friendRequest->accepted = true;
 		$friendRequest->save();
+
+		$friend->notify(new FriendRequest($friendid, $friendRequest->id, false));
 	}
 
 	public function addFriendRequest($friendid) {
@@ -30,6 +33,6 @@ class UserController extends Controller {
 		$friendRequest->save();
 
 		$friend = \App\User::find($friendid);
-		$friend->notify(new FriendRequest($friendid));
+		$friend->notify(new FriendRequest($friendid, $friendRequest->id, false));
 	}
 }
