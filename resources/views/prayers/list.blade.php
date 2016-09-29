@@ -117,6 +117,9 @@ $(function(){
             $(".popover").on("click", function () {
                 $(_this).popover('hide');
             });
+            $(".popover").on("mouseleave", function () {
+                $(_this).popover('hide');
+            });
         }).on("mouseleave", function () {
             var _this = this;
             setTimeout(function () {
