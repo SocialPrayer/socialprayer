@@ -13,7 +13,7 @@ class UserController extends Controller {
 		$friendRequest->friend_id = $friendid;
 		$friendRequest->save();
 
-		$friend = \App\User::find($$this->friendid);
+		$friend = \App\User::find($this->friendid);
 		$friend->notify(new FriendRequest($friendid));
 	}
 }
