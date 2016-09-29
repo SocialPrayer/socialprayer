@@ -25,7 +25,7 @@ class UserController extends Controller {
 
 		$friend = \App\User::find($friendRequest->user_id);
 
-		$friend->notify(new FriendRequest($friendshipid, $friendRequest->id, true));
+		$friend->notify(new FriendRequest($friend->id, $friendRequest->id, true));
 	}
 
 	public function addFriendRequest($friendid) {
