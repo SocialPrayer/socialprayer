@@ -26,6 +26,9 @@ class UserController extends Controller {
 		$friend = \App\User::find($friendRequest->user_id);
 
 		$friend->notify(new FriendRequest($friend->id, $friendRequest->id, true));
+
+		flash('You are now friends with ' . $friend->name, 'success');
+		return redirect('/home');
 	}
 
 	public function addFriendRequest($friendid) {
