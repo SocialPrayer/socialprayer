@@ -38,7 +38,7 @@ class FriendRequest extends Notification {
 	public function toMail($notifiable) {
 		$url = url('/user/acceptfriend/' . Auth::id());
 
-		$friend = \App\User::find($$this->friendid);
+		$friend = \App\User::find($this->friendid);
 
 		return (new MailMessage)
 			->subject('SocialPrayer - New Friendship Request')
