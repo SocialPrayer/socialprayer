@@ -17,11 +17,13 @@ class UserController extends Controller {
 		$this->middleware('auth');
 	}
 
-	public function acceptFriendRequest($friendid) {
+	public function acceptFriendRequest($friendshipid) {
 
 		$friendRequest = Friend::find($friendid);
 		$friendRequest->accepted = 1;
 		$friendRequest->save();
+
+		$friend = \App\User::find($friendRequest->user_id);
 
 		$friend->notify(new FriendRequest($friendid, $friendRequest->id, true));
 	}
