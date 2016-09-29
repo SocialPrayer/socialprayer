@@ -27,6 +27,7 @@ $style = [
 
 	'email-masthead' => 'padding: 25px 0; text-align: center;',
 	'email-masthead_name' => 'font-size: 26px; font-weight: bold; color: #2F3133; text-decoration: none; text-shadow: 0 1px 0 white;',
+	'logo' => 'height: 15px;',
 
 	'email-body' => 'width: 100%; margin: 0; padding: 0; border-top: 1px solid #EDEFF2; border-bottom: 1px solid #EDEFF2; background-color: #FFF;',
 	'email-body_inner' => 'width: auto; max-width: 570px; margin: 0 auto; padding: 0;',
@@ -60,7 +61,7 @@ $style = [
 ];
 ?>
 
-<?php $fontFamily = 'font-family: Arial, \'Helvetica Neue\', Helvetica, sans-serif;';?>
+<?php $fontFamily = 'font-family: "Raleway", sans-serif;';?>
 
 <body style="{{ $style['body'] }}">
     <table width="100%" cellpadding="0" cellspacing="0">
@@ -71,7 +72,7 @@ $style = [
                     <tr>
                         <td style="{{ $style['email-masthead'] }}">
                             <a style="{{ $fontFamily }} {{ $style['email-masthead_name'] }}" href="{{ url('/') }}" target="_blank">
-                                <img src="{{ asset('images/social-prayer-logo.png') }}" style="height: 25px;" />
+                                <img src="{{ asset('images/social-prayer-logo.png') }}" class="{{ $style['logo'] }}" />
                                 {{ config('app.name') }}
                             </a>
                         </td>
