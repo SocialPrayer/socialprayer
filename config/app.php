@@ -180,6 +180,7 @@ return [
 		Collective\Html\HtmlServiceProvider::class,
 		Laracasts\Flash\FlashServiceProvider::class,
 		'GrahamCampbell\Throttle\ThrottleServiceProvider',
+		Laravel\Socialite\SocialiteServiceProvider::class,
 
 	],
 
@@ -231,6 +232,7 @@ return [
 		//'Form' => Collective\Html\FormFacade::class,
 		'Html' => Collective\Html\HtmlFacade::class,
 		'Throttle' => 'GrahamCampbell\Throttle\Facades\Throttle',
+		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
 	],
 
