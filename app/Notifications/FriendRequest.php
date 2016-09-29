@@ -51,7 +51,7 @@ class FriendRequest extends Notification {
 				->line('Have a blessed day!');
 		} else {
 
-			$url = url('/user/acceptfriend/' . Auth::id());
+			$url = url('/user/acceptfriend/' . $this->friendshipid);
 
 			return (new MailMessage)
 				->subject('SocialPrayer - New Friendship Request')
