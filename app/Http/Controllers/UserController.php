@@ -13,6 +13,6 @@ class UserController extends Controller {
 		$friendRequest->friend_id = $friendid;
 		$friendRequest->save();
 
-		Notification::send($users, new InvoicePaid($friendid));
+		Notification::send(new FriendRequest($friendid));
 	}
 }
