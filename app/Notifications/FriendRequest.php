@@ -15,8 +15,10 @@ class FriendRequest extends Notification {
 	 *
 	 * @return void
 	 */
-	public function __construct($friendid) {
+	public function __construct($friendshipid, $friendid, $accepted = false) {
 		$this->friendid = $friendid;
+		$this->friendshipid = $friendshipid;
+		$this->accepted = $accepted;
 	}
 
 	/**
@@ -36,16 +38,30 @@ class FriendRequest extends Notification {
 	 * @return \Illuminate\Notifications\Messages\MailMessage
 	 */
 	public function toMail($notifiable) {
-		$url = url('/user/acceptfriend/' . Auth::id());
 
 		$friend = \App\User::find($this->friendid);
 
-		return (new MailMessage)
-			->subject('SocialPrayer - New Friendship Request')
-			->greeting('Hello ' . $friend->name . '!')
-			->line(Auth::user()->name . ' has requested to be your friend and pray with you.')
-			->action('Accept Friendship', $url)
-			->line('Have a blessed day!');
+		if ($this->accepted) {
+			$url = url('/home');
+			return (new MailMessage)
+				->subject('SocialPrayer - Friendship Accepted')
+				->greeting('Hello ' . $friend->name . '!')
+				->line(Auth::user()->name . ' has accepted your request to be friends.')
+				->action('Pray', $url)
+				->line('Have a blessed day!');
+		} else {
+
+			$url = url('/user/acceptfriend/' . Auth::id());
+
+			return (new MailMessage)
+				->subject('SocialPrayer - New Friendship Request')
+				->greeting('Hello ' . $friend->name . '!')
+				->line(Auth::user()->name . ' has requested to be your friend and pray with you.')
+				->action('Accept Friendship', $url)
+				->line('Have a blessed day!');
+
+		}
+
 	}
 
 	/**
