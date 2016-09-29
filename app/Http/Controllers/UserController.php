@@ -14,6 +14,8 @@ class UserController extends Controller {
 		$friendRequest->friend_id = $friendid;
 		$friendRequest->save();
 
-		Notification::send(new FriendRequest($friendid));
+		$users = \App\Users;
+
+		Notification::send($users, new FriendRequest($friendid));
 	}
 }
