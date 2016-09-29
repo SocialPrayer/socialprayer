@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Notification;
 use \App\Friend as Friend;
 
 class UserController extends Controller {
