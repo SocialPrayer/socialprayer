@@ -43,12 +43,25 @@
                     <div class="panel-heading">
                     	<div class="h5" style="float: left; vertical-align: middle;">
                     		<span class="text-muted">Prayer From: </span>
+                            @if ($prayer->user->isFriend(Auth::id()))
                     		  <span data-toggle="popover"
                                  data-html="true"
                                  title="<b>{{ $prayer->user->name }}</b>"
                                  data-placement="top"
+                                 data-content="Friend of Yours!" style="border-bottom: 1px dashed #BDBDBD; cursor: pointer;">{{ $prayer->user->name }}</span>
+                            @elseif ($prayer->user->id == Auth::id())
+                                <span data-toggle="popover"
+                                 data-html="true"
+                                 title="<b>{{ $prayer->user->name }}</b>"
+                                 data-placement="top"
+                                 data-content="" style="border-bottom: 1px dashed #BDBDBD; cursor: pointer;">{{ $prayer->user->name }}</span>
+                            @else
+                                <span data-toggle="popover"
+                                 data-html="true"
+                                 title="<b>{{ $prayer->user->name }}</b>"
+                                 data-placement="top"
                                  data-content="<button class='btn btn-primary addfriend' data-id='{{ $prayer->user->id }}'>Add Friend</button>" style="border-bottom: 1px dashed #BDBDBD; cursor: pointer;">{{ $prayer->user->name }}</span>
-
+                            @endif
                     	</div>
                     	<div style="float: right;" class="text-muted h6">{{ $prayer->created_at->format('F j, Y g:i A') }}</div>
                     	<br />
@@ -174,7 +187,9 @@ $(function(){
         var friend_id = $(this).data("id");
         var $thisselector = $(this);
         $(this).addClass("disabled");
-        $.get('/user/addfriend/' + friend_id);
+        $.get('/user/addfriend/' + friend_id, function( data ) {
+            $thisselector.html('Friendship Requested');
+        });
     });
 });
 
