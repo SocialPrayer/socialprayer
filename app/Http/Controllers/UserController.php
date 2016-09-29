@@ -14,7 +14,7 @@ class UserController extends Controller {
 
 		$url = url('/user/acceptfriend/' . Auth::id());
 
-		$friend = App\User::find($friendid);
+		$friend = \App\User::find($friendid);
 
 		return (new MailMessage)
 			->greeting('Hello ' . $friend->name . '!')
