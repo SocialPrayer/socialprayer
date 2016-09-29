@@ -20,7 +20,7 @@ class UserController extends Controller {
 	public function acceptFriendRequest($friendid) {
 
 		$friendRequest = Friend::find($friendid);
-		$friendRequest->accepted = true;
+		$friendRequest->accepted = 1;
 		$friendRequest->save();
 
 		$friend->notify(new FriendRequest($friendid, $friendRequest->id, true));
