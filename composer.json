@@ -12,7 +12,8 @@
         "doctrine/dbal": "^2.5",
         "google/recaptcha": "~1.1",
         "graham-campbell/throttle": "^5.2",
-        "Guzzlehttp/Guzzle": "^6.2"
+        "Guzzlehttp/Guzzle": "^6.2",
+        "laravel/socialite": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
