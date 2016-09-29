@@ -15,7 +15,7 @@ class FriendRequest extends Notification {
 	 *
 	 * @return void
 	 */
-	public function __construct($friendshipid, $friendid, $accepted = false) {
+	public function __construct($friendid, $friendshipid, $accepted = false) {
 		$this->friendid = $friendid;
 		$this->friendshipid = $friendshipid;
 		$this->accepted = $accepted;
