@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\FriendRequest;
 use Auth;
 use Notification;
 use \App\Friend as Friend;
