@@ -71,6 +71,7 @@
                             <div class="col-md-8 col-md-offset-4">
                                 <a class="btn btn-link" href="{{ url('/auth/OAuth/facebook') }}">
                                     <img src="{{ asset('/images/facebook_login.png') }}" style="transform: scale(0.75, 0.75); -ms-transform: scale(0.75, 0.75); -webkit-transform: scale(0.75, 0.75);" />
+                                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
                                 </a>
                             </div>
                         </div>
