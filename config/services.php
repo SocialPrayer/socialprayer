@@ -45,4 +45,10 @@ return [
 		'redirect' => 'http://www.social-prayer.com/auth/OAuth/facebook/callback',
 	],
 
+	'google' => [
+		'client_id' => '415850758985-6u2ttqkqq80aomq6n5lrhaer5pitcf91.apps.googleusercontent.com',
+		'client_secret' => 'Ad-9wub1t2xovgZOdA2Hukwz',
+		'redirect' => 'http://www.social-prayer.com/auth/OAuth/google/callback',
+	],
+
 ];
