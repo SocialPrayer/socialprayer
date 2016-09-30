@@ -69,10 +69,9 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
-                               <!--  <a class="btn btn-link" href="{{ url('/auth/OAuth/facebook') }}">
-                                    <img src="{{ asset('/images/facebook_login.png') }}" width="200px" />
-                                </a> -->
+                                <a class="btn btn-link" href="{{ url('/auth/OAuth/facebook') }}">
+                                    <img src="{{ asset('/images/facebook_login.png') }}" style="transform: scale(0.5, 0.5); -ms-transform: scale(0.5, 0.5); -webkit-transform: scale(0.5, 0.5);" />
+                                </a>
                             </div>
                         </div>
                     </form>
