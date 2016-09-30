@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Socialite;
 
 class SocialiteAuthController extends Controller {
@@ -23,24 +24,22 @@ class SocialiteAuthController extends Controller {
 	public function handleProviderCallback($driver) {
 		$user = Socialite::driver($driver)->user();
 
+		$data = [
+			'name' => $user->getName(),
+			'email' => $user->getEmail(),
+		];
+
+		Auth::login(User::firstOrCreate($data));
+
 		// OAuth Two Providers
 		$token = $user->token;
 		$refreshToken = $user->refreshToken; // not always provided
 		$expiresIn = $user->expiresIn;
 
-		// OAuth One Providers
-		// $token = $user->token;
-		// $tokenSecret = $user->tokenSecret;
+		//$user->getAvatar(); //todo and save the avatar
 
-		// All Providers
-		$user->getId();
-		$user->getNickname();
-		$user->getName();
-		$user->getEmail();
-		$user->getAvatar();
+		//print_r($user);
+		redirect('/home');
 
-		print_r($user);
-
-		// $user->token;
 	}
 }
