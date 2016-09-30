@@ -20,7 +20,7 @@ class SocialiteAuthController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function handleProviderCallback() {
+	public function handleProviderCallback($driver) {
 		$user = Socialite::driver($driver)->user();
 
 		// OAuth Two Providers
