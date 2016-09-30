@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="google-signin-client_id" content="415850758985-6u2ttqkqq80aomq6n5lrhaer5pitcf91.apps.googleusercontent.com">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -102,7 +101,6 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <!-- <script src="/js/sidebar.js"></script> -->
 
     @yield('footer')
