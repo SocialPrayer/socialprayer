@@ -63,7 +63,7 @@
                                  data-content="<button class='btn btn-primary addfriend' data-id='{{ $prayer->user->id }}'>Add Friend</button>" style="border-bottom: 1px dashed #BDBDBD; cursor: pointer;">{{ $prayer->user->name }}</span>
                             @endif
                     	</div>
-                    	<div style="float: right;" class="text-muted h6">{{ $prayer->created_at->format('f j, y g:i A') }}</div>
+                    	<div style="float: right;" class="text-muted h6">{{ $prayer->created_at->format('M j, y g:i A') }}</div>
                     	<br />
                     </div>
                     <div class="panel-body">
