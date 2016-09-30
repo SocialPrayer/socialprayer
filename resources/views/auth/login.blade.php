@@ -59,6 +59,13 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <a class="btn btn-link" href="{{ url('/auth/OAuth/facebook') }}">
+                                    <img src="{{ asset('/images/facebook_login.png') }}" />
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
