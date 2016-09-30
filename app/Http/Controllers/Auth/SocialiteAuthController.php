@@ -34,9 +34,9 @@ class SocialiteAuthController extends Controller {
 		Auth::login(User::firstOrCreate($data), true);
 
 		// // OAuth Two Providers
-		// $token = $user->token;
-		// $refreshToken = $user->refreshToken; // not always provided
-		// $expiresIn = $user->expiresIn;
+		$token = $user->token;
+		$refreshToken = $user->refreshToken; // not always provided
+		$expiresIn = $user->expiresIn;
 
 		//$user->getAvatar(); //todo and save the avatar
 
