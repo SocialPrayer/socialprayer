@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Socialite;
 
-class AuthController extends Controller {
+class SocialiteAuthController extends Controller {
 	/**
 	 * Redirect the user to the GitHub authentication page.
 	 *
