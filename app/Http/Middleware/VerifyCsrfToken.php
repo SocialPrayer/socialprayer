@@ -12,5 +12,6 @@ class VerifyCsrfToken extends BaseVerifier {
 	 */
 	protected $except = [
 		'auth/OAuth/*',
+		'https://www.facebook.com/*',
 	];
 }
