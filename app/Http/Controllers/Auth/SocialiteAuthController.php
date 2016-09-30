@@ -29,8 +29,8 @@ class SocialiteAuthController extends Controller {
 		$expiresIn = $user->expiresIn;
 
 		// OAuth One Providers
-		$token = $user->token;
-		$tokenSecret = $user->tokenSecret;
+		// $token = $user->token;
+		// $tokenSecret = $user->tokenSecret;
 
 		// All Providers
 		$user->getId();
