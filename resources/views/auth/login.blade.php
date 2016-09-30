@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=181933401931405";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div class="container">
     <div class="row" style="margin-top: 75px;">
         <div class="col-md-8">
@@ -61,9 +69,10 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <a class="btn btn-link" href="{{ url('/auth/OAuth/facebook') }}">
+                                <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
+                               <!--  <a class="btn btn-link" href="{{ url('/auth/OAuth/facebook') }}">
                                     <img src="{{ asset('/images/facebook_login.png') }}" width="200px" />
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </form>
