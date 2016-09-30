@@ -41,7 +41,7 @@ class SocialiteAuthController extends Controller {
 		//$user->getAvatar(); //todo and save the avatar
 
 		//print_r($user);
-		return redirect('/home');
+		return redirect('/login');
 
 	}
 }
