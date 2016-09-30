@@ -28,6 +28,7 @@ class SocialiteAuthController extends Controller {
 		$data = [
 			'name' => $user->getName(),
 			'email' => $user->getEmail(),
+			'password' => '0',
 		];
 
 		Auth::login(User::firstOrCreate($data));
