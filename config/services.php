@@ -42,7 +42,7 @@ return [
 	'facebook' => [
 		'client_id' => '181933401931405',
 		'client_secret' => '16c5488551be6f32e6689c9ff1c0bf6b',
-		'redirect' => 'http://www.social-prayer.com/auth/facebook/callback',
+		'redirect' => 'http://www.social-prayer.com/auth/OAuth/facebook/callback',
 	],
 
 ];
