@@ -31,7 +31,7 @@ class SocialiteAuthController extends Controller {
 			'password' => '0',
 		];
 
-		Auth::login(User::firstOrCreate($data));
+		Auth::login(User::firstOrCreate($data), true);
 
 		// OAuth Two Providers
 		$token = $user->token;
