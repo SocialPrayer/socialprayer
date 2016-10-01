@@ -1,11 +1,11 @@
 @extends('layouts.app')
-
+@section('title', 'Sign Up')
 @section('content')
 <div class="container">
     <div class="row" style="margin-top: 75px;">
         <div class="col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Sign Up</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
@@ -81,7 +81,13 @@
                                 </button>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <div class="col-md-9 col-md-offset-3">
+                                <a class="btn btn-link" href="{{ url('/auth/OAuth/facebook') }}">
+                                    <img src="{{ asset('/images/facebook_login.png') }}" style="transform: scale(0.75, 0.75); -ms-transform: scale(0.75, 0.75); -webkit-transform: scale(0.75, 0.75);" />
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

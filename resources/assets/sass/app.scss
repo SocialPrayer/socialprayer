@@ -28,9 +28,13 @@ $panel-default-heading-bg: #F0F0F0;
 
 .row {clear: both;}
 
-@media (max-width: 768px) {
-    .container {
-        margin-bottom: 500px;
+.prayer-user {
+  font-size: 16px;
+}
+
+@media (max-width: $grid-float-breakpoint-max) {
+    .navbar-nav a {
+      text-align: right;
     }
 }
 

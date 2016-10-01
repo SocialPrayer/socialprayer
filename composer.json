@@ -13,7 +13,8 @@
         "google/recaptcha": "~1.1",
         "graham-campbell/throttle": "^5.2",
         "Guzzlehttp/Guzzle": "^6.2",
-        "laravel/socialite": "^2.0"
+        "laravel/socialite": "^2.0",
+        "laravolt/avatar": "^1.8"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

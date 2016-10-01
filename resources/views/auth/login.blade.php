@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title','Login')
 @section('content')
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -11,7 +11,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 <div class="container">
     <div class="row" style="margin-top: 75px;">
-        <div class="col-md-8">
+        <div class="col-md-10 col-lg-8">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
+                            <div class="col-md-9 col-md-offset-3">
                                 <a class="btn btn-link" href="{{ url('/auth/OAuth/facebook') }}">
                                     <img src="{{ asset('/images/facebook_login.png') }}" style="transform: scale(0.75, 0.75); -ms-transform: scale(0.75, 0.75); -webkit-transform: scale(0.75, 0.75);" />
                                 </a>
