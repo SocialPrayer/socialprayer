@@ -162,6 +162,7 @@ return [
 		Illuminate\Translation\TranslationServiceProvider::class,
 		Illuminate\Validation\ValidationServiceProvider::class,
 		Illuminate\View\ViewServiceProvider::class,
+		Laravolt\Avatar\ServiceProvider::class,
 
 		/*
 			         * Package Service Providers...
@@ -233,7 +234,7 @@ return [
 		'Html' => Collective\Html\HtmlFacade::class,
 		'Throttle' => 'GrahamCampbell\Throttle\Facades\Throttle',
 		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-
+		'Avatar' => Laravolt\Avatar\Facade::class,
 	],
 
 ];

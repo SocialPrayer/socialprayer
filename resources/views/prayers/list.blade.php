@@ -41,29 +41,36 @@
 
                 <div class="panel {{$pannelclass}} prayer">
                     <div class="panel-heading">
-                    	<div class="h5" style="float: left; vertical-align: middle;">
-                    		<span class="text-muted">Prayer From: </span>
+                    	<div class="prayer-user" style="float: left; vertical-align: top; text-decoration: underline;">
                             @if ($prayer->user->isFriend(Auth::id()))
                     		  <span data-toggle="popover"
                                  data-html="true"
                                  title="<b>{{ $prayer->user->name }}</b>"
                                  data-placement="top"
-                                 data-content="Friend of Yours!" style="border-bottom: 1px dashed #BDBDBD; cursor: pointer;">{{ $prayer->user->name }}</span>
+                                 data-content="Friend of Yours!" style="cursor: pointer;">{{ $prayer->user->name }}</span>
                             @elseif ($prayer->user->id == Auth::id())
                                 <span data-toggle="popover"
                                  data-html="true"
                                  title="<b>{{ $prayer->user->name }}</b>"
                                  data-placement="top"
-                                 data-content="" style="border-bottom: 1px dashed #BDBDBD; cursor: pointer;">{{ $prayer->user->name }}</span>
+                                 data-content="" style="cursor: pointer;">{{ $prayer->user->name }}</span>
+                            @elseif ($prayer->user->id == 0)
+                                <span data-toggle="popover"
+                                 data-html="true"
+                                 title="<b>{{ $prayer->user->name }}</b>"
+                                 data-placement="top"
+                                 data-content="" style="cursor: pointer;">{{ $prayer->user->name }}</span>
                             @else
                                 <span data-toggle="popover"
                                  data-html="true"
                                  title="<b>{{ $prayer->user->name }}</b>"
                                  data-placement="top"
-                                 data-content="<button class='btn btn-primary addfriend' data-id='{{ $prayer->user->id }}'>Add Friend</button>" style="border-bottom: 1px dashed #BDBDBD; cursor: pointer;">{{ $prayer->user->name }}</span>
+                                 data-content="<button class='btn btn-primary addfriend' data-id='{{ $prayer->user->id }}'>Add Friend</button>" style="cursor: pointer;">{{ $prayer->user->name }}</span>
                             @endif
                     	</div>
-                    	<div style="float: right;" class="text-muted h6">{{ $prayer->created_at->format('M j, y g:i A') }}</div>
+                    	<div style="float: right;" class="text-muted" title="{{ $prayer->created_at->format('M j, y g:i A') }}">
+                            {{ $prayer->created_at->diffForHumans() }}
+                        </div>
                     	<br />
                     </div>
                     <div class="panel-body">
@@ -111,6 +118,11 @@
                    	</div>
                 </div>
             @endforeach
+            <script>
+            $(function(){
+
+            });
+            </script>
         </div>
         {{$prayers->links()}}
     </section>
@@ -144,33 +156,7 @@ $(function(){
                 }
             }, 300);
     });
-	$('[data-toggle="tooltip"]').tooltip();
-	$('.prayerText textarea').autogrow({vertical: true, horizontal: false});
-    //hides the default paginator
-    $('ul.pagination:visible:first').hide();
-
-    //init jscroll and tell it a few key configuration details
-    //nextSelector - this will look for the automatically created
-    //contentSelector - this is the element wrapper which is cloned and appended with new paginated data
-    $('.prayers-section').jscroll({
-        debug: true,
-        autoTrigger: true,
-        loadingHtml: '<div style="text-align: center;"><img src="/images/loading.gif" alt="Loading" height="75px" /></div>',
-        nextSelector: '.pagination li.active + li a',
-        contentSelector: '.prayers',
-        callback: function() {
-
-            //again hide the paginator from view
-            $('ul.pagination:visible:first').hide();
-
-        }
-    });
-
-    window.setTimeout(function() {
-      $(".alert").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove();
-      });
-    }, 1500);
+    $('[data-toggle="tooltip"]').tooltip();
 
     $('.prayalong').click(function(){
         var prayer_id = $(this).data("id");
@@ -191,6 +177,75 @@ $(function(){
             $thisselector.html('Friendship Requested');
         });
     });
+	$('.prayerText textarea').autogrow({vertical: true, horizontal: false});
+    //hides the default paginator
+    $('ul.pagination:visible:first').hide();
+
+    //init jscroll and tell it a few key configuration details
+    //nextSelector - this will look for the automatically created
+    //contentSelector - this is the element wrapper which is cloned and appended with new paginated data
+    $('.prayers-section').jscroll({
+        debug: true,
+        autoTrigger: true,
+        loadingHtml: '<div style="text-align: center;"><img src="/images/loading.gif" alt="Loading" height="75px" /></div>',
+        nextSelector: '.pagination li.active + li a',
+        contentSelector: '.prayers',
+        callback: function() {
+
+            //again hide the paginator from view
+            $('ul.pagination:visible:first').hide();
+            $('[data-toggle="popover"]').popover({ trigger: "manual" , html: true, animation:false})
+                .on("click", function () {
+                    var _this = this;
+                    $(this).popover("show");
+                    $(".popover").on("click", function () {
+                        $(_this).popover('hide');
+                    });
+                    $(".popover").on("mouseleave", function () {
+                        $(_this).popover('hide');
+                    });
+                    $(".container").on("mouseleave", function () {
+                        $(_this).popover('hide');
+                    });
+                }).on("mouseleave", function () {
+                    var _this = this;
+                    setTimeout(function () {
+                        if (!$(".popover:hover").length) {
+                            $(_this).popover("hide");
+                        }
+                    }, 300);
+            });
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('.prayalong').click(function(){
+                var prayer_id = $(this).data("id");
+                var $thisselector = $(this);
+                $(this).addClass("disabled");
+                $(this).removeClass("btn-default");
+                $(this).addClass("btn-info");
+                $.get('/prayer/pray-along/' + prayer_id, function( data ) {
+                    $thisselector.prev('.prayedalongcount').html(data);
+                });
+            });
+
+            $(document).on("click", ".addfriend", function(){
+                var friend_id = $(this).data("id");
+                var $thisselector = $(this);
+                $(this).addClass("disabled");
+                $.get('/user/addfriend/' + friend_id, function( data ) {
+                    $thisselector.html('Friendship Requested');
+                });
+            });
+
+        }
+    });
+
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+      });
+    }, 1500);
+
 });
 
 </script>
