@@ -39,6 +39,7 @@
                 position: absolute;
                 right: 10px;
                 top: 18px;
+
             }
 
             .content {
@@ -59,7 +60,17 @@
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
-                font-size: 12px;
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .links2 > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 8px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
@@ -73,28 +84,20 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    <a href="{{ url('/privacy-policy') }}" style="font-size: 10px;">Privacy Policy</a>
-                    <a href="{{ url('/terms-and-conditions') }}" style="font-size: 10px;">Terms and Conditions</a>
-                    <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
-                </div>
-            @endif
+            <div class="top-right links2">
+                <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
+                <a href="{{ url('/terms-and-conditions') }}">Terms and Conditions</a>
+            </div>
 
             <div class="content">
                 <div class="title m-b-md">
                     <img src="{{ asset('images/social-prayer-logo.png') }}" style="height: 75px;" />
                     SocialPrayer
                 </div>
-
-                <!-- <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div> -->
+                <div class="links">
+                    <a href="{{ url('/login') }}">Login</a>
+                    <a href="{{ url('/register') }}">Register</a>
+                </div>
             </div>
         </div>
     </body>
