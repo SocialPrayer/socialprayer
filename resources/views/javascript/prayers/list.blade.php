@@ -95,6 +95,7 @@ $(function(){
                     });
                 });
             }
+            $('#newPrayer')[0].reset();
             var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height" style="text-align:center; font-size: 56px;">Amen!</div>');
             overlay.appendTo('.prayers').delay(1000).fadeOut();
 
