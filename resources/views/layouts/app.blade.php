@@ -45,11 +45,13 @@
 
                 <!-- Branding Image -->
                 <div class="navbar-brand">
-                    <img src="{{ asset('images/social-prayer-logo.png') }}" style="height: 25px;" />
+                    <a href="{{ url('/home') }}">
+                        <img src="{{ asset('images/social-prayer-logo.png') }}" style="height: 25px;" />
+                    </a>
                 </div>
-                <span class="navbar-brand">
-                    {{ config('app.name', 'Laravel') }}
-                </span>
+                    <a href="{{ url('/home') }}" class="navbar-brand">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -61,6 +63,8 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
+                    <li><a href="{{ url('/privacy-policy') }}" style="font-size: 10px;">Privacy Policy</a></li>
+                    <li><a href="{{ url('/terms-and-conditions') }}" style="font-size: 10px;">Terms and Conditions</a></li>
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>

@@ -19,6 +19,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/privacy-policy', function () {
+	return view('legal/privacypolicy');
+});
+Route::get('/terms-and-conditions', function () {
+	return view('legal/termsandconditions');
+});
+
 Route::get('/user/addfriend/{friendid}', 'UserController@addFriendRequest');
 
 Route::get('/user/acceptfriend/{friendshipid}', 'UserController@acceptFriendRequest');
