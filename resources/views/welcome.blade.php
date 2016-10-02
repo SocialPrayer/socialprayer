@@ -49,6 +49,12 @@
                 font-size: 84px;
             }
 
+            .tagline {
+                margin-top: -35px;
+                margin-bottom: 35px;
+                font-size: 20px;
+            }
+
             @media (max-width: 768px) {
                 .title {
                     font-size: 50px;
@@ -93,6 +99,9 @@
                 <div class="title m-b-md">
                     <img src="{{ asset('images/social-prayer-logo.png') }}" style="height: 75px;" />
                     SocialPrayer
+                </div>
+                <div class="tagline">
+                    If we pray together, there is nothing we cannot accomplish
                 </div>
                 <div class="links">
                     <a href="{{ url('/login') }}">Login</a>
