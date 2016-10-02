@@ -40,4 +40,8 @@ class UserController extends Controller {
 		$friend = \App\User::find($friendid);
 		$friend->notify(new FriendRequest($friendid, $friendRequest->id, false));
 	}
+
+	public function inviteFriendsForm() {
+		return view('users/friends/invite');
+	}
 }

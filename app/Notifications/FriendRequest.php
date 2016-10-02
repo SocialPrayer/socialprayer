@@ -47,7 +47,7 @@ class FriendRequest extends Notification {
 				->subject('SocialPrayer - Friendship Accepted')
 				->greeting('Hello ' . $friend->name . '!')
 				->line(Auth::user()->name . ' has accepted your request to be friends.')
-				->action('Pray', $url)
+				->action('Pray Now', $url)
 				->line('Have a blessed day!');
 		} else {
 
