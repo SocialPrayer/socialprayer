@@ -4,25 +4,25 @@
         <div class="panel-heading">
         	<div class="prayer-user" style="float: left; vertical-align: top; text-decoration: underline;">
                 @if ($prayer->user->isFriend(Auth::id()))
-        		  <span data-toggle="popover"
+        		  <span class="user-popover" data-toggle="popover"
                      data-html="true"
                      title="<b>{{ $prayer->user->name }}</b>"
                      data-placement="top"
                      data-content="Friend of Yours!" style="cursor: pointer;">{{ $prayer->user->name }}</span>
                 @elseif ($prayer->user->id == Auth::id())
-                    <span data-toggle="popover"
+                    <span class="user-popover" data-toggle="popover"
                      data-html="true"
                      title="<b>{{ $prayer->user->name }}</b>"
                      data-placement="top"
                      data-content="" style="cursor: pointer;">{{ $prayer->user->name }}</span>
                 @elseif ($prayer->user->id == 0)
-                    <span data-toggle="popover"
+                    <span class="user-popover" data-toggle="popover"
                      data-html="true"
                      title="<b>{{ $prayer->user->name }}</b>"
                      data-placement="top"
                      data-content="" style="cursor: pointer;">{{ $prayer->user->name }}</span>
                 @else
-                    <span data-toggle="popover"
+                    <span class="user-popover" data-toggle="popover"
                      data-html="true"
                      title="<b>{{ $prayer->user->name }}</b>"
                      data-placement="top"
