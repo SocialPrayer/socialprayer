@@ -9,13 +9,26 @@ $(function(){
             var _this = this;
             $(this).popover("show");
             $(".popover").on("click", function () {
-                $(_this).popover('hide');
+                setTimeout(function () {
+                    if (!$(".popover:hover").length) {
+                        $(_this).popover("hide");
+                    }
+                }, 600);
+
             });
             $(".popover").on("mouseleave", function () {
-                $(_this).popover('hide');
+                setTimeout(function () {
+                    if (!$(".popover:hover").length) {
+                        $(_this).popover("hide");
+                    }
+                }, 600);
             });
             $(".container").on("mouseleave", function () {
-                $(_this).popover('hide');
+                setTimeout(function () {
+                    if (!$(".popover:hover").length) {
+                        $(_this).popover("hide");
+                    }
+                }, 600);
             });
         }).on("mouseleave", function () {
             var _this = this;
@@ -23,7 +36,7 @@ $(function(){
                 if (!$(".popover:hover").length) {
                     $(_this).popover("hide");
                 }
-            }, 300);
+            }, 600);
     });
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -99,20 +112,6 @@ $(function(){
             overlay.appendTo('.prayers').delay(1000).fadeOut();
 
         });
-
-        // $.ajax({
-
-        //     type:"POST",
-        //     url:'/prayer',
-        //     data:$(this).serialize(),
-        //     dataType: 'json',
-        //     success: function(data){
-        //         $('#newPrayer')[0].reset();
-        //     },
-        //     error: function(data){
-
-        //     }
-        // });
     });
 
     $('.prayalong').click(function(){
@@ -129,9 +128,12 @@ $(function(){
     $(document).on("click", ".addfriend", function(){
         var friend_id = $(this).data("id");
         var $thisselector = $(this);
-        $(this).addClass("disabled");
+        var popover = $(this).parents('.popover').siblings('.user-popover');
         $.get('/user/addfriend/' + friend_id, function( data ) {
-            $thisselector.html('Friendship Requested');
+            $(this).html('Friendship Requested');
+            popover.attr('data-content','Friendship Requested').data('bs.popover');
+            popover.setContent();
+            popover.$tip.addClass(popover.options.placement);
         });
     });
 	$('.prayerText textarea').autogrow({vertical: true, horizontal: false});
@@ -189,6 +191,7 @@ $(function(){
                 var friend_id = $(this).data("id");
                 var $thisselector = $(this);
                 $(this).addClass("disabled");
+                $(this).prev('.user-popover').data('content','Friendship Requested');
                 $.get('/user/addfriend/' + friend_id, function( data ) {
                     $thisselector.html('Friendship Requested');
                 });
