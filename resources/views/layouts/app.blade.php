@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
+    <link rel="apple-touch-icon" href="/images/touch-icon-iphone.png">
+
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
