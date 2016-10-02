@@ -84,10 +84,10 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            <div class="top-right links2">
+           <!--  <div class="top-right links2">
                 <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
                 <a href="{{ url('/terms-and-conditions') }}">Terms and Conditions</a>
-            </div>
+            </div> -->
 
             <div class="content">
                 <div class="title m-b-md">
