@@ -57,9 +57,6 @@ $(function(){
                 newPrayerDiv.find('.prayer-time').html('Now');
                 newPrayerDiv.find('.prayer-text').html(prayerText);
                 newPrayerDiv.prependTo(".prayers").hide().fadeIn('slow').slideDown('slow');
-                $('#newPrayer')[0].reset();
-                $('#newPrayerSubmit').prop('disabled','');
-                $('.new-prayer-submit-text').html('Submit Prayer');
 
                 $('[data-toggle="popover"]').popover({ trigger: "manual" , html: true, animation:false})
                     .on("click", function () {
@@ -96,6 +93,8 @@ $(function(){
                 });
             }
             $('#newPrayer')[0].reset();
+            $('#newPrayerSubmit').prop('disabled','');
+            $('.new-prayer-submit-text').html('Submit Prayer');
             var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height" style="text-align:center; font-size: 56px;">Amen!</div>');
             overlay.appendTo('.prayers').delay(1000).fadeOut();
 
