@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\BibleAPI;
 use App\Http\Controllers\PrayerController;
 
 class HomeController extends Controller {
@@ -21,11 +20,11 @@ class HomeController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$dbt = new BibleAPI(null, null, 'json');
-		$volumes = $dbt->getLibraryVolume(null, null, 'text', null, null, 'ENG');
-		$volumes = json_decode($volumes);
+		// $dbt = new BibleAPI(null, null, 'json');
+		// $volumes = $dbt->getLibraryVolume(null, null, 'text', null, null, 'ENG');
+		// $volumes = json_decode($volumes);
 		$prayers = new PrayerController;
-		return view('prayers/list', ['prayers' => $prayers->index()[0], 'privacysettings' => $prayers->index()[1], 'volumes' => $volumes]);
+		return view('prayers/list', ['prayers' => $prayers->index()[0], 'privacysettings' => $prayers->index()[1]]);
 
 	}
 }

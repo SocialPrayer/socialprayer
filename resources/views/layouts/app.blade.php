@@ -63,8 +63,6 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                    <li><a href="{{ url('/privacy-policy') }}" style="font-size: 10px;">Privacy Policy</a></li>
-                    <li><a href="{{ url('/terms-and-conditions') }}" style="font-size: 10px;">Terms and Conditions</a></li>
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
@@ -75,6 +73,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/invite-friends') }}">Invite Friends</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
@@ -95,11 +94,16 @@
     </nav>
 
     <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-          @yield('content')
+        <div class="row">
+            <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+            @yield('content')
+            </div>
         </div>
-      </div>
+        <div style="position: fixed; bottom: 0; right: 10px;">
+            <a href="{{ url('/privacy-policy') }}" class="text-muted" style="font-size: 10px;">Privacy Policy</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{{ url('/terms-and-conditions') }}" class="text-muted" style="font-size: 10px;">Terms and Conditions</a>
+        </div>
     </div>
 
 

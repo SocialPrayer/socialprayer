@@ -130,7 +130,7 @@ $(function(){
         var $thisselector = $(this);
         var popover = $(this).parents('.popover').siblings('.user-popover');
         $.get('/user/addfriend/' + friend_id, function( data ) {
-            $(this).html('Friendship Requested');
+            $thisselector.html('Friendship Requested');
             popover.attr('data-content','Friendship Requested').data('bs.popover');
             popover.setContent();
             popover.$tip.addClass(popover.options.placement);

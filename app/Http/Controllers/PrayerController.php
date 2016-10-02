@@ -66,6 +66,13 @@ class PrayerController extends Controller {
 			$prayer->save();
 		}
 
+		if ($request->privacy != 0 && $request->privacy != 4) {
+			$friends = Auth::user()->friends();
+			foreach ($friends as $friend) {
+				$friend->notify(new FriendPrayed($friend->id, $prayerid));
+			}
+		}
+
 		flash('Your prayer has been submitted up to God!', 'success');
 		return redirect('/home');
 	}
@@ -77,7 +84,13 @@ class PrayerController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id) {
-		//
+		$prayer = Prayer::with('privacysetting')
+			->with('user')
+			->with('prayalong')
+			->where('prayers.id', $id)
+			->get();
+
+		return view('prayers/show', array('prayer' => $prayer));
 	}
 
 	/**
