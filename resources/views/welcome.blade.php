@@ -75,6 +75,8 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
+                    <a href="{{ url('/privacy-policy') }}" style="font-size: 10px;">Privacy Policy</a>
+                    <a href="{{ url('/terms-and-conditions') }}" style="font-size: 10px;">Terms and Conditions</a>
                     <a href="{{ url('/login') }}">Login</a>
                     <a href="{{ url('/register') }}">Register</a>
                 </div>
