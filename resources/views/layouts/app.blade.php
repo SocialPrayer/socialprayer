@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
-    <link rel="apple-touch-icon" href="/images/touch-icon-iphone.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon-iphone-retina.png">
 
     <!-- Scripts -->
     <script>
