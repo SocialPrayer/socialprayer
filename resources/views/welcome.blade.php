@@ -10,7 +10,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
-        <link rel="apple-touch-icon" href="/images/touch-icon-iphone.png">
+        <link rel="apple-touch-icon" href="/images/apple-touch-icon-iphone-retina.png">
 
         <!-- Styles -->
         <style>
