@@ -36,6 +36,9 @@ $panel-default-heading-bg: #F0F0F0;
     .navbar-nav a {
       text-align: right;
     }
+    .navbar-brand {
+      padding-right: 0px;
+    }
 }
 
 @media screen and (max-height: 575px){

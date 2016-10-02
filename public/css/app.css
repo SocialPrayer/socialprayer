@@ -5784,7 +5784,9 @@ button.close {
 
 @media (max-width: 767px) {
   .navbar-nav a {
-    text-align: right; } }
+    text-align: right; }
+  .navbar-brand {
+    padding-right: 0px; } }
 
 @media screen and (max-height: 575px) {
   #rc-imageselect, .g-recaptcha {
