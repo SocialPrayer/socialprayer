@@ -7,7 +7,7 @@
             </div>
             <div class="form-inline text-right">
             	<div class="form-group">
-	                <select class="form-control" name="privacy" style="margin-right: 5px;" required="required">
+	                <select class="form-control" name="privacy" id="privacy" style="margin-right: 5px;" required="required">
 	                	<option value="" disabled selected>Select Privacy Level</option>
 	                	@foreach ($privacysettings as $privacysetting)
 							<option value="{{ $privacysetting->id }}">{{ $privacysetting->name }}</option>
