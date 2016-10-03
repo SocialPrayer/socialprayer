@@ -66,8 +66,8 @@ class PrayerController extends Controller {
 			$prayer->save();
 		}
 
-		if ($request->privacy != 0 && $request->privacy != 4) {
-			$friends = Auth::user()->friends();
+		if ($request->privacy > 1 && $request->privacy != 4) {
+			$friends = Auth::user()->friends;
 			foreach ($friends as $friend) {
 				$friend->notify(new FriendPrayed($friend->id, $prayerid));
 			}
