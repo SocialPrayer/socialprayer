@@ -2,6 +2,7 @@
 
 @section('content')
 	<section class="prayers-section col-centered">
+
         @include('vendor/flash/message')
         @include('prayers/create')
         <div class="prayers">
