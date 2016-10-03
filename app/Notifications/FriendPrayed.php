@@ -42,7 +42,7 @@ class FriendPrayed extends Notification {
 		return (new MailMessage)
 			->subject('SocialPrayer - A friend of just prayed')
 			->greeting('Hello ' . $friend->name . '!')
-			->line('A friend of yours, ' . Auth::user()->name . ', just prayed.')
+			->line('A friend of yours, ' . \Auth::user()->name . ', just prayed.')
 			->action('View Prayer', $url)
 			->line('Have a blessed day!');
 	}
