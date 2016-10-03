@@ -53,7 +53,7 @@
 
             .tagline {
                 margin-top: -35px;
-                margin-bottom: 35px;
+                margin-bottom: 100px;
                 font-size: 20px;
             }
 
