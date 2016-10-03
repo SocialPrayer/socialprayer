@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\FriendPrayed;
 use Auth;
 use Illuminate\Http\Request;
 use \App\PrayAlong as PrayAlong;
