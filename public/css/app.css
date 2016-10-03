@@ -1,5 +1,7 @@
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+/*$panel-info-heading-bg: #8eb4cb;
+$panel-info-border: $panel-default-border;*/
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
