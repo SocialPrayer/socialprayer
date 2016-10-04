@@ -59,15 +59,17 @@ class UserController extends Controller {
 		print_r($invitees);
 		foreach ($invitees as $invitee) {
 			if (strpos($invitee, '@') && strpos($invitee, '.')) {
-				\Mail::send('vendor.notifications.email', [], function ($message) {
+				$content = [];
+				$content->greeting("Greetings, " . Auth::user()->name . "'s Friend");
+				$content->line("You have been formally invited to pray on SocialPrayer.");
+				$content->action("Sign Up", $url);
+				$content->line("Have a blessed day!");
+				\Mail::send('vendor.notifications.email', [$content], function ($message) {
 
 					$message->to($invitee);
 					//Add a subject
 					$message->subject("SocialPrayer - " . Auth::user()->name . " just invited you to pray with them");
-					$message->greeting("Greetings, " . Auth::user()->name . "'s Friend");
-					$message->line("You have been formally invited to pray on SocialPrayer.");
-					$message->action("Sign Up", $url);
-					$message->line("Have a blessed day!");
+
 				});
 			}
 		}
