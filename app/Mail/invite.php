@@ -30,9 +30,9 @@ class invite extends Mailable {
 			->with([
 				'subject' => 'SocialPrayer - ' . Auth::user()->name . ' just invited you to pray with them',
 				'greeting' => 'Greetings ' . Auth::user()->name . 's Friend',
-				'introLine' => 'You have been formally invited to pray on SocialPrayer.',
+				'introLines' => 'You have been formally invited to pray on SocialPrayer.',
 				'action' => array('Sign Up', $url),
-				'introLine' => 'Have a blessed day!',
+				'outroLines' => 'Have a blessed day!',
 			]);
 
 	}
