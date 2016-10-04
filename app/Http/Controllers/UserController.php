@@ -54,12 +54,21 @@ class UserController extends Controller {
 	}
 
 	public function inviteFriendsSend(Request $request) {
+		$url = "http://www.social-prayer/register";
 		$invitees = $this->multiexplode(array(",", "|", ":", ";", PHP_EOL), $request->invitees);
 		print_r($invitees);
 		foreach ($invitees as $invitee) {
 			if (strpos($invitee, '@') && strpos($invitee, '.')) {
-				\Mail::to($invitee)
-					->send(new \App\Mail\invite());
+				\Mail::send('vendor.notifications.email', function ($message) {
+
+					$message->to($invitee);
+					//Add a subject
+					$message->subject("SocialPrayer - " . Auth::user()->name . " just invited you to pray with them");
+					$message->greeting("Greetings, " . Auth::user()->name . "'s Friend");
+					$message->line("You have been formally invited to pray on SocialPrayer.");
+					$message->action("Sign Up", $url);
+					$message->line("Have a blessed day!");
+				});
 			}
 		}
 	}
