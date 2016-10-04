@@ -17,7 +17,7 @@
                 <button type="submit" id="newPrayerSubmit" class="btn btn-info btn-md">
                 	<img src="{{ asset('images/social-prayer-logo.png') }}" height="20px" />
                 	<span class="new-prayer-submit-text">Submit Prayer</span>
-                </a>
+                </button>
             </div>
             {{ csrf_field() }}
         </div>
