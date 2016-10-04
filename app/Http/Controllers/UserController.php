@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Notifications\FriendRequest;
 use Auth;
+use Illuminate\Http\Request;
 use \App\Friend as Friend;
 
 class UserController extends Controller {
