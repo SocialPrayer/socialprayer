@@ -59,7 +59,7 @@ class UserController extends Controller {
 		print_r($invitees);
 		foreach ($invitees as $invitee) {
 			if (strpos($invitee, '@') && strpos($invitee, '.')) {
-				\Mail::send('vendor.notifications.email', function ($message) {
+				\Mail::send('vendor.notifications.email', [], function ($message) {
 
 					$message->to($invitee);
 					//Add a subject
