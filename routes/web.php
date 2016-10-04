@@ -30,7 +30,7 @@ Route::get('/user/addfriend/{friendid}', 'UserController@addFriendRequest');
 
 Route::get('/user/invite-friends/', 'UserController@inviteFriendsForm');
 
-Route::post('/user/invite-friends/', 'UserController@inviteFriendsSend');
+Route::post('/user/invite-friends', 'UserController@inviteFriendsSend');
 
 Route::get('/user/acceptfriend/{friendshipid}', 'UserController@acceptFriendRequest');
 

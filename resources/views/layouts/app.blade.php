@@ -75,7 +75,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <!-- <li><a href="{{ url('/invite-friends') }}">Invite Friends</a></li> -->
+                                <li><a href="{{ url('/user/invite-friends') }}" data-remote="false" data-toggle="modal" data-target="#myModal">Invite Friends</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
@@ -108,9 +108,26 @@
         </div>
     </div>
 
+    <!-- Default bootstrap modal example -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+      </div>
+    </div>
+
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+
+    <script>
+    $(function(){
+        $("#myModal").on("show.bs.modal", function(e) {
+            var link = $(e.relatedTarget);
+            $(this).find(".modal-content").load(link.attr("href"));
+        });
+    });
+    </script>
     <!-- <script src="/js/sidebar.js"></script> -->
 
     @yield('footer')
