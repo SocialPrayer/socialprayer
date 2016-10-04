@@ -54,7 +54,7 @@ class UserController extends Controller {
 	}
 
 	public function inviteFriendsSend(Request $request) {
-		$invitees = $this->multiexplode(array(",", ".", "|", ":", ";", PHP_EOL), $request->invitees);
+		$invitees = $this->multiexplode(array(",", "|", ":", ";", PHP_EOL), $request->invitees);
 		print_r($invitees);
 		foreach ($invitees as $invitee) {
 			if (strpos($invitee, '@') && strpos($invitee, '.')) {
