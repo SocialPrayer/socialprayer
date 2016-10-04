@@ -1,5 +1,6 @@
-<div class="modal-header">
 <form class="form" id="inviteFriends" action="/user/invite-friends" method="POST">
+  <div class="modal-header">
+
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h3 class="modal-title" id="myModalLabel">Invite Friends to SocialPrayer</h3>
     <h6 class="modal-title" id="myModalLabel">(Please enter email addresses seperated by commas, semi-colons or one per line)</h6>
@@ -13,4 +14,3 @@
   </div>
   {{ csrf_field() }}
 </form>
-</div>
