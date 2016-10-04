@@ -40,7 +40,7 @@ class FriendPrayed extends Notification {
 
 		$url = url('/prayer/' . $this->prayerid);
 		return (new MailMessage)
-			->subject('SocialPrayer - A friend of just prayed')
+			->subject('SocialPrayer - ' . \Auth::user()->name . ' just prayed')
 			->greeting('Hello ' . $friend->name . '!')
 			->line('A friend of yours, ' . \Auth::user()->name . ', just prayed.')
 			->action('View Prayer', $url)
