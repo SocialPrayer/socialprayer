@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Notifications\FriendRequest;
+use App\Notifications\invite;
 use Auth;
 use Illuminate\Http\Request;
 use \App\Friend as Friend;
