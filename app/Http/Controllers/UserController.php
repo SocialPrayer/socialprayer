@@ -44,4 +44,21 @@ class UserController extends Controller {
 	public function inviteFriendsForm() {
 		return view('users/friends/invite');
 	}
+
+	public function multiexplode($delimiters, $string) {
+
+		$ready = str_replace($delimiters, $delimiters[0], $string);
+		$launch = explode($delimiters[0], $ready);
+		return $launch;
+	}
+
+	public function inviteFriendsSend(Request $request) {
+		$invitees = $this->multiexplode(array(",", ".", "|", ":", ";", PHP_EOL), $request->invitees);
+		foreach ($invitees as $invitee) {
+			if (strpos($invitee, '@') && strpos($invitee, '.')) {
+				Mail::to($invitee)
+					->send(new \App\Mail\invite());
+			}
+		}
+	}
 }
