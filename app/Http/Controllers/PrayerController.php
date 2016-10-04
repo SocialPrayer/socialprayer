@@ -91,7 +91,7 @@ class PrayerController extends Controller {
 			->where('prayers.id', $id)
 			->get();
 
-		return view('prayers/prayer', array('prayer' => $prayer));
+		return view('prayers/prayer', array('prayer' => $prayer[0]));
 	}
 
 	/**
