@@ -60,6 +60,7 @@ class UserController extends Controller {
 			if (strpos($invitee[0], '@') && strpos($invitee[0], '.')) {
 				\Mail::to($invitee[0])
 					->send(new \App\Mail\invite());
+				print $invitee[0] . PHP_EOL;
 			}
 		}
 	}
