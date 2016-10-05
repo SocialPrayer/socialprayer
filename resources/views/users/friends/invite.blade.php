@@ -14,3 +14,16 @@
   </div>
   {{ csrf_field() }}
 </form>
+
+<script>
+$(function(){
+	$('#inviteFriends').on('submit',function() {
+		$.ajaxSetup({
+            header:$('meta[name="_token"]').attr('content')
+        })
+        e.preventDefault(e);
+        $.post("/user/invite-friends", $(this).serialize());
+        $('#myModal').modal('hide');
+	});
+});
+</script>
