@@ -17,7 +17,7 @@
 
 <script>
 $(function(){
-	$('#inviteFriends').on('submit',function() {
+	$('#inviteFriends').on('submit',function(e) {
 		$.ajaxSetup({
             header:$('meta[name="_token"]').attr('content')
         })
