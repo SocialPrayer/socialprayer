@@ -55,14 +55,11 @@ class UserController extends Controller {
 
 	public function inviteFriendsSend(Request $request) {
 		$invitees = $this->multiexplode(array(",", "|", ":", ";", " ", PHP_EOL), $request->invitees);
-		print_r($invitees);
 		foreach ($invitees as $invitee) {
-			print 't' . $invitee . 't' . PHP_EOL;
-			// if (strpos($invitee, '@') && strpos($invitee, '.')) {
-			// 	\Mail::to($invitee[0])
-			// 		->send(new \App\Mail\invite());
-			// 	print $invitee . PHP_EOL;
-			// }
+			if (strpos($invitee, '@') && strpos($invitee, '.')) {
+				\Mail::to(trim($invitee))
+					->send(new \App\Mail\invite());
+			}
 		}
 	}
 }
