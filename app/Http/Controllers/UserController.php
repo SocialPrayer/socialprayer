@@ -57,7 +57,7 @@ class UserController extends Controller {
 		$invitees = $this->multiexplode(array(",", "|", ":", ";", PHP_EOL), $request->invitees);
 		print_r($invitees);
 		foreach ($invitees as $invitee) {
-			print $invitee . PHP_EOL;
+			print 't' . $invitee . 't' . PHP_EOL;
 			// if (strpos($invitee, '@') && strpos($invitee, '.')) {
 			// 	\Mail::to($invitee[0])
 			// 		->send(new \App\Mail\invite());
