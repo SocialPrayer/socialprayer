@@ -28,6 +28,7 @@ class invite extends Mailable {
 		$url = "http://www.social-prayer/register";
 		return $this->view('vendor.notifications.email')
 			->with([
+				'level' => 'info',
 				'subject' => 'SocialPrayer - ' . Auth::user()->name . ' just invited you to pray with them',
 				'greeting' => 'Greetings ' . Auth::user()->name . 's Friend',
 				'introLines' => ['You have been formally invited to pray on SocialPrayer.'],
