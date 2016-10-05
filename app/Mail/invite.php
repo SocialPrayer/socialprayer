@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use Auth;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -24,7 +25,16 @@ class invite extends Mailable {
 	 * @return $this
 	 */
 	public function build() {
-		return $this->view('vendor.notifications.email');
+		$url = "http://www.social-prayer/register";
+		return $this->view('vendor.notifications.email')
+			->with([
+				'subject' => 'SocialPrayer - ' . Auth::user()->name . ' just invited you to pray with them',
+				'greeting' => 'Greetings ' . Auth::user()->name . 's Friend',
+				'introLines' => 'You have been formally invited to pray on SocialPrayer.',
+				'actionText' => 'Sign Up',
+				'actionUrl' => $url,
+				'outroLines' => 'Have a blessed day!',
+			]);
 
 	}
 }

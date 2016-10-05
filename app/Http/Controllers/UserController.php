@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Notifications\FriendRequest;
-use App\Notifications\invite;
 use Auth;
 use Illuminate\Http\Request;
 use \App\Friend as Friend;
@@ -55,12 +54,12 @@ class UserController extends Controller {
 	}
 
 	public function inviteFriendsSend(Request $request) {
-		$url = "http://www.social-prayer/register";
 		$invitees = $this->multiexplode(array(",", "|", ":", ";", PHP_EOL), $request->invitees);
 		print_r($invitees);
 		foreach ($invitees as $invitee) {
 			if (strpos($invitee, '@') && strpos($invitee, '.')) {
-				$invitee->notify(new invite());
+				\Mail::to($invitee)
+					->send(new \App\Mail\invite());
 			}
 		}
 	}
