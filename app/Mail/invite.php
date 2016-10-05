@@ -27,12 +27,13 @@ class invite extends Mailable {
 	public function build() {
 		$url = "http://www.social-prayer/register";
 		return $this->view('vendor.notifications.email')
+			->subject('SocialPrayer - ' . Auth::user()->name . ' just invited you to pray with them')
 			->with([
 				'level' => 'info',
 				'subject' => 'SocialPrayer - ' . Auth::user()->name . ' just invited you to pray with them',
-				'greeting' => 'Greetings ' . Auth::user()->name . 's Friend',
-				'introLines' => ['You have been formally invited to pray on SocialPrayer.'],
-				'actionText' => 'Sign Up',
+				'greeting' => 'Greetings,',
+				'introLines' => ['You have been invited by ' . Auth::user()->name . ' to pray on SocialPrayer. A new place on the internet to pray either by yourself or together with those you know and love. Or even anonymously.'],
+				'actionText' => 'Sign Up and Pray',
 				'actionUrl' => $url,
 				'outroLines' => ['Have a blessed day!'],
 			]);
