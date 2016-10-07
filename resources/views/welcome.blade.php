@@ -4,11 +4,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="SocialPrayer is a new online social network for prayer. Just prayer. Pray together online, either with friends, anonymously, or just for yourself and God.">
 
         <title>SocialPrayer</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
+        <link href="/css/app.css" rel="stylesheet">
 
         <link rel="apple-touch-icon" href="/images/apple-touch-icon-iphone-retina.png">
 
@@ -44,6 +47,10 @@
 
             }
 
+            .page2 {
+                background-color: #8E8E8E;
+            }
+
             .content {
                 text-align: center;
             }
@@ -63,7 +70,18 @@
                 }
             }
 
+            .pageTurner {
+                position: relative;
+                top: -40px;
+                height: 100px;
+                font-size: 20px;
+            }
 
+            .mainSummary {
+                position: relative;
+                top: 50px;
+                font-size: 20px;
+            }
 
             .links > a {
                 color: #636b6f;
@@ -109,7 +127,21 @@
                     <a href="{{ url('/login') }}">Login</a>
                     <a href="{{ url('/register') }}">Register</a>
                 </div>
+
             </div>
         </div>
+        <!--
+        <div class="position-ref full-height page2">
+            <div class="content">
+                <img src="{{ asset('images/social-prayer-logo.png') }}" class="pageTurner" />
+                <div class="row">
+                    <div class="well col-xs-8 col-xs-offset-2 mainSummary">
+                        <h3>SocialPrayer is a new online social network for prayer.</h3>
+                        <h1>Just prayer</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
     </body>
 </html>
