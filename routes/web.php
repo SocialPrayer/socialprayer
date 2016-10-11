@@ -36,6 +36,8 @@ Route::get('/user/acceptfriend/{friendshipid}', 'UserController@acceptFriendRequ
 
 Route::resource('/prayer', 'PrayerController');
 
+Route::get('/bible/book/search/{searchTerm}', 'BibleController@showBookSearch');
+
 Route::get('/prayer/pray-along/{prayerid}', 'PrayerController@prayAlong');
 
 Route::get('auth/OAuth/{driver}', 'Auth\SocialiteAuthController@redirectToProvider');

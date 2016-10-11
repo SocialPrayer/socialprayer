@@ -2,6 +2,7 @@
 <!-- <script src="/js/vendor/bootstrap/tooltip.js"></script>
 <script src="/js/vendor/bootstrap/popover.js"></script> -->
 <script src="/js/vendor/jquery.jscroll.min.js"></script>
+<script src="/js/vendor/bootstrap-combobox.js"></script>
 <script>
 $(function(){
     $('[data-toggle="popover"]').popover({ trigger: "manual" , html: true, animation:false})
@@ -39,6 +40,30 @@ $(function(){
             }, 600);
     });
     $('[data-toggle="tooltip"]').tooltip();
+
+
+
+    $(document).on('keyup', '#prayerText', function(){
+        var fullText = $(this).val();
+        var secondToLastChar = fullText.charAt( fullText.length-2 );
+        var lastChar = fullText.charAt( fullText.length-1 );
+        var lastChars = secondToLastChar + lastChar;
+        if(lastChars == '#b') {
+            $.get('/bible/book/search/___', function(data) {
+                var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height text-center"><div class="container"><div class="row form-group col-lg-4 col-lg-offset-4"><div class="well form-inline"><select class="combobox form-control" id="bookName" style="margin-right: 15 px;"><option></option>' + data + '</select><button class="btn" id="bookNameBtn">Select Book</button</div></div></div></div>');
+                overlay.appendTo('.prayers');
+                $('.combobox').combobox();
+                $('.combobox').focus();
+                $(document).on('click', '#bookNameBtn', function() {
+                    var book = $(this).prev().val();
+                    newText = fullText.replace(lastChars,book);
+                    $('#prayerText').val(newText);
+                    $('#overlay').remove();
+                });
+            });
+
+        }
+    });
 
     $('#newPrayer').on('submit',function(e){
         $.ajaxSetup({

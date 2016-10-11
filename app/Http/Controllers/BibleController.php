@@ -19,7 +19,6 @@ class BibleController extends Controller {
 			$books = $books->where('book', 'LIKE', $search . '%');
 		}
 		$books = $books->groupBy('book')
-
 			->get(array('book'));
 		return $books;
 	}
