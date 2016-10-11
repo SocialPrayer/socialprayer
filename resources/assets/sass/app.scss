@@ -6,7 +6,7 @@
 // Variables
 @import "variables";
 
-$panel-default-heading-bg: #F0F0F0;\
+$panel-default-heading-bg: #F0F0F0;
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
@@ -73,11 +73,7 @@ $panel-default-heading-bg: #F0F0F0;\
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #000;
-    filter:alpha(opacity=50);
-    -moz-opacity:0.5;
-    -khtml-opacity: 0.5;
-    opacity: 0.5;
+    background-color: rgba(0,0,0,0.5);
     z-index: 10000;
     color: #ffffff;
 }
