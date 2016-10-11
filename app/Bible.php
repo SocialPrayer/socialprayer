@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bible extends Model
-{
-    //
+class Bible extends Model {
+	protected $connection = 'bible';
 }

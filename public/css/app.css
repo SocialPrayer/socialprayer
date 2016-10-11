@@ -1,7 +1,5 @@
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-/*$panel-info-heading-bg: #8eb4cb;
-$panel-info-border: $panel-default-border;*/
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -5823,11 +5821,7 @@ button.close {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
-  filter: alpha(opacity=50);
-  -moz-opacity: 0.5;
-  -khtml-opacity: 0.5;
-  opacity: 0.5;
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 10000;
   color: #ffffff; }
 
