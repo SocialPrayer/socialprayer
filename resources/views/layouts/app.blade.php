@@ -75,6 +75,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/user/profile/'.Auth::user()->id) }}" data-remote="false" data-toggle="modal" data-target="#myModal">Profile</a></li>
                                 <li><a href="{{ url('/user/invite-friends') }}" data-remote="false" data-toggle="modal" data-target="#myModal">Invite Friends</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
