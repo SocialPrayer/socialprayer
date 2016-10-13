@@ -63,7 +63,12 @@ class UserProfileController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id) {
-		//
+		$userProfile = UserProfile::find($id);
+		$userProfile->email = $request->email;
+		$userProfile->firstname = $request->firstname;
+		$userProfile->lastname = $request->lastname;
+		$userProfile->sex = $request->sex;
+		$userProfile->save();
 	}
 
 	/**
