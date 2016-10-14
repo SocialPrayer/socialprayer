@@ -1,4 +1,4 @@
-<?php if ($prayer->user->isFriend(Auth::id())) {$pannelclass = "panel-info";} elseif ($prayer->user->id == Auth::id()) {$pannelclass = "panel-success";} else { $pannelclass = "panel-default";}?>
+<?php if ($prayer->user->isFriend(Auth::id())) {$pannelclass = "panel-info";} elseif ($prayer->user->id == Auth::id()) {$pannelclass = "panel-info";} else { $pannelclass = "panel-default";}?>
 
     <div class="panel {{$pannelclass}} prayer">
         <div class="panel-heading">
