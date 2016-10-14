@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\User;
 use \App\UserProfile;
 
 class UserProfileController extends Controller {
@@ -52,7 +53,8 @@ class UserProfileController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id) {
-		//
+		$userProfile = UserProfile::find($id);
+		return view('users/profile/edit', array('userProfile' => $userProfile));
 	}
 
 	/**
@@ -63,7 +65,21 @@ class UserProfileController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id) {
-		//
+
+		$userProfile = UserProfile::find($id);
+		$userProfile->email = $request->email;
+		$userProfile->firstname = $request->firstname;
+		$userProfile->lastname = $request->lastname;
+		$userProfile->sex = $request->sex;
+		$userProfile->marital_status = $request->marital_status;
+		$userProfile->spouse_name = $request->spouse_name;
+		$userProfile->save();
+
+		$user = User::find($userProfile->user_id);
+		$user->email = $userProfile->email;
+		$user->name = $userProfile->firstname . ' ' . $userProfile->lastname;
+		$user->save();
+
 	}
 
 	/**
