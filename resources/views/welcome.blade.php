@@ -26,8 +26,8 @@
                 margin: 0;
             }
 
-            .full-height {
-                height: 100vh;
+            .half-height {
+                height: 75vh;
             }
 
             .flex-center {
@@ -48,7 +48,7 @@
             }
 
             .page2 {
-                background-color: #8E8E8E;
+                /*background-color: #eee;*/
             }
 
             .content {
@@ -60,7 +60,7 @@
 
             .tagline {
                 margin-top: -35px;
-                margin-bottom: 100px;
+                margin-bottom: 75px;
                 font-size: 20px;
             }
 
@@ -72,15 +72,15 @@
 
             .pageTurner {
                 position: relative;
-                top: -40px;
-                height: 100px;
+                top: 25px;
+                height: 60px;
                 font-size: 20px;
             }
 
             .mainSummary {
                 position: relative;
-                top: 50px;
-                font-size: 20px;
+                top: 75px;
+                font-size: 16px;
             }
 
             .links > a {
@@ -103,13 +103,27 @@
                 text-transform: uppercase;
             }
 
+
             .m-b-md {
                 margin-bottom: 30px;
+            }
+
+            .prayers {
+                margin-top: -20px;
+            }
+
+            .fade_line{
+                display:block;
+                border:none;
+                color:white;
+                height:2px;
+                background:black;
+                background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#949494), to(#fff));
             }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center position-ref half-height">
            <!--  <div class="top-right links2">
                 <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
                 <a href="{{ url('/terms-and-conditions') }}">Terms and Conditions</a>
@@ -125,23 +139,30 @@
                 </div>
                 <div class="links">
                     <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
+                    <a href="{{ url('/register') }}">Join Now</a>
                 </div>
-
+                <div class="row">
+                <div class="well mainSummary">
+                    <p>SocialPrayer is a new online social network for prayer. <b>Just prayer.</b></p>
+                    <p>Pray together online, either with friends, anonymously, or just for yourself and God.</p>
+                </div>
+            </div>
             </div>
         </div>
-        <!--
         <div class="position-ref full-height page2">
             <div class="content">
-                <img src="{{ asset('images/social-prayer-logo.png') }}" class="pageTurner" />
+            <img src="{{ asset('images/social-prayer-logo.png') }}" class="pageTurner" />
+            <span class="fade_line"></span>
+            <!-- <h4>Latest Prayers</h1> -->
+            @include('prayers/guest')
+               <!--  <img src="{{ asset('images/social-prayer-logo.png') }}" class="pageTurner" />
                 <div class="row">
                     <div class="well col-xs-8 col-xs-offset-2 mainSummary">
                         <h3>SocialPrayer is a new online social network for prayer.</h3>
                         <h1>Just prayer</h1>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
-        -->
     </body>
 </html>
