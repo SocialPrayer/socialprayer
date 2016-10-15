@@ -1,5 +1,7 @@
 <?php
 
+$request = new Illuminate\Http\Request;
+
 return [
 
 	/*
@@ -42,13 +44,13 @@ return [
 	'facebook' => [
 		'client_id' => '181933401931405',
 		'client_secret' => '16c5488551be6f32e6689c9ff1c0bf6b',
-		'redirect' => 'http://www.social-prayer.com/auth/OAuth/facebook/callback',
+		'redirect' => env('APP_URL') . '/auth/OAuth/facebook/callback',
 	],
 
 	'google' => [
 		'client_id' => '415850758985-6u2ttqkqq80aomq6n5lrhaer5pitcf91.apps.googleusercontent.com',
 		'client_secret' => 'Ad-9wub1t2xovgZOdA2Hukwz',
-		'redirect' => 'http://www.social-prayer.com/auth/OAuth/google/callback',
+		'redirect' => env('APP_URL') . '/auth/OAuth/google/callback',
 	],
 
 ];
