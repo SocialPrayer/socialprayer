@@ -147,7 +147,8 @@
             <div class="content">
             <div class="row">
                 <div class="well col-xs-8 col-xs-offset-2 col-lg-6 col-lg-offset-3 mainSummary">
-                    <p>SocialPrayer is a new online social network for prayer. <b>Just prayer</b>.</p>
+                    <p>SocialPrayer is a new online social network for prayer.</p>
+                    <p><b>Just prayer</b>.</p>
                     <p>Pray together online, either with friends, anonymously, or just for yourself and God.</p>
                 </div>
             </div>
