@@ -11,9 +11,7 @@
 |
  */
 
-Route::get('/', function () {
-	return view('welcome');
-});
+Route::get('/', 'HomeController@guest');
 
 Auth::routes();
 
@@ -39,4 +37,5 @@ Route::resource('/prayer', 'PrayerController');
 Route::get('/prayer/pray-along/{prayerid}', 'PrayerController@prayAlong');
 
 Route::get('auth/OAuth/{driver}', 'Auth\SocialiteAuthController@redirectToProvider');
+
 Route::get('auth/OAuth/{driver}/callback', 'Auth\SocialiteAuthController@handleProviderCallback');
