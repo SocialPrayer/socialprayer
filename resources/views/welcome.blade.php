@@ -27,7 +27,7 @@
             }
 
             .half-height {
-                height: 75vh;
+                height: 70vh;
             }
 
             .flex-center {
@@ -79,8 +79,8 @@
 
             .mainSummary {
                 position: relative;
-                top: 50px;
-                font-size: 20px;
+                top: -20px;
+                font-size: 16px;
             }
 
             .links > a {
@@ -145,6 +145,12 @@
         </div>
         <div class="position-ref full-height page2">
             <div class="content">
+            <div class="row">
+                <div class="well col-xs-6 col-xs-offset-3 mainSummary">
+                    <p>SocialPrayer is a new online social network for prayer. <b>Just prayer</b>.</p>
+                    <p>Pray together online, either with friends, anonymously, or just for yourself and God.</p>
+                </div>
+            </div>
             <span class="fade_line"></span>
             <!-- <h4>Latest Prayers</h1> -->
             @include('prayers/guest')
