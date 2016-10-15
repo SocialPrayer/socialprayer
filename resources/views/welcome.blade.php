@@ -138,7 +138,7 @@
                 </div>
                 <div class="links">
                     <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Join Now {{$app['config']['services.facebook']['redirect']}}</a>
+                    <a href="{{ url('/register') }}">Join Now</a>
                 </div>
 
             </div>
