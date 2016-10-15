@@ -4,13 +4,14 @@
 	<section class="prayers-section col-centered">
 
         @include('vendor/flash/message')
-        @include('prayers/create')
+        @if (Auth::check())
+            @include('prayers/create')
+        @endif
         <div class="prayers">
             @foreach ($prayers as $prayer)
                 @include('prayers/prayer')
             @endforeach
         </div>
-        {{$prayers->links()}}
     </section>
 @endsection
 

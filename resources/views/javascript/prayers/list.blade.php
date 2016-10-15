@@ -39,7 +39,7 @@ $(function(){
             }, 600);
     });
     $('[data-toggle="tooltip"]').tooltip();
-
+@if (Auth::check())
     $('#newPrayer').on('submit',function(e){
         $.ajaxSetup({
             header:$('meta[name="_token"]').attr('content')
@@ -63,7 +63,7 @@ $(function(){
                 newPrayerDiv.find('.prayalong').addClass("btn-default");
                 newPrayerDiv.find('.prayalong').removeClass("disabled");
                 if(prayerPrivacy==4) {
-                     newPrayerDiv.find('.prayer-user').html('<span data-toggle="popover" data-html="true" title="<b>{{ Auth::user()->name }}</b>" data-placement="top" data-content="" style="cursor: pointer;">Anonymous</span>');
+                     newPrayerDiv.find('.prayer-user').html('<span data-toggle="popover" data-html="true" title="<b>{{ Auth::user()->name ?: '' }}</b>" data-placement="top" data-content="" style="cursor: pointer;">Anonymous</span>');
                  } else {
                      newPrayerDiv.find('.prayer-user').html('<span data-toggle="popover" data-html="true" title="<b>{{ Auth::user()->name }}</b>" data-placement="top" data-content="" style="cursor: pointer;">{{ Auth::user()->name }}</span>');
                  }
@@ -113,7 +113,7 @@ $(function(){
 
         });
     });
-
+@endif
     $('.prayalong').click(function(){
         var prayer_id = $(this).data("id");
         var $thisselector = $(this);
