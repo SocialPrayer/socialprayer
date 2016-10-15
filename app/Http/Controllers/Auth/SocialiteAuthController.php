@@ -25,7 +25,7 @@ class SocialiteAuthController extends Controller {
 	public function handleProviderCallback($driver) {
 		$user = Socialite::driver($driver)->user();
 
-		$findUser = \App\User::where('email', $user->getEmail()) - get();
+		$findUser = \App\User::where('email', $user->getEmail())->get();
 		if (!$findUser) {
 			$data = [
 				'name' => $user->getName(),
