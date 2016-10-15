@@ -25,11 +25,18 @@ class SocialiteAuthController extends Controller {
 	public function handleProviderCallback($driver) {
 		$user = Socialite::driver($driver)->user();
 
-		$data = [
-			'name' => $user->getName(),
-			'email' => $user->getEmail(),
-			'password' => '0',
-		];
+		$findUser = \App\User::where('email', $user->getEmail()) - get();
+		if (!$findUser) {
+			$data = [
+				'name' => $user->getName(),
+				'email' => $user->getEmail(),
+				'password' => '0',
+			];
+		} else {
+			$data = [
+				'email' => $user->getEmail(),
+			];
+		}
 
 		Auth::login(User::firstOrCreate($data), true);
 
