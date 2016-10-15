@@ -37,7 +37,6 @@ class SocialiteAuthController extends Controller {
 				'email' => $user->getEmail(),
 			];
 		}
-
 		Auth::login(User::firstOrCreate($data), true);
 
 		// // OAuth Two Providers
