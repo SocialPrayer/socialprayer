@@ -79,7 +79,7 @@
 
             .mainSummary {
                 position: relative;
-                top: 50px;
+                top: 75px;
                 font-size: 16px;
             }
 
@@ -143,8 +143,7 @@
                 </div>
                 <div class="row">
                 <div class="well mainSummary">
-                    <p>SocialPrayer is a new online social network for prayer.</p>
-                    <p><b>Just prayer</b></p>
+                    <p>SocialPrayer is a new online social network for prayer. <b>Just prayer.</b></p>
                     <p>Pray together online, either with friends, anonymously, or just for yourself and God.</p>
                 </div>
             </div>
