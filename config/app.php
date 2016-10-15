@@ -182,6 +182,7 @@ return [
 		Laracasts\Flash\FlashServiceProvider::class,
 		'GrahamCampbell\Throttle\ThrottleServiceProvider',
 		Laravel\Socialite\SocialiteServiceProvider::class,
+		Winternight\LaravelErrorHandler\ServiceProvider::class,
 
 	],
 
