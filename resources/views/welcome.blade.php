@@ -27,7 +27,7 @@
             }
 
             .half-height {
-                height: 70vh;
+                height: 75vh;
             }
 
             .flex-center {
@@ -60,7 +60,7 @@
 
             .tagline {
                 margin-top: -35px;
-                margin-bottom: 100px;
+                margin-bottom: 75px;
                 font-size: 20px;
             }
 
@@ -72,14 +72,14 @@
 
             .pageTurner {
                 position: relative;
-                top: 0px;
-                height: 100px;
+                top: 25px;
+                height: 60px;
                 font-size: 20px;
             }
 
             .mainSummary {
                 position: relative;
-                top: -20px;
+                top: 50px;
                 font-size: 16px;
             }
 
@@ -103,12 +103,13 @@
                 text-transform: uppercase;
             }
 
-            .prayers {
-                margin-top: -50px;
-            }
 
             .m-b-md {
                 margin-bottom: 30px;
+            }
+
+            .prayers {
+                margin-top: -20px;
             }
 
             .fade_line{
@@ -140,18 +141,18 @@
                     <a href="{{ url('/login') }}">Login</a>
                     <a href="{{ url('/register') }}">Join Now</a>
                 </div>
-
+                <div class="row">
+                <div class="well mainSummary">
+                    <p>SocialPrayer is a new online social network for prayer.</p>
+                    <p><b>Just prayer</b></p>
+                    <p>Pray together online, either with friends, anonymously, or just for yourself and God.</p>
+                </div>
+            </div>
             </div>
         </div>
         <div class="position-ref full-height page2">
             <div class="content">
-            <div class="row">
-                <div class="well col-xs-10 col-xs-offset-1 col-lg-6 col-lg-offset-3 mainSummary">
-                    <p>SocialPrayer is a new online social network for prayer.</p>
-                    <p><b>Just prayer</b>.</p>
-                    <p>Pray together online, either with friends, anonymously, or just for yourself and God.</p>
-                </div>
-            </div>
+            <img src="{{ asset('images/social-prayer-logo.png') }}" class="pageTurner" />
             <span class="fade_line"></span>
             <!-- <h4>Latest Prayers</h1> -->
             @include('prayers/guest')
