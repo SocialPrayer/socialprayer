@@ -48,7 +48,7 @@
             }
 
             .page2 {
-                background-color: #949494;
+                background-color: #b4b9c4;
             }
 
             .content {
