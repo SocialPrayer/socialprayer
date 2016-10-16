@@ -11,7 +11,7 @@
 |
  */
 
-Route::get('/', 'HomeController@guest');
+Route::get('/', 'HomeController@guestView');
 
 Auth::routes();
 

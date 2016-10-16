@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
-use Winternight\LaravelErrorHandler\Handlers\ExceptionHandler as ExceptionHandler;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler {
 	/**
@@ -56,6 +56,21 @@ class Handler extends ExceptionHandler {
 			return response()->json(['error' => 'Unauthenticated.'], 401);
 		}
 
-		return redirect()->guest('login');
+		return redirect()->guest('/');
+	}
+
+	protected function convertExceptionToResponse(Exception $e) {
+		if (config('app.debug')) {
+			$whoops = new \Whoops\Run;
+			$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+
+			return response()->make(
+				$whoops->handleException($e),
+				method_exists($e, 'getStatusCode') ? $e->getStatusCode() : 500,
+				method_exists($e, 'getHeaders') ? $e->getHeaders() : []
+			);
+		}
+
+		return parent::convertExceptionToResponse($e);
 	}
 }
