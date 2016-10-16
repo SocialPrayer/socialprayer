@@ -34,6 +34,10 @@ Route::get('/user/acceptfriend/{friendshipid}', 'UserController@acceptFriendRequ
 
 Route::resource('/prayer', 'PrayerController');
 
+Route::resource('/user/profile', 'UserProfileController');
+
+Route::post('/user/profile/{id}', 'UserProfileController@update');
+
 Route::get('/prayer/pray-along/{prayerid}', 'PrayerController@prayAlong');
 
 Route::get('auth/OAuth/{driver}', 'Auth\SocialiteAuthController@redirectToProvider');
