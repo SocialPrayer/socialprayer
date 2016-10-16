@@ -12,7 +12,7 @@ class AlterUserProfileTable extends Migration {
 	public function up() {
 		Schema::table('user_profiles', function ($table) {
 			$table->string('middlename')->nullable()->after('firstname');
-			$table->char('sex', 1)->nullable()->change();
+			$table->string('sex', 1)->nullable()->change();
 		});
 	}
 
@@ -24,7 +24,7 @@ class AlterUserProfileTable extends Migration {
 	public function down() {
 		Schema::table('user_profiles', function ($table) {
 			$table->dropColumn('middlename');
-			$table->char('sex', 1)->change();
+			$table->string('sex', 1)->change();
 		});
 	}
 }
