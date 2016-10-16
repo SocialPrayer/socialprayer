@@ -5,8 +5,19 @@
     <div class="row" style="margin-top: 75px;">
         <div class="col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading">Sign Up</div>
+                <div class="panel-heading">Join Now</div>
                 <div class="panel-body">
+                    <div class="text-center">
+                        <a class="btn btn-link" href="{{ url('/auth/OAuth/facebook') }}">
+                            <img src="{{ asset('/images/fb-join.png') }}" style="max-width: 200px;" />
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <p style="font-size: 16px;">or</p>
+                    </div>
+                    <div class="col-md-6 col-md-offset-3">
+                        <p style="font-size: 20px;">Sign up with my information:</p>
+                    </div>
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
@@ -93,13 +104,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-9 col-md-offset-3">
-                                <a class="btn btn-link" href="{{ url('/auth/OAuth/facebook') }}">
-                                    <img src="{{ asset('/images/facebook_login.png') }}" style="transform: scale(0.75, 0.75); -ms-transform: scale(0.75, 0.75); -webkit-transform: scale(0.75, 0.75);" />
-                                </a>
                             </div>
                         </div>
                     </form>

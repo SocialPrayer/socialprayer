@@ -25,7 +25,7 @@ class invite extends Mailable {
 	 * @return $this
 	 */
 	public function build() {
-		$url = "http://www.social-prayer/register";
+		$url = env('APP_URL') . "/register";
 		return $this->view('vendor.notifications.email')
 			->subject('SocialPrayer - ' . Auth::user()->name . ' just invited you to pray with them')
 			->with([
