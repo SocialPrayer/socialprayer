@@ -11,7 +11,7 @@ class HomeController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->middleware('auth', ['except' => ['guest']]);
+		$this->middleware('auth', ['except' => ['guestView']]);
 	}
 
 	/**
@@ -28,7 +28,7 @@ class HomeController extends Controller {
 
 	}
 
-	public function guest() {
+	public function guestView() {
 		$prayers = new PrayerController;
 		return view('welcome', ['prayers' => $prayers->guest()[0], 'privacysettings' => $prayers->guest()[1]]);
 	}
