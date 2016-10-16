@@ -55,9 +55,8 @@ $(function(){
             //$('#success').hide('slow');
             if(prayerPrivacy>0) {
                 var newPrayerDiv = $( ".prayer" ).first().clone();
-                newPrayerDiv.removeClass('panel-info');
                 newPrayerDiv.removeClass('panel-default');
-                newPrayerDiv.addClass('panel-success');
+                newPrayerDiv.addClass('panel-info');
                 newPrayerDiv.find('.prayalong').data("id", 1);
                 newPrayerDiv.find('.prayalong').removeClass("btn-info");
                 newPrayerDiv.find('.prayalong').addClass("btn-default");

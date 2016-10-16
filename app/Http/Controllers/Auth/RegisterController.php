@@ -51,13 +51,15 @@ class RegisterController extends Controller {
 		$resp = $recaptcha->verify($data['g-recaptcha-response'], Request::ip());
 		if ($resp->isSuccess()) {
 			return Validator::make($data, [
-				'name' => 'required|max:255',
+				'firstname' => 'required|max:255',
+				'lastname' => 'required|max:255',
 				'email' => 'required|email|max:255|unique:users',
 				'password' => 'required|min:6|confirmed',
 			]);
 		} else {
 			return Validator::make($data, [
-				'name' => 'required|max:255',
+				'firstname' => 'required|max:255',
+				'lastname' => 'required|max:255',
 				'email' => 'required|email|max:255|unique:users',
 				'password' => 'required|min:6|confirmed',
 				'g-recaptcha-response' => 'required|max:5',
@@ -73,10 +75,18 @@ class RegisterController extends Controller {
 	 * @return User
 	 */
 	protected function create(array $data) {
-		return User::create([
-			'name' => $data['name'],
+		$user = User::create([
+			'name' => $data['firstname'] . ' ' . $data['lastname'],
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
 		]);
+
+		$userProfile = UserProfile::create([
+			'firstname' => $data['firstname'],
+			'lastname' => $data['lastname'],
+			'email' => $data['email'],
+		]);
+
+		return $user;
 	}
 }
