@@ -64,15 +64,11 @@
                 font-size: 20px;
             }
 
-            @media (max-width: 768px) {
-                .title {
-                    font-size: 50px;
-                }
-            }
+
 
             .pageTurner {
                 position: relative;
-                top: -30px;
+                top: -20px;
                 height: 60px;
                 font-size: 20px;
             }
@@ -121,6 +117,27 @@
                 background:black;
                 background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#949494), to(#fff));
             }
+            @media (max-width: 768px) {
+                .title {
+                    font-size: 50px;
+                }
+                .tagline {
+                    margin-bottom: 40px;
+                }
+                .mainSummary {
+                    top: 40px;
+                    margin-bottom: 40px;
+                }
+                .half-height {
+                    height: 100vh;
+                }
+                .pageTurner {
+                    position: relative;
+                    top: -20px;
+                    height: 60px;
+                    font-size: 20px;
+                }
+            }
         </style>
     </head>
     <body>
@@ -143,14 +160,14 @@
                     <a href="{{ url('/register') }}">Join Now</a>
                 </div>
                 <div class="row">
-                <div class="well mainSummary">
+                <div class="well mainSummary col-xs-10 col-xs-offset-1 col-md-pull-1 col-md-12">
                     <p>SocialPrayer is a new online social network for prayer. <b>Just prayer.</b></p>
                     <p>Pray together online, either with friends, anonymously, or just for yourself and God.</p>
                 </div>
             </div>
             </div>
         </div>
-        <div class="position-ref full-height page2">
+        <div class="position-ref page2">
             <div class="content">
             <img src="{{ asset('images/social-prayer-logo.png') }}" class="pageTurner" />
             <!-- <h4>Latest Prayers</h1> -->
