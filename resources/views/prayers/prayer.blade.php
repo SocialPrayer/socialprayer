@@ -1,9 +1,22 @@
-<?php if ($prayer->user->isFriend(Auth::id())) {$pannelclass = "panel-info";} elseif ($prayer->user->id == Auth::id()) {$pannelclass = "panel-info";} else { $pannelclass = "panel-default";}?>
-
+<?php
+if (Auth::check()) {
+	if ($prayer->user->isFriend(Auth::id())) {
+		$pannelclass = "panel-info";
+	} elseif ($prayer->user->id == Auth::id()) {
+		$pannelclass = "panel-info";
+	} else {
+		$pannelclass = "panel-default";
+	}
+} else {
+	$pannelclass = "panel-default";
+}
+?>
     <div class="panel {{$pannelclass}} prayer">
         <div class="panel-heading">
         	<div class="prayer-user" style="float: left; vertical-align: top; text-decoration: underline;">
-                @if ($prayer->user->isFriend(Auth::id()))
+                @if (!Auth::check())
+                    {{ $prayer->user->name }}
+                @elseif ($prayer->user->isFriend(Auth::id()))
         		  <span class="user-popover" data-toggle="popover"
                      data-html="true"
                      title="<b>{{ $prayer->user->name }}</b>"
@@ -70,9 +83,11 @@
             		@endif
             	@endif
             	</span>
-                <a href="#" role="button" class="btn {{ $buttonclass }} btn-md prayalong" data-toggle="tooltip" data-placement="bottom" title="Pray Along" data-id="{{ $prayer->id }}">
-                	<img src="{{ asset('images/social-prayer-logo.png') }}" height="20px" />
-                </a>
+                @if(Auth::check())
+                    <a href="#" role="button" class="btn {{ $buttonclass }} btn-md prayalong" data-toggle="tooltip" data-placement="bottom" title="Pray Along" data-id="{{ $prayer->id }}">
+                    	<img src="{{ asset('images/social-prayer-logo.png') }}" height="20px" />
+                    </a>
+                @endif
             </div>
         </div>
         <div class="panel-info">

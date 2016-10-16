@@ -17,7 +17,7 @@ class PrayerController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->middleware('auth');
+		$this->middleware('auth', ['except' => ['guest']]);
 	}
 
 	/**
@@ -32,6 +32,19 @@ class PrayerController extends Controller {
 			->with('prayalong')
 			->whereIn('privacy_setting_id', [2, 3, 4])
 			->orWhere(['user_id' => Auth::id(), 'privacy_setting_id' => '1'])
+			->paginate(5);
+
+		$privacysettings = PrivacySetting::orderBy('id', 'asc')->get();
+
+		return [$prayers, $privacysettings];
+	}
+
+	public function guest() {
+		$prayers = Prayer::orderBy('created_at', 'desc')
+			->with('privacysetting')
+			->with('user')
+			->with('prayalong')
+			->where('user_id', 0)
 			->paginate(5);
 
 		$privacysettings = PrivacySetting::orderBy('id', 'asc')->get();
