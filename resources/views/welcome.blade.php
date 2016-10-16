@@ -27,7 +27,7 @@
             }
 
             .half-height {
-                height: 75vh;
+                height: 90vh;
             }
 
             .flex-center {
@@ -48,7 +48,7 @@
             }
 
             .page2 {
-                /*background-color: #eee;*/
+                background-color: #949494;
             }
 
             .content {
@@ -72,7 +72,7 @@
 
             .pageTurner {
                 position: relative;
-                top: 25px;
+                top: -30px;
                 height: 60px;
                 font-size: 20px;
             }
@@ -80,6 +80,7 @@
             .mainSummary {
                 position: relative;
                 top: 75px;
+                margin-bottom: 40px;
                 font-size: 16px;
             }
 
@@ -109,7 +110,7 @@
             }
 
             .prayers {
-                margin-top: -20px;
+                margin-top: -50px;
             }
 
             .fade_line{
@@ -152,7 +153,6 @@
         <div class="position-ref full-height page2">
             <div class="content">
             <img src="{{ asset('images/social-prayer-logo.png') }}" class="pageTurner" />
-            <span class="fade_line"></span>
             <!-- <h4>Latest Prayers</h1> -->
             @include('prayers/guest')
                <!--  <img src="{{ asset('images/social-prayer-logo.png') }}" class="pageTurner" />
