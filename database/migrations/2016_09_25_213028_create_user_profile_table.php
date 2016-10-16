@@ -19,8 +19,9 @@ class CreateUserProfileTable extends Migration {
 				->on('users');
 			$table->string('email')->unique();
 			$table->string('firstname')->nullable();
+			$table->string('middlename')->nullable();
 			$table->string('lastname')->nullable();
-			$table->char('sex', 1);
+			$table->char('sex', 1)->nullable();
 			$table->string('marital_status')->nullable();
 			$table->string('spouse_name')->nullable();
 			$table->json('kids')->nullable();
