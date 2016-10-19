@@ -1,7 +1,5 @@
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-/*$panel-info-heading-bg: #8eb4cb;
-$panel-info-border: $panel-default-border;*/
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -4903,14 +4901,14 @@ button.list-group-item-danger {
 .panel-success {
   border-color: #d6e9c6; }
   .panel-success > .panel-heading {
-    color: #3c763d;
-    background-color: #dff0d8;
+    color: #ffffff;
+    background-color: #A8A8A8;
     border-color: #d6e9c6; }
     .panel-success > .panel-heading + .panel-collapse > .panel-body {
       border-top-color: #d6e9c6; }
     .panel-success > .panel-heading .badge {
-      color: #dff0d8;
-      background-color: #3c763d; }
+      color: #A8A8A8;
+      background-color: #ffffff; }
   .panel-success > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #d6e9c6; }
 
@@ -5802,6 +5800,9 @@ button.close {
   textarea,
   input {
     font-size: 16px; } }
+
+.popover-title {
+  color: #000000; }
 
 .full-height {
   height: 100vh; }
