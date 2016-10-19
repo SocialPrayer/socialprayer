@@ -46,7 +46,8 @@ class PrayerController extends Controller {
 			->with('user')
 			->with('prayalong')
 			->where('user_id', 0)
-			->paginate(5);
+			->get();
+		//->paginate(5);
 
 		$privacysettings = PrivacySetting::orderBy('id', 'asc')->get();
 
