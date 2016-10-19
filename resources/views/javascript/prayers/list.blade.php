@@ -98,7 +98,7 @@ $(function(){
                     var $thisselector = $(this);
                     $(this).addClass("disabled");
                     $(this).removeClass("btn-default");
-                    $(this).addClass("btn-info");
+                    $(this).addClass("btn-disabled");
                     $.get('/prayer/pray-along/' + prayer_id, function( data ) {
                         $thisselector.prev('.prayedalongcount').html(data);
                     });
@@ -118,7 +118,7 @@ $(function(){
         var $thisselector = $(this);
         $(this).addClass("disabled");
         $(this).removeClass("btn-default");
-        $(this).addClass("btn-info");
+        $(this).addClass("btn-disabled");
         $.get('/prayer/pray-along/' + prayer_id, function( data ) {
             $thisselector.prev('.prayedalongcount').html(data);
         });
@@ -180,7 +180,7 @@ $(function(){
     //         //     var $thisselector = $(this);
     //         //     $(this).addClass("disabled");
     //         //     $(this).removeClass("btn-default");
-    //         //     $(this).addClass("btn-info");
+    //         //     $(this).addClass("btn-disabled");
     //         //     $.get('/prayer/pray-along/' + prayer_id, function( data ) {
     //         //         $thisselector.prev('.prayedalongcount').html(data);
     //         //     });

@@ -56,26 +56,26 @@ if (Auth::check()) {
             	@php ($buttonclass = "btn-default")
             	@foreach ($prayer->prayalong as $prayalong)
             		@if ($prayalong->user_id == Auth::id() )
-            			@php ($buttonclass = "btn-info disabled")
+            			@php ($buttonclass = "btn-disabled disabled")
             			You
             		@endif
             	@endforeach
 
             	@if (count($prayer->prayalong) == 1)
-            		@if ($buttonclass == "btn-info disabled")
+            		@if ($buttonclass == "btn-disabled disabled")
             			prayed along
             		@else
             			{{ count($prayer->prayalong) }} person prayed along
             		@endif
             	@elseif (count($prayer->prayalong) == 2)
-            		@if ($buttonclass == "btn-info disabled")
+            		@if ($buttonclass == "btn-disabled disabled")
             			and
             			{{ count($prayer->prayalong)-1 }} person prayed along
             		@else
             			{{ count($prayer->prayalong) }} people prayed along
             		@endif
             	@elseif (count($prayer->prayalong) > 2)
-            		@if ($buttonclass == "btn-info disabled")
+            		@if ($buttonclass == "btn-disabled disabled")
             			and
             			{{ count($prayer->prayalong)-1 }} people prayed along
             		@else
