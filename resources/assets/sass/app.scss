@@ -6,7 +6,10 @@
 // Variables
 @import "variables";
 
-$panel-default-heading-bg: #F0F0F0;\
+$panel-default-heading-bg: #F0F0F0;
+
+$panel-success-heading-bg: #A8A8A8;
+$panel-success-text: #ffffff;
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
@@ -51,6 +54,10 @@ $panel-default-heading-bg: #F0F0F0;\
   input {
     font-size: 16px;
   }
+}
+
+.popover-title {
+  color: #000000;
 }
 
 .full-height {

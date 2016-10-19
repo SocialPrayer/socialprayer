@@ -3,7 +3,7 @@ if (Auth::check()) {
 	if ($prayer->user->isFriend(Auth::id())) {
 		$pannelclass = "panel-info";
 	} elseif ($prayer->user->id == Auth::id()) {
-		$pannelclass = "panel-info";
+		$pannelclass = "panel-success";
 	} else {
 		$pannelclass = "panel-default";
 	}
@@ -42,7 +42,7 @@ if (Auth::check()) {
                      data-content="<button class='btn btn-primary addfriend' data-id='{{ $prayer->user->id }}'>Add Friend</button>" style="cursor: pointer;">{{ $prayer->user->name }}</span>
                 @endif
         	</div>
-        	<div style="float: right;" class="prayer-time text-muted" title="{{ $prayer->created_at->format('M j, y g:i A') }}">
+        	<div class="pull-right" title="{{ $prayer->created_at->format('M j, y g:i A') }}">
                 {{ $prayer->created_at->diffForHumans() }}
             </div>
         	<br />
