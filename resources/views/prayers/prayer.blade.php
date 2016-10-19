@@ -3,7 +3,7 @@ if (Auth::check()) {
 	if ($prayer->user->isFriend(Auth::id())) {
 		$pannelclass = "panel-info";
 	} elseif ($prayer->user->id == Auth::id()) {
-		$pannelclass = "panel-success";
+		$pannelclass = "panel-info";
 	} else {
 		$pannelclass = "panel-default";
 	}
@@ -11,7 +11,6 @@ if (Auth::check()) {
 	$pannelclass = "panel-default";
 }
 ?>
-
     <div class="panel {{$pannelclass}} prayer">
         <div class="panel-heading">
         	<div class="prayer-user" style="float: left; vertical-align: top; text-decoration: underline;">
