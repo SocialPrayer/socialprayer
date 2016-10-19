@@ -15,7 +15,7 @@ Route::get('/', 'HomeController@guestView');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'PrayerController@index');
 
 Route::get('/privacy-policy', function () {
 	return view('legal/privacypolicy');
