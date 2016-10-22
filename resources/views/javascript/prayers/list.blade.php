@@ -38,7 +38,6 @@ $(function(){
                 }
             }, 600);
     });
-    $('[data-toggle="tooltip"]').tooltip();
 @if (Auth::check())
     $('#newPrayer').on('submit',function(e){
         $.ajaxSetup({
@@ -91,18 +90,19 @@ $(function(){
                             }
                         }, 300);
                 });
-                $('[data-toggle="tooltip"]').tooltip();
+                $('.prayalong').tooltip();
+                $('.prayalong').dropdown();
 
-                $('.prayalong').click(function(){
-                    var prayer_id = $(this).data("id");
-                    var $thisselector = $(this);
-                    $(this).addClass("disabled");
-                    $(this).removeClass("btn-default");
-                    $(this).addClass("btn-disabled");
-                    $.get('/prayer/pray-along/' + prayer_id, function( data ) {
-                        $thisselector.prev('.prayedalongcount').html(data);
-                    });
-                });
+                // $('.prayalong').click(function(){
+                //     var prayer_id = $(this).data("id");
+                //     var $thisselector = $(this);
+                //     $(this).addClass("disabled");
+                //     $(this).removeClass("btn-default");
+                //     $(this).addClass("btn-disabled");
+                //     $.get('/prayer/pray-along/' + prayer_id, function( data ) {
+                //         $thisselector.prev('.prayedalongcount').html(data);
+                //     });
+                // });
             }
             $('#newPrayer')[0].reset();
             $('#newPrayerSubmit').prop('disabled','');
@@ -113,16 +113,18 @@ $(function(){
         });
     });
 @endif
-    $('.prayalong').click(function(){
-        var prayer_id = $(this).data("id");
-        var $thisselector = $(this);
-        $(this).addClass("disabled");
-        $(this).removeClass("btn-default");
-        $(this).addClass("btn-disabled");
+    $('.prayNow').click(function(){
+        var prayer_id = $(this).parents('.dropdown-menu').prev('.prayalong').data("id");
+        var $prayedAlongDiv = $(this).parents('.btn-group').prev('.prayedalongcount');
+        $(this).parents('.dropdown-menu').prev('.prayalong').addClass("disabled");
+        $(this).parents('.dropdown-menu').prev('.prayalong').removeClass("btn-default");
+        $(this).parents('.dropdown-menu').prev('.prayalong').addClass("btn-disabled");
         $.get('/prayer/pray-along/' + prayer_id, function( data ) {
-            $thisselector.prev('.prayedalongcount').html(data);
+            $prayedAlongDiv.html(data);
         });
     });
+    $('.prayalong').tooltip();
+    $('.prayalong').dropdown();
 
     $(document).on("click", ".addfriend", function(){
         var friend_id = $(this).data("id");

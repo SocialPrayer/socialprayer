@@ -48,46 +48,68 @@ if (Auth::check()) {
         	<br />
         </div>
         <div class="panel-body">
-        	<div class="prayer-text" style="float: left;">
-            	{{ $prayer->text }}
-            </div>
-            <div style="float: right;">
-            	<span class="prayedalongcount small" data-id="{{ $prayer->id }}">
-            	@php ($buttonclass = "btn-default")
-            	@foreach ($prayer->prayalong as $prayalong)
-            		@if ($prayalong->user_id == Auth::id() )
-            			@php ($buttonclass = "btn-disabled disabled")
-            			You
-            		@endif
-            	@endforeach
+            <div>
+            	<div class="prayer-text pull-left">
+                	{{ $prayer->text }}
+                </div>
+                <div class="pull-right">
+                	<span class="prayedalongcount small" data-id="{{ $prayer->id }}">
+                	@php ($buttonclass = "btn-default")
+                	@foreach ($prayer->prayalong as $prayalong)
+                		@if ($prayalong->user_id == Auth::id() )
+                			@php ($buttonclass = "btn-disabled disabled")
+                			You
+                		@endif
+                	@endforeach
 
-            	@if (count($prayer->prayalong) == 1)
-            		@if ($buttonclass == "btn-disabled disabled")
-            			prayed along
-            		@else
-            			{{ count($prayer->prayalong) }} person prayed along
-            		@endif
-            	@elseif (count($prayer->prayalong) == 2)
-            		@if ($buttonclass == "btn-disabled disabled")
-            			and
-            			{{ count($prayer->prayalong)-1 }} person prayed along
-            		@else
-            			{{ count($prayer->prayalong) }} people prayed along
-            		@endif
-            	@elseif (count($prayer->prayalong) > 2)
-            		@if ($buttonclass == "btn-disabled disabled")
-            			and
-            			{{ count($prayer->prayalong)-1 }} people prayed along
-            		@else
-            			{{ count($prayer->prayalong) }} people prayed along
-            		@endif
-            	@endif
-            	</span>
-                @if(Auth::check())
-                    <a href="#" role="button" class="btn {{ $buttonclass }} btn-md prayalong" data-toggle="tooltip" data-placement="bottom" title="Pray Along" data-id="{{ $prayer->id }}">
-                    	<img src="{{ asset('images/social-prayer-logo.png') }}" height="20px" />
-                    </a>
-                @endif
+                	@if (count($prayer->prayalong) == 1)
+                		@if ($buttonclass == "btn-disabled disabled")
+                			prayed along
+                		@else
+                			{{ count($prayer->prayalong) }} person prayed along
+                		@endif
+                	@elseif (count($prayer->prayalong) == 2)
+                		@if ($buttonclass == "btn-disabled disabled")
+                			and
+                			{{ count($prayer->prayalong)-1 }} person prayed along
+                		@else
+                			{{ count($prayer->prayalong) }} people prayed along
+                		@endif
+                	@elseif (count($prayer->prayalong) > 2)
+                		@if ($buttonclass == "btn-disabled disabled")
+                			and
+                			{{ count($prayer->prayalong)-1 }} people prayed along
+                		@else
+                			{{ count($prayer->prayalong) }} people prayed along
+                		@endif
+                	@endif
+                	</span>
+                    @if(Auth::check())
+                        <div class="btn-group">
+                            <a role="button" class="btn {{ $buttonclass }} btn-md dropdown-toggle prayalong" data-toggle="dropdown" data-placement="right" title="Pray Along" data-id="{{ $prayer->id }}">
+                            	<img src="{{ asset('images/social-prayer-logo.png') }}" height="20px" />
+                                <span class="caret" style="margin-left: 5px;"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="javascript:;" class="prayNow">
+                                        Quick prayer now
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('/prayer/pray-later/$prayer->id') }}" data-remote="false" data-toggle="modal" data-target="#myModal">
+                                        Remind me to pray later
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="prayResponse">
+                                        Write a prayer response
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
         <div class="panel-info">
