@@ -21,11 +21,3 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
-
-$factory->define(App\Prayer::class, function (Faker\Generator $faker) {
-    return [
-        'text' => $faker->paragraph,
-        'user_id' => '1',
-        'privacy_setting_id' => '3'
-    ];
-});
