@@ -86,11 +86,11 @@ if (Auth::check()) {
                 	</span>
                     @if(Auth::check())
                         <div class="btn-group">
-                            <a role="button" class="btn {{ $buttonclass }} btn-md dropdown-toggle prayalong" data-toggle="dropdown" data-placement="right" title="Pray Along" data-id="{{ $prayer->id }}">
+                            <a role="button" class="btn {{ $buttonclass }} btn-md dropdown-toggle prayalong" data-toggle="dropdown" title="Pray Along" data-id="{{ $prayer->id }}">
                             	<img src="{{ asset('images/social-prayer-logo.png') }}" height="20px" />
                                 <span class="caret" style="margin-left: 5px;"></span>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-menu-right">
                                 <li>
                                     <a href="javascript:;" class="prayNow">
                                         Quick prayer now
