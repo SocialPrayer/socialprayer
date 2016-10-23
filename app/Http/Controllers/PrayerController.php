@@ -168,7 +168,7 @@ class PrayerController extends Controller {
 	}
 
 	public function prayersForLater() {
-		$prayersForLater = Prayer::orderBy('created_at', 'desc')
+		$prayersForLater = Prayer::orderBy('prayers.created_at', 'desc')
 			->with('privacysetting')
 			->with('user')
 			->with('prayedalong')
