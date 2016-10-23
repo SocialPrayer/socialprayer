@@ -55,32 +55,32 @@ if (Auth::check()) {
                 <div class="pull-right">
                 	<span class="prayedalongcount small" data-id="{{ $prayer->id }}">
                 	@php ($buttonclass = "btn-default")
-                	@foreach ($prayer->prayalong as $prayalong)
-                		@if ($prayalong->user_id == Auth::id() )
+                	@foreach ($prayer->prayedalong as $prayedalong)
+                		@if ($prayedalong->user_id == Auth::id() )
                 			@php ($buttonclass = "btn-disabled disabled")
                 			You
                 		@endif
                 	@endforeach
 
-                	@if (count($prayer->prayalong) == 1)
+                	@if (count($prayer->prayedalong) == 1)
                 		@if ($buttonclass == "btn-disabled disabled")
                 			prayed along
                 		@else
-                			{{ count($prayer->prayalong) }} person prayed along
+                			{{ count($prayer->prayedalong) }} person prayed along
                 		@endif
-                	@elseif (count($prayer->prayalong) == 2)
+                	@elseif (count($prayer->prayedalong) == 2)
                 		@if ($buttonclass == "btn-disabled disabled")
                 			and
-                			{{ count($prayer->prayalong)-1 }} person prayed along
+                			{{ count($prayer->prayedalong)-1 }} person prayed along
                 		@else
-                			{{ count($prayer->prayalong) }} people prayed along
+                			{{ count($prayer->prayedalong) }} people prayed along
                 		@endif
-                	@elseif (count($prayer->prayalong) > 2)
+                	@elseif (count($prayer->prayedalong) > 2)
                 		@if ($buttonclass == "btn-disabled disabled")
                 			and
-                			{{ count($prayer->prayalong)-1 }} people prayed along
+                			{{ count($prayer->prayedalong)-1 }} people prayed along
                 		@else
-                			{{ count($prayer->prayalong) }} people prayed along
+                			{{ count($prayer->prayedalong) }} people prayed along
                 		@endif
                 	@endif
                 	</span>
@@ -97,7 +97,7 @@ if (Auth::check()) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/prayer/pray-later/$prayer->id') }}" data-remote="false" data-toggle="modal" data-target="#myModal">
+                                    <a href="javascript:;" class="prayLater">
                                         Remind me to pray later
                                     </a>
                                 </li>
