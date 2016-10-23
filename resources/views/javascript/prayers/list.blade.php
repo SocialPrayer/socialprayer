@@ -1,7 +1,3 @@
-<script src="/js/vendor/jquery.ns-autogrow.js"></script>
-<!-- <script src="/js/vendor/bootstrap/tooltip.js"></script>
-<script src="/js/vendor/bootstrap/popover.js"></script> -->
-<script src="/js/vendor/jquery.jscroll.min.js"></script>
 <script>
 $(function(){
     $('[data-toggle="popover"]').popover({ trigger: "manual" , html: true, animation:false})
@@ -38,7 +34,6 @@ $(function(){
                 }
             }, 600);
     });
-    $('[data-toggle="tooltip"]').tooltip();
 @if (Auth::check())
     $('#newPrayer').on('submit',function(e){
         $.ajaxSetup({
@@ -91,18 +86,19 @@ $(function(){
                             }
                         }, 300);
                 });
-                $('[data-toggle="tooltip"]').tooltip();
+                $('.prayalong').tooltip();
+                $('.prayalong').dropdown();
 
-                $('.prayalong').click(function(){
-                    var prayer_id = $(this).data("id");
-                    var $thisselector = $(this);
-                    $(this).addClass("disabled");
-                    $(this).removeClass("btn-default");
-                    $(this).addClass("btn-disabled");
-                    $.get('/prayer/pray-along/' + prayer_id, function( data ) {
-                        $thisselector.prev('.prayedalongcount').html(data);
-                    });
-                });
+                // $('.prayalong').click(function(){
+                //     var prayer_id = $(this).data("id");
+                //     var $thisselector = $(this);
+                //     $(this).addClass("disabled");
+                //     $(this).removeClass("btn-default");
+                //     $(this).addClass("btn-disabled");
+                //     $.get('/prayer/pray-along/' + prayer_id, function( data ) {
+                //         $thisselector.prev('.prayedalongcount').html(data);
+                //     });
+                // });
             }
             $('#newPrayer')[0].reset();
             $('#newPrayerSubmit').prop('disabled','');
@@ -113,16 +109,33 @@ $(function(){
         });
     });
 @endif
-    $('.prayalong').click(function(){
-        var prayer_id = $(this).data("id");
-        var $thisselector = $(this);
-        $(this).addClass("disabled");
-        $(this).removeClass("btn-default");
-        $(this).addClass("btn-disabled");
+    $('.prayNow').click(function(){
+        var prayer_id = $(this).parents('.dropdown-menu').prev('.prayalong').data("id");
+        var $prayedAlongDiv = $(this).parents('.btn-group').prev('.prayedalongcount');
+        $(this).parents('.dropdown-menu').prev('.prayalong').addClass("disabled");
+        $(this).parents('.dropdown-menu').prev('.prayalong').removeClass("btn-default");
+        $(this).parents('.dropdown-menu').prev('.prayalong').addClass("btn-disabled");
         $.get('/prayer/pray-along/' + prayer_id, function( data ) {
-            $thisselector.prev('.prayedalongcount').html(data);
+            $prayedAlongDiv.html(data);
+            var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height" style="text-align:center; font-size: 56px;">Amen!</div>');
+            overlay.appendTo('.prayers').delay(1000).fadeOut();
         });
     });
+    $('.prayLater').click(function(){
+        var prayer_id = $(this).parents('.dropdown-menu').prev('.prayalong').data("id");
+        $.get('/prayer/pray-along/later/' + prayer_id, function() {
+            var currcount = parseInt($('.praylatercnt').html());
+            if(currcount==0){
+                $('.praylaterlink').removeClass('hidden');
+            }
+            $('').removeClass('hidden');
+            $('.praylatercnt').html(currcount+1);
+            var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height" style="text-align:center; font-size: 56px;">Prayer Added to<br />Prayer List for Later</div>');
+            overlay.appendTo('.prayers').delay(1000).fadeOut();
+        });
+    });
+    $('.prayalong').tooltip();
+    $('.prayalong').dropdown();
 
     $(document).on("click", ".addfriend", function(){
         var friend_id = $(this).data("id");

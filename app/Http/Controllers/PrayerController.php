@@ -29,7 +29,7 @@ class PrayerController extends Controller {
 		$prayers = Prayer::orderBy('created_at', 'desc')
 			->with('privacysetting')
 			->with('user')
-			->with('prayalong')
+			->with('prayedalong')
 			->whereIn('privacy_setting_id', [2, 3, 4])
 			->orWhere(['user_id' => Auth::id(), 'privacy_setting_id' => '1'])
 			->get();
@@ -37,14 +37,21 @@ class PrayerController extends Controller {
 
 		$privacysettings = PrivacySetting::orderBy('id', 'asc')->get();
 
-		return view('prayers/list', ['prayers' => $prayers, 'privacysettings' => $privacysettings]);
+
+		return $prayers;
+		//return view('prayers/list', ['prayers' => $prayers, 'prayerslater' => $prayerslater, 'privacysettings' => $privacysettings]);
+	}
+
+	public function getPrivacySettings() {
+		$privacysettings = PrivacySetting::orderBy('id', 'asc')->get();
+		return $privacysettings;
 	}
 
 	public function guest() {
 		$prayers = Prayer::orderBy('created_at', 'desc')
 			->with('privacysetting')
 			->with('user')
-			->with('prayalong')
+			->with('prayedalong')
 			->where('user_id', 0)
 			->get();
 		//->paginate(5);
@@ -102,7 +109,7 @@ class PrayerController extends Controller {
 	public function show($id) {
 		$prayer = Prayer::with('privacysetting')
 			->with('user')
-			->with('prayalong')
+			->with('prayedalong')
 			->where('prayers.id', $id)
 			->get();
 
@@ -140,10 +147,11 @@ class PrayerController extends Controller {
 		//
 	}
 
-	public function prayAlong($prayerid) {
+	public function prayAlongNow($prayerid) {
 		$prayalong = new PrayAlong;
 		$prayalong->prayer_id = $prayerid;
 		$prayalong->user_id = Auth::id();
+		$prayalong->prayed = 1;
 		$prayalong->save();
 
 		$prayalongcount = PrayAlong::where('prayer_id', $prayerid)->count();
@@ -157,5 +165,37 @@ class PrayerController extends Controller {
 		}
 
 		return $returntext;
+	}
+
+	public function prayersForLater() {
+		$prayersForLater = Prayer::orderBy('created_at', 'desc')
+			->with('privacysetting')
+			->with('user')
+			->with('prayedalong')
+			->join('pray_along', 'pray_along.prayer_id', '=', 'prayers.id')
+			->where('pray_along.user_id', Auth::id())
+			->where('prayed',0)
+			->get();
+			return $prayersForLater;
+	}
+
+	public function prayersForLaterView() {
+			return view('prayers/list', 
+				[
+					'prayers' => $this->prayersForLater(), 
+					'prayersForLater' => $this->prayersForLater(), 
+					'privacysettings' => $this->getPrivacySettings(),
+					'createPrayer' => 0,
+					'titleHeader' => 'Saved Prayers For Later'
+				]
+			);
+	}
+
+	public function prayAlongLater($prayerid) {
+		$prayalong = new PrayAlong;
+		$prayalong->prayer_id = $prayerid;
+		$prayalong->user_id = Auth::id();
+		$prayalong->prayed = 0;
+		$prayalong->save();
 	}
 }

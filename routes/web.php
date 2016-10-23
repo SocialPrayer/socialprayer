@@ -15,7 +15,7 @@ Route::get('/', 'HomeController@guestView');
 
 Auth::routes();
 
-Route::get('/home', 'PrayerController@index');
+Route::get('/home', 'HomeController@index');
 
 Route::get('/privacy-policy', function () {
 	return view('legal/privacypolicy');
@@ -38,7 +38,11 @@ Route::resource('/user/profile', 'UserProfileController');
 
 Route::post('/user/profile/{id}', 'UserProfileController@update');
 
-Route::get('/prayer/pray-along/{prayerid}', 'PrayerController@prayAlong');
+Route::get('/prayer/pray-along/{prayerid}', 'PrayerController@prayAlongNow');
+
+Route::get('/prayers/prayers-for-later', 'PrayerController@prayersForLaterView');
+
+Route::get('/prayer/pray-along/later/{prayerid}', 'PrayerController@prayAlongLater');
 
 Route::get('auth/OAuth/{driver}', 'Auth\SocialiteAuthController@redirectToProvider');
 
