@@ -101,11 +101,13 @@ if (Auth::check()) {
                                         Remind me to pray later
                                     </a>
                                 </li>
+                                <!--
                                 <li>
                                     <a href="#" class="prayResponse">
                                         Write a prayer response
                                     </a>
                                 </li>
+                                -->
                             </ul>
                         </div>
                     @endif
