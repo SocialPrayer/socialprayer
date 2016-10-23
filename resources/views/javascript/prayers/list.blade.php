@@ -134,7 +134,7 @@ $(function(){
             overlay.appendTo('.prayers').delay(1000).fadeOut();
         });
     });
-    $('.prayalong').tooltip();
+    //$('.prayalong').tooltip();
     $('.prayalong').dropdown();
 
     $(document).on("click", ".addfriend", function(){
