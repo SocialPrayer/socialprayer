@@ -96,12 +96,12 @@ if (Auth::check()) {
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li>
-                                    <a href="javascript:;" class="prayNow" data-id="{{ $prayer->id }}>
+                                    <a href="javascript:;" class="prayNow" data-id="{{ $prayer->id }}">
                                         Quick prayer now
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:;" class="prayLater" data-id="{{ $prayer->id }}>
+                                    <a href="javascript:;" class="prayLater" data-id="{{ $prayer->id }}">
                                         Remind me to pray later
                                     </a>
                                 </li>
