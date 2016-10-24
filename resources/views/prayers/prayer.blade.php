@@ -52,31 +52,30 @@ if (Auth::check()) {
             	<div class="prayer-text pull-left">
                 	{{ $prayer->text }}
                 </div>
-                <div class="pull-right">
+                <div class="prayalongdiv pull-right">
                 	<span class="prayedalongcount small" data-id="{{ $prayer->id }}">
-                	@php ($buttonclass = "btn-default")
-                	@foreach ($prayer->prayedalong as $prayedalong)
-                		@if ($prayedalong->user_id == Auth::id() )
-                			@php ($buttonclass = "btn-disabled disabled")
+                    @var ($youPrayed = 0)
+                	@foreach ($prayer->prayedalong as $prayedalong) 
+                		@if ($prayedalong->user_id == Auth::id() and $youPrayed == 0)
                 			You
+                            @var ($youPrayed = 1)
                 		@endif
                 	@endforeach
-
                 	@if (count($prayer->prayedalong) == 1)
-                		@if ($buttonclass == "btn-disabled disabled")
+                		@if ($prayedalong->user_id == Auth::id() )
                 			prayed along
                 		@else
                 			{{ count($prayer->prayedalong) }} person prayed along
                 		@endif
                 	@elseif (count($prayer->prayedalong) == 2)
-                		@if ($buttonclass == "btn-disabled disabled")
+                		@if ($prayedalong->user_id == Auth::id() )
                 			and
                 			{{ count($prayer->prayedalong)-1 }} person prayed along
                 		@else
                 			{{ count($prayer->prayedalong) }} people prayed along
                 		@endif
                 	@elseif (count($prayer->prayedalong) > 2)
-                		@if ($buttonclass == "btn-disabled disabled")
+                		@if ($prayedalong->user_id == Auth::id() )
                 			and
                 			{{ count($prayer->prayedalong)-1 }} people prayed along
                 		@else
@@ -85,19 +84,24 @@ if (Auth::check()) {
                 	@endif
                 	</span>
                     @if(Auth::check())
+                        @if (isset($titleHeader) and $titleHeader=='Saved Prayers For Later')
+                        <a role="button" class="btn btn-default btn-md prayNow" data-toggle="dropdown" title="Pray Along" data-id="{{ $prayer->id }}">
+                            <img src="{{ asset('images/social-prayer-logo.png') }}" height="20px" />
+                        </a>
+                        @else
                         <div class="btn-group">
-                            <a role="button" class="btn {{ $buttonclass }} btn-md dropdown-toggle prayalong" data-toggle="dropdown" title="Pray Along" data-id="{{ $prayer->id }}">
+                            <a role="button" class="btn btn-default btn-md dropdown-toggle prayalong" data-toggle="dropdown" title="Pray Along" data-id="{{ $prayer->id }}">
                             	<img src="{{ asset('images/social-prayer-logo.png') }}" height="20px" />
                                 <span class="caret" style="margin-left: 5px;"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li>
-                                    <a href="javascript:;" class="prayNow">
+                                    <a href="javascript:;" class="prayNow" data-id="{{ $prayer->id }}>
                                         Quick prayer now
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:;" class="prayLater">
+                                    <a href="javascript:;" class="prayLater" data-id="{{ $prayer->id }}>
                                         Remind me to pray later
                                     </a>
                                 </li>
@@ -110,6 +114,7 @@ if (Auth::check()) {
                                 -->
                             </ul>
                         </div>
+                        @endif
                     @endif
                 </div>
             </div>
