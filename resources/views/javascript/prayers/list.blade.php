@@ -124,25 +124,26 @@ $(function(){
     });
 @endif
     $('.prayNow').click(function(){
-        var prayer_id = $(this).parents('.dropdown-menu').prev('.prayalong').data("id");
-        var $prayedAlongDiv = $(this).parents('.btn-group').prev('.prayedalongcount');
-        $(this).parents('.dropdown-menu').prev('.prayalong').addClass("disabled");
-        $(this).parents('.dropdown-menu').prev('.prayalong').removeClass("btn-default");
-        $(this).parents('.dropdown-menu').prev('.prayalong').addClass("btn-disabled");
+        var prayer_id = $(this).data("id");
+        var $prayedAlongCount = $(this).parents('.prayalongdiv').children('.prayedalongcount');
+        // $(this).parents('.dropdown-menu').prev('.prayalong').addClass("disabled");
+        // $(this).parents('.dropdown-menu').prev('.prayalong').removeClass("btn-default");
+        // $(this).parents('.dropdown-menu').prev('.prayalong').addClass("btn-disabled");
         $.get('/prayer/pray-along/' + prayer_id, function( data ) {
-            $prayedAlongDiv.html(data);
+            $prayedAlongCount.html(data);
             var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height" style="text-align:center; font-size: 56px;">Amen!</div>');
             overlay.appendTo('.prayers').delay(1000).fadeOut();
         });
     });
     $('.prayLater').click(function(){
-        var prayer_id = $(this).parents('.dropdown-menu').prev('.prayalong').data("id");
+        var prayer_id = $(this).data("id");
+        $(this).parent().addClass('disabled');
         $.get('/prayer/pray-along/later/' + prayer_id, function() {
+
             var currcount = parseInt($('.praylatercnt').html());
             if(currcount==0){
                 $('.praylaterlink').removeClass('hidden');
             }
-            $('').removeClass('hidden');
             $('.praylatercnt').html(currcount+1);
             var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height" style="text-align:center; font-size: 56px;">Prayer Added to<br />Prayer List for Later</div>');
             overlay.appendTo('.prayers').delay(1000).fadeOut();

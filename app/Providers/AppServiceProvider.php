@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Form;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider {
 	/**
@@ -13,6 +14,10 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot() {
 		Form::component('bsInput', 'components.form.input', ['type' => 'text', 'name', 'label' => null, 'value' => null, 'attributes' => [], 'default' => null]);
+
+		Blade::extend(function($value) {
+		    return preg_replace('/\@var(.+)/', '<?php ${1}; ?>', $value);
+		});
 	}
 
 	/**
