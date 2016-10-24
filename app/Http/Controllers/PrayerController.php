@@ -167,15 +167,18 @@ class PrayerController extends Controller {
 		return $returntext;
 	}
 
-	public function prayersForLater() {
+	public function prayersForLater($id = null) {
+		if ($id == null) {
+			$id = Auth::id();
+		}
 		$prayersForLater = Prayer::orderBy('prayers.created_at', 'desc')
 			->with('privacysetting')
 			->with('user')
 			->with('prayedalong')
 			->join('pray_along', 'pray_along.prayer_id', '=', 'prayers.id')
-			->where('pray_along.user_id', Auth::id())
+			->where('pray_along.user_id', $id)
 			->where('prayed',0)
-			->get();
+			->get(['prayers.*']);
 			return $prayersForLater;
 	}
 
@@ -196,6 +199,12 @@ class PrayerController extends Controller {
 		$prayalong->prayer_id = $prayerid;
 		$prayalong->user_id = Auth::id();
 		$prayalong->prayed = 0;
+		$prayalong->save();
+	}
+
+	public function prayAlongLaterNow($prayAlongID) {
+		$prayalong->find($prayAlongID);
+		$prayalong->prayed = 1;
 		$prayalong->save();
 	}
 }
