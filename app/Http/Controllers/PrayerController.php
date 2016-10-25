@@ -167,7 +167,7 @@ class PrayerController extends Controller {
 		return $returntext;
 	}
 
-	public function prayersForLater($id = null) {
+	public static function prayersForLater($id = null) {
 		if ($id == null) {
 			$id = Auth::id();
 		}
