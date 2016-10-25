@@ -16,9 +16,9 @@ class SavedPrayers extends Notification
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
+    public function __construct($numOfSavedPrayers, $userid) {
+        $this->numOfSavedPrayers = $numOfSavedPrayers;
+        $this->userid = $userid;
     }
 
     /**
@@ -40,10 +40,15 @@ class SavedPrayers extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', 'https://laravel.com')
-                    ->line('Thank you for using our application!');
+            $user = \App\User::find($this->userid);
+
+            $url = url('/prayers/prayers-for-later');
+            return (new MailMessage)
+                ->subject('SocialPrayer - ' . $this->numOfSavedPrayers . ' saved prayer(s) to pray for')
+                ->greeting('Hello ' . $user->name . ',')
+                ->line('You have ' . $this->numOfSavedPrayers . ' prayer(s) waiting for you. These are prayers that you marked for pray later.')
+                ->action('Go To Prayers', $url)
+                ->line('Have a blessed day!');
     }
 
     /**
