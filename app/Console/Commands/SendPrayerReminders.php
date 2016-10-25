@@ -39,7 +39,7 @@ class SendPrayerReminders extends Command
      */
     public function handle()
     {
-        $users = App\User::all();
+        $users = User::all();
         foreach($users as $user){
             $prayersForLater = PrayerController::prayersForLater($user->id);
             $numOfSavedPrayers = count($prayersForLater);
