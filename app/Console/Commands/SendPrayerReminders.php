@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\PrayerController;
+use App\Http\Controllers\PrayerController;
 use App\User;
 
 class SendPrayerReminders extends Command
