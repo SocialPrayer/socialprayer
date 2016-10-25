@@ -14,9 +14,9 @@ class FriendPrayed extends Notification {
 	 *
 	 * @return void
 	 */
-	public function __construct($numOfSavedPrayers, $userid) {
-		$this->numOfSavedPrayers = $numOfSavedPrayers;
-		$this->userid = $userid;
+	public function __construct($friendid, $prayerid) {
+		$this->friendid = $friendid;
+		$this->prayerid = $prayerid;
 	}
 
 	/**
@@ -36,14 +36,14 @@ class FriendPrayed extends Notification {
 	 * @return \Illuminate\Notifications\Messages\MailMessage
 	 */
 	public function toMail($notifiable) {
-		$user = \App\User::find($this->userid);
+		$friend = \App\User::find($this->friendid);
 
-		$url = url('/prayers/prayers-for-later');
+		$url = url('/prayer/' . $this->prayerid);
 		return (new MailMessage)
-			->subject('SocialPrayer - ' . $numOfSavedPrayers . 'Prayer(s) waiting')
-			->greeting('Hello ' . $user->name . ',')
-			->line('You have ' . $numOfSavedPrayers . ' prayer(s) waiting for you. These are prayers that you marked for pray later.')
-			->action('Go To Prayers', $url)
+			->subject('SocialPrayer - ' . \Auth::user()->name . ' just prayed')
+			->greeting('Hello ' . $friend->name . '!')
+			->line('A friend of yours, ' . \Auth::user()->name . ', just prayed.')
+			->action('View Prayer', $url)
 			->line('Have a blessed day!');
 	}
 
