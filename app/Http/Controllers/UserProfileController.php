@@ -66,7 +66,7 @@ class UserProfileController extends Controller {
 	 */
 	public function update(Request $request, $id) {
 
-		$userProfile = UserProfile::where('user_id', $id)->get();
+		$userProfile = UserProfile::find($id);
 		$userProfile->email = $request->email;
 		$userProfile->firstname = $request->firstname;
 		$userProfile->lastname = $request->lastname;
