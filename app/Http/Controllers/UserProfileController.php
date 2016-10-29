@@ -53,7 +53,7 @@ class UserProfileController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id) {
-		$userProfile = UserProfile::where('user_id', $id)->get();
+		$userProfile = UserProfile::where('user_id', $id)->first();
 		return view('users/profile/edit', array('userProfile' => $userProfile));
 	}
 
