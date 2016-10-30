@@ -67,7 +67,7 @@ class PrayerController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function fromUser($userid) {
-		$getUser = User::find($userid);
+		$getUser = \App\User::find($userid);
 		$prayers = Prayer::orderBy('created_at', 'desc')
 			->with('privacysetting')
 			->with('user')
