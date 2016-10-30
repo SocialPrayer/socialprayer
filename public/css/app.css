@@ -5829,6 +5829,9 @@ button.close {
 .position-ref {
   position: relative; }
 
+.tooltip-inner {
+  white-space: nowrap; }
+
 #overlay {
   position: fixed;
   top: 0;
