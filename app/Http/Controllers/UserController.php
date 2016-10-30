@@ -42,6 +42,34 @@ class UserController extends Controller {
 		$friend->notify(new FriendRequest($friendid, $friendRequest->id, false));
 	}
 
+	public function removeFriend($friendid) {
+
+		$friendRequest = Friend::where('friend_id', $friendid)->where('user_id', Auth::id())->first();
+
+		if ( $friendRequest ) {
+
+			$deletefriend = Friend::find($friendRequest->id)->delete();
+			return 'Friend Removed';
+
+		} else {
+
+			$friendRequest = Friend::where('user_id', $friendid)->where('friend_id', Auth::id())->first();
+
+			if ( $friendRequest ) {
+
+				$deletefriend = Friend::find($friendRequest->id)->delete();
+				return 'Friend Removed2 ';
+
+			} else {
+
+				return 'Not Found';
+
+			}
+
+		}
+
+	}
+
 	public function inviteFriendsForm() {
 		return view('users/friends/invite');
 	}

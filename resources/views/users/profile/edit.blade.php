@@ -7,12 +7,12 @@
 	    		Personal Info
 	    	</a>
 	    </li>
-	    <!-- <li role="presentation">
+	    <li role="presentation">
 	    	<a href="#friends" aria-controls="friends" role="tab" data-toggle="tab">
 	    		Friends
 	    	</a>
 	    </li>
-	    <li role="presentation">
+	    <!--<li role="presentation">
 	    	<a href="#alerts" aria-controls="alerts" role="tab" data-toggle="tab">
 	    		Alerts
 	    	</a>
@@ -101,7 +101,35 @@
 		{{ Form::close() }}
 	</div>
 	<div role="tabpanel" class="tab-pane" id="friends">
-		<!--Friends go here -->
+		<div class="row">
+			@forelse ($userProfile->user->friends as $friend)
+				<div class="panel panel-default col-xs-10 col-xs-offset-1">
+	                <div class="panel-body clearfix">
+	                	<div class="row vcenter">
+		                	<div class="col-xs-10">
+		                		<h4>
+		                			{{ $friend->name }}
+		                			<small> - <a href="#" class="view-prayers" data-id="{{ $friend->id }}">View Prayers</a></small>
+		                		</h4>
+		                		<p class="small text-muted">
+		                			Friends Since: 
+		                			{{ $friend->created_at->toFormattedDateString() }}
+		                		</p>
+		                	</div>
+		                	<div class="col-xs-2 text-right">
+			                	<button class="unfriend btn btn-large btn-default" data-toggle="tooltip" data-placement="bottom" title="Remove Friend" data-id="{{ $friend->id }}">
+			                		<span class="glyphicon glyphicon-remove-circle"></span>
+			                	</button>
+			                </div>
+		                </div>
+	                </div>
+	            </div>
+	        @empty
+	        	<div class="text-center bottom-buffer">
+	        		<h3>You do not have any friends yet.</h3>
+	        	</div>
+	        @endforelse
+		</div>
 	</div>
 	<div role="tabpanel" class="tab-pane" id="alerts">
 		<!--Friends go here -->
@@ -123,6 +151,20 @@ $(function(){
 		}
 
 	});
+
+	$('.view-prayers').on('click',function(e) {
+		var userid = $(this).data('id');
+		parent.window.location = '/prayers/user/' + userid;
+	});
+
+	$('.unfriend').on('click',function(e) {
+		var friendid = $(this).data('id');
+		$row = $(this).parents('.panel');
+		$.get('/user/removefriend/' + friendid, function () {
+			$row.remove();
+		});
+	});
+
 	$('#profileEdit').on('submit',function(e) {
 		$.ajaxSetup({
             header:$('meta[name="_token"]').attr('content')
