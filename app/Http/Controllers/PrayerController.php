@@ -68,10 +68,11 @@ class PrayerController extends Controller {
 	 */
 	public function fromUser($userid) {
 		$getUser = \App\User::find($userid);
+		
 		$prayers = Prayer::orderBy('created_at', 'desc')
 			->with('privacysetting')
 			->with('user')
-			->with('prayalong')
+			->with('prayedalong')
 			->whereIn('privacy_setting_id', [2, 3, 4])
 			->where('user_id',$userid)
 			->paginate(5);
@@ -82,6 +83,7 @@ class PrayerController extends Controller {
 			[
 				'prayers' => $prayers, 
 				'privacysettings' => $privacysettings,
+				'prayersForLater' => 0,
 				'createPrayer' => 0,
 				'titleHeader' => $getUser->name . 'Prayers'
 			]
