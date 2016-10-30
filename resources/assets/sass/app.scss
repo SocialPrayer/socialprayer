@@ -11,8 +11,21 @@
 
 $panel-default-heading-bg: #F0F0F0;
 
+$panel-success-heading-bg: #A8A8A8;
+$panel-success-border: #A8A8A8;
+$panel-success-text: #ffffff;
+
+$btn-disabled-color: #ffffff;
+$btn-disabled-bg: #DEDEDE;
+$btn-disabled-border: #DEDEDE;
+
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Disabled appears as Grey
+.btn-disabled {
+  @include button-variant($btn-disabled-color, $btn-disabled-bg, $btn-disabled-border);
+}
 
 // Navbar Side
 /*@import 'sidebar';*/
@@ -54,6 +67,10 @@ $panel-default-heading-bg: #F0F0F0;
   input {
     font-size: 16px;
   }
+}
+
+.popover-title {
+  color: #000000;
 }
 
 .full-height {
