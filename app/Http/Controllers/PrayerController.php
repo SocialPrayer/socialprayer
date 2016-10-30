@@ -67,6 +67,7 @@ class PrayerController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function fromUser($userid) {
+		$getUser = User::find($userid);
 		$prayers = Prayer::orderBy('created_at', 'desc')
 			->with('privacysetting')
 			->with('user')
@@ -77,6 +78,14 @@ class PrayerController extends Controller {
 
 		$privacysettings = PrivacySetting::orderBy('id', 'asc')->get();
 
+		return view('prayers/list', 
+			[
+				'prayers' => $prayers(), 
+				'privacysettings' => $privacysettings(),
+				'createPrayer' => 0,
+				'titleHeader' => $getUser->name . 'Prayers'
+			]
+		);
 		return view('prayers/list', ['prayers' => $prayers, 'privacysettings' => $privacysettings]);
 	}
 
