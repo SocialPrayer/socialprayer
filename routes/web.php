@@ -24,6 +24,8 @@ Route::get('/terms-and-conditions', function () {
 	return view('legal/termsandconditions');
 });
 
+Route::get('/user/removefriend/{friendid}', 'UserController@removeFriend');
+
 Route::get('/user/addfriend/{friendid}', 'UserController@addFriendRequest');
 
 Route::get('/user/invite-friends/', 'UserController@inviteFriendsForm');
@@ -33,6 +35,8 @@ Route::post('/user/invite-friends', 'UserController@inviteFriendsSend');
 Route::get('/user/acceptfriend/{friendshipid}', 'UserController@acceptFriendRequest');
 
 Route::resource('/prayer', 'PrayerController');
+
+Route::resource('/prayers/user', 'PrayerController@fromUser');
 
 Route::resource('/user/profile', 'UserProfileController');
 

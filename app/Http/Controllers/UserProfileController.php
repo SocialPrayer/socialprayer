@@ -42,7 +42,7 @@ class UserProfileController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id) {
-		$userProfile = UserProfile::where('user_id', $id)->get();
+		$userProfile = UserProfile::where('user_id', $id)->with('user')->get();
 		return view('users/profile/show', array('userProfile' => $userProfile));
 	}
 
