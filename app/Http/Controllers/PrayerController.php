@@ -80,8 +80,8 @@ class PrayerController extends Controller {
 
 		return view('prayers/list', 
 			[
-				'prayers' => $prayers(), 
-				'privacysettings' => $privacysettings(),
+				'prayers' => $prayers, 
+				'privacysettings' => $privacysettings,
 				'createPrayer' => 0,
 				'titleHeader' => $getUser->name . 'Prayers'
 			]
