@@ -53,6 +53,25 @@ class PrayerController extends Controller {
 	}
 
 	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function fromUser($userid) {
+		$prayers = Prayer::orderBy('created_at', 'desc')
+			->with('privacysetting')
+			->with('user')
+			->with('prayalong')
+			->whereIn('privacy_setting_id', [2, 3, 4])
+			->where('user_id',$userid)
+			->paginate(5);
+
+		$privacysettings = PrivacySetting::orderBy('id', 'asc')->get();
+
+		return view('prayers/list', ['prayers' => $prayers, 'privacysettings' => $privacysettings]);
+	}
+
+	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return \Illuminate\Http\Response
