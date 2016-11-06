@@ -42,7 +42,7 @@ class UserProfileController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id) {
-		$userProfile = UserProfile::where('user_id', $id)->get();
+		$userProfile = UserProfile::where('user_id', $id)->with('user')->get();
 		return view('users/profile/show', array('userProfile' => $userProfile));
 	}
 
@@ -53,7 +53,7 @@ class UserProfileController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id) {
-		$userProfile = UserProfile::where('user_id', $id)->get();
+		$userProfile = UserProfile::where('user_id', $id)->first();
 		return view('users/profile/edit', array('userProfile' => $userProfile));
 	}
 
@@ -66,7 +66,7 @@ class UserProfileController extends Controller {
 	 */
 	public function update(Request $request, $id) {
 
-		$userProfile = UserProfile::where('user_id', $id)->get();
+		$userProfile = UserProfile::find($id);
 		$userProfile->email = $request->email;
 		$userProfile->firstname = $request->firstname;
 		$userProfile->lastname = $request->lastname;

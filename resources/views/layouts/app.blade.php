@@ -69,6 +69,11 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Join Now</a></li>
                     @else
+                        @if (count($prayersForLater))
+                            <li><a href="{{ url('/prayers/prayers-for-later') }}"><span class="praylatercnt">{{ count($prayersForLater) }}</span> Prayer(s) Saved For Later</a></li>
+                        @else
+                            <li class="hidden praylaterlink"><a href="{{ url('/prayers/prayers-for-later') }}"><span class="praylatercnt">{{ count($prayersForLater) }}</span> Prayer(s) Saved For Later</a></li>
+                        @endif
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
