@@ -17,6 +17,7 @@
     "vue-resource": "*"
   },
   "dependencies": {
+    "moment": "^2.16.0",
     "node-notifier": "*",
     "readable-stream": "*"
   }

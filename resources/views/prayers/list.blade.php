@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<section class="prayers-section col-centered">
+	<section id="prayersSection" class="prayers-section col-centered">
 
         @include('vendor/flash/message')
         @if (Auth::check() and $createPrayer)
@@ -14,11 +14,7 @@
                 </div>
             </div>
         @endif
-        <div class="prayers">
-            @foreach ($prayers as $prayer)
-                @include('prayers/prayer')
-            @endforeach
-        </div>
+        <prayers :Auth="{{ Auth::user() }}" :Friends="{{ Auth::user()->friends }}"></prayers>
     </section>
 @endsection
 

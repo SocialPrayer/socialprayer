@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use \App\PrayAlong as PrayAlong;
 use \App\Prayer as Prayer;
 use \App\PrivacySetting as PrivacySetting;
+use Illuminate\Support\Facades\Response;
 
 class PrayerController extends Controller {
 
@@ -17,7 +18,7 @@ class PrayerController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->middleware('auth', ['except' => ['guest']]);
+		//$this->middleware('auth', ['except' => ['guest']]);
 	}
 
 	/**

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\PrayerController;
+use JavaScript;
+use Auth;
+use View;
 
 class HomeController extends Controller {
 	/**
@@ -24,7 +27,8 @@ class HomeController extends Controller {
 		// $volumes = $dbt->getLibraryVolume(null, null, 'text', null, null, 'ENG');
 		// $volumes = json_decode($volumes);
 		$prayers = new PrayerController;
-		return view('prayers/list', 
+
+		return View::make('prayers/list', 
 			[
 				'prayers' => $prayers->index(), 
 				'privacysettings' => $prayers->getPrivacySettings(), 

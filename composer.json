@@ -14,7 +14,8 @@
         "graham-campbell/throttle": "^5.2",
         "Guzzlehttp/Guzzle": "^6.2",
         "laravel/socialite": "^2.0",
-        "laravolt/avatar": "^1.8"
+        "laravolt/avatar": "^1.8",
+        "laracasts/utilities": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
