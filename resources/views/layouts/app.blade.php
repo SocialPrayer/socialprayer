@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
+    <script src="//localhost:6001/socket.io/socket.io.js"></script>
+
     <link rel="apple-touch-icon" href="/images/apple-touch-icon-iphone-retina.png">
 
     <!-- Scripts -->
@@ -125,6 +127,7 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+
 
     <script>
     $(function(){

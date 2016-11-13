@@ -48,72 +48,72 @@ $(function(){
         $.post("/prayer", $(this).serialize(),  function(response) {
             //$('#success').html(response);
             //$('#success').hide('slow');
-            if(prayerPrivacy>0) {
-                var newPrayerDiv = $( ".prayer" ).first().clone();
-                newPrayerDiv.removeClass('panel-default');
-                newPrayerDiv.addClass('panel-info');
-                newPrayerDiv.find('.prayalong').data("id", 1);
-                newPrayerDiv.find('.prayalong').removeClass("btn-info");
-                newPrayerDiv.find('.prayalong').addClass("btn-default");
-                newPrayerDiv.find('.prayalong').removeClass("disabled");
-                if(prayerPrivacy==4) {
-                     newPrayerDiv.find('.prayer-user').html('<span data-toggle="popover" data-html="true" title="<b>{{ Auth::user()->name ?: '' }}</b>" data-placement="top" data-content="" style="cursor: pointer;">Anonymous</span>');
-                 } else {
-                     newPrayerDiv.find('.prayer-user').html('<span data-toggle="popover" data-html="true" title="<b>{{ Auth::user()->name }}</b>" data-placement="top" data-content="" style="cursor: pointer;">{{ Auth::user()->name }}</span>');
-                 }
-                newPrayerDiv.find('.prayer-time').html('Now');
-                newPrayerDiv.find('.prayer-text').html(prayerText);
-                newPrayerDiv.prependTo(".prayers").hide().fadeIn('slow').slideDown('slow');
+            // if(prayerPrivacy>0) {
+            //     var newPrayerDiv = $( ".prayer" ).first().clone();
+            //     newPrayerDiv.removeClass('panel-default');
+            //     newPrayerDiv.addClass('panel-info');
+            //     newPrayerDiv.find('.prayalong').data("id", 1);
+            //     newPrayerDiv.find('.prayalong').removeClass("btn-info");
+            //     newPrayerDiv.find('.prayalong').addClass("btn-default");
+            //     newPrayerDiv.find('.prayalong').removeClass("disabled");
+            //     if(prayerPrivacy==4) {
+            //          newPrayerDiv.find('.prayer-user').html('<span data-toggle="popover" data-html="true" title="<b>{{ Auth::user()->name ?: '' }}</b>" data-placement="top" data-content="" style="cursor: pointer;">Anonymous</span>');
+            //      } else {
+            //          newPrayerDiv.find('.prayer-user').html('<span data-toggle="popover" data-html="true" title="<b>{{ Auth::user()->name }}</b>" data-placement="top" data-content="" style="cursor: pointer;">{{ Auth::user()->name }}</span>');
+            //      }
+            //     newPrayerDiv.find('.prayer-time').html('Now');
+            //     newPrayerDiv.find('.prayer-text').html(prayerText);
+            //     newPrayerDiv.prependTo(".prayers").hide().fadeIn('slow').slideDown('slow');
 
-                $('[data-toggle="popover"]').popover({ trigger: "manual" , html: true, animation:false})
-                    .on("click", function () {
-                        var _this = this;
-                        $(this).popover("show");
-                        $(".popover").on("click", function () {
-                            $(_this).popover('hide');
-                        });
-                        $(".popover").on("mouseleave", function () {
-                            $(_this).popover('hide');
-                        });
-                        $(".container").on("mouseleave", function () {
-                            $(_this).popover('hide');
-                        });
-                    }).on("mouseleave", function () {
-                        var _this = this;
-                        setTimeout(function () {
-                            if (!$(".popover:hover").length) {
-                                $(_this).popover("hide");
-                            }
-                        }, 300);
-                });
-                $('.prayNow').click(function(){
-                var prayer_id = $(this).parents('.dropdown-menu').prev('.prayalong').data("id");
-                var $prayedAlongDiv = $(this).parents('.btn-group').prev('.prayedalongcount');
-                $(this).parents('.dropdown-menu').prev('.prayalong').addClass("disabled");
-                $(this).parents('.dropdown-menu').prev('.prayalong').removeClass("btn-default");
-                $(this).parents('.dropdown-menu').prev('.prayalong').addClass("btn-disabled");
-                $.get('/prayer/pray-along/' + prayer_id, function( data ) {
-                    $prayedAlongDiv.html(data);
-                    var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height" style="text-align:center; font-size: 56px;">Amen!</div>');
-                    overlay.appendTo('.prayers').delay(1000).fadeOut();
-                });
-            });
-            $('.prayLater').click(function(){
-                var prayer_id = $(this).parents('.dropdown-menu').prev('.prayalong').data("id");
-                $.get('/prayer/pray-along/later/' + prayer_id, function() {
-                    var currcount = parseInt($('.praylatercnt').html());
-                    if(currcount==0){
-                        $('.praylaterlink').removeClass('hidden');
-                    }
-                    $('').removeClass('hidden');
-                    $('.praylatercnt').html(currcount+1);
-                    var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height" style="text-align:center; font-size: 56px;">Prayer Added to<br />Prayer List for Later</div>');
-                    overlay.appendTo('.prayers').delay(1000).fadeOut();
-                });
-            });
-            //$('.prayalong').tooltip();
-            $('.prayalong').dropdown();
-            }
+            //     $('[data-toggle="popover"]').popover({ trigger: "manual" , html: true, animation:false})
+            //         .on("click", function () {
+            //             var _this = this;
+            //             $(this).popover("show");
+            //             $(".popover").on("click", function () {
+            //                 $(_this).popover('hide');
+            //             });
+            //             $(".popover").on("mouseleave", function () {
+            //                 $(_this).popover('hide');
+            //             });
+            //             $(".container").on("mouseleave", function () {
+            //                 $(_this).popover('hide');
+            //             });
+            //         }).on("mouseleave", function () {
+            //             var _this = this;
+            //             setTimeout(function () {
+            //                 if (!$(".popover:hover").length) {
+            //                     $(_this).popover("hide");
+            //                 }
+            //             }, 300);
+            //     });
+            //     $('.prayNow').click(function(){
+            //     var prayer_id = $(this).parents('.dropdown-menu').prev('.prayalong').data("id");
+            //     var $prayedAlongDiv = $(this).parents('.btn-group').prev('.prayedalongcount');
+            //     $(this).parents('.dropdown-menu').prev('.prayalong').addClass("disabled");
+            //     $(this).parents('.dropdown-menu').prev('.prayalong').removeClass("btn-default");
+            //     $(this).parents('.dropdown-menu').prev('.prayalong').addClass("btn-disabled");
+            //     $.get('/prayer/pray-along/' + prayer_id, function( data ) {
+            //         $prayedAlongDiv.html(data);
+                    // var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height" style="text-align:center; font-size: 56px;">Amen!</div>');
+                    // overlay.appendTo('.prayers').delay(1000).fadeOut();
+            //     });
+            // });
+            // $('.prayLater').click(function(){
+            //     var prayer_id = $(this).parents('.dropdown-menu').prev('.prayalong').data("id");
+            //     $.get('/prayer/pray-along/later/' + prayer_id, function() {
+            //         var currcount = parseInt($('.praylatercnt').html());
+            //         if(currcount==0){
+            //             $('.praylaterlink').removeClass('hidden');
+            //         }
+            //         $('').removeClass('hidden');
+            //         $('.praylatercnt').html(currcount+1);
+            //         var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height" style="text-align:center; font-size: 56px;">Prayer Added to<br />Prayer List for Later</div>');
+                    // overlay.appendTo('.prayers').delay(1000).fadeOut();
+            //     });
+            // });
+            // //$('.prayalong').tooltip();
+            // $('.prayalong').dropdown();
+            // }
             $('#newPrayer')[0].reset();
             $('#newPrayerSubmit').prop('disabled','');
             $('.new-prayer-submit-text').html('Submit Prayer');

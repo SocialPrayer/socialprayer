@@ -15,7 +15,8 @@
         "Guzzlehttp/Guzzle": "^6.2",
         "laravel/socialite": "^2.0",
         "laravolt/avatar": "^1.8",
-        "laracasts/utilities": "~2.0"
+        "laracasts/utilities": "~2.0",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

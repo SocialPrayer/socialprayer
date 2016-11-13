@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Notifications\FriendPrayed;
 use Auth;
 use Illuminate\Http\Request;
-use \App\PrayAlong as PrayAlong;
-use \App\Prayer as Prayer;
-use \App\PrivacySetting as PrivacySetting;
+use App\PrayAlong as PrayAlong;
+use App\Prayer as Prayer;
+use App\PrivacySetting as PrivacySetting;
 use Illuminate\Support\Facades\Response;
+use App\Events\NewPrayer;
 
 class PrayerController extends Controller {
 
@@ -126,6 +127,13 @@ class PrayerController extends Controller {
 				$friend->notify(new FriendPrayed($friend->id, $prayer->id));
 			}
 		}
+
+		$newprayer = Prayer::with('privacysetting')
+			->with('user')
+			->with('prayedalong')
+			->find($prayer->id);
+			
+		event(new NewPrayer($newprayer));
 
 		flash('Your prayer has been submitted up to God!', 'success');
 		return redirect('/home');

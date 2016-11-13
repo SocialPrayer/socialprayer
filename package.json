@@ -17,8 +17,10 @@
     "vue-resource": "*"
   },
   "dependencies": {
+    "laravel-echo": "^1.1.3",
     "moment": "^2.16.0",
     "node-notifier": "*",
+    "pusher-js": "^3.2.2",
     "readable-stream": "*"
   }
 }

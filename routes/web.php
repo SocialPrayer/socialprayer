@@ -27,7 +27,9 @@ Route::resource('/user/profile', 'UserProfileController');
 
 Route::post('/user/profile/{id}', 'UserProfileController@update');
 
-Route::get('/prayer/pray-along/{prayerid}', 'PrayerController@prayAlong');
+Route::get('/prayer/pray-along/{prayerid}', 'PrayerController@prayAlongNow');
+Route::get('/prayers/prayers-for-later', 'PrayerController@prayersForLaterView');
+Route::get('/prayer/pray-along/later/{prayerid}', 'PrayerController@prayAlongLater');
 
 Route::get('auth/OAuth/{driver}', 'Auth\SocialiteAuthController@redirectToProvider');
 
