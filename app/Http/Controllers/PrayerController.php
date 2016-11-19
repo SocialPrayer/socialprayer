@@ -10,6 +10,7 @@ use App\Prayer as Prayer;
 use App\PrivacySetting as PrivacySetting;
 use Illuminate\Support\Facades\Response;
 use App\Events\NewPrayer;
+use App\Events\PrayedAlong;
 
 class PrayerController extends Controller {
 
@@ -132,7 +133,7 @@ class PrayerController extends Controller {
 			->with('user')
 			->with('prayedalong')
 			->find($prayer->id);
-			
+
 		event(new NewPrayer($newprayer));
 
 		flash('Your prayer has been submitted up to God!', 'success');
@@ -202,6 +203,8 @@ class PrayerController extends Controller {
 		} else {
 			$returntext = "You and " . $prayalongcount . " people prayed along";
 		}
+
+		event(new PrayedAlong($prayerid, $prayalongcount));
 
 		return $returntext;
 	}
