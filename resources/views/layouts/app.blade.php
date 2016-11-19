@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
-    <script src="//localhost:6001/socket.io/socket.io.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 
     <link rel="apple-touch-icon" href="/images/apple-touch-icon-iphone-retina.png">
 
