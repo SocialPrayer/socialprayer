@@ -7,4 +7,5 @@ Homestead.json
 Homestead.yaml
 *.DS_Store
 .phpintel/
+dump.rdb
 .env
