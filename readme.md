@@ -1,5 +1,5 @@
 # [SocialPrayer](http://www.social-prayer.com)
-### [SocialPrayer-beta](http://wwwdev.social-prayer.com)
+### [SocialPrayer-beta](http://wwwdev.social-prayer.com) (develop branch)
 
 SocialPrayer was created to provide a place to those who wanted to pray with their loved ones as well as have an online outlet to pray. It is early in development but currently functional. 
 
