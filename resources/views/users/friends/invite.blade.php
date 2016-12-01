@@ -7,7 +7,8 @@
   </div>
   <div class="modal-body">
   	<textarea class="form-control" name="invitees" id="invitees" rows="6" placeholder="Friends" required="required" style="border-color: #5CACEE;"></textarea>
-  </div>
+  <textarea class="form-control" name="message" id="message" rows="6" placeholder="Personal Message" style="border-color: #5CACEE;"></textarea>
+ </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     <button type="submit" class="btn btn-primary">Send Invites</button>

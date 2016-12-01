@@ -86,7 +86,7 @@ class UserController extends Controller {
 		foreach ($invitees as $invitee) {
 			if (strpos($invitee, '@') && strpos($invitee, '.')) {
 				\Mail::to(trim($invitee))
-					->send(new \App\Mail\invite());
+					->send(new \App\Mail\invite($request->message));
 			}
 		}
 	}
