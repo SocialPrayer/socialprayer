@@ -33,7 +33,10 @@ class invite extends Mailable {
 		$personalMessage = "";
 		
 		if($this->message != ""){ 
-				$personalMessage = '\r\nPersonal Message from ' . Auth::user()->name . ': ' . $this->message;
+				$personalMessage = '
+				Personal Message from ' . Auth::user()->name . ': 
+				
+				' . $this->message;
 		}
 		
 		return $this->view('vendor.notifications.email')
@@ -41,7 +44,7 @@ class invite extends Mailable {
 			->with([
 				'level' => 'info',
 				'subject' => 'SocialPrayer - ' . Auth::user()->name . ' just invited you to pray with them',
-				'greeting' => 'Greetings,',
+				'greeting' => 'How do you do,',
 				'introLines' => ['You have been invited by ' . Auth::user()->name . ' to pray on SocialPrayer. A new place on the internet to pray either by yourself or together with those you know and love. You can also pray anonymously and it will not save your name, or just with God and he will be the only one to see it. Ever!' . $personalMessage],
 				'actionText' => 'Sign Up and Pray',
 				'actionUrl' => $url,
