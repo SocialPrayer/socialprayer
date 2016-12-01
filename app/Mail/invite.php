@@ -33,7 +33,7 @@ class invite extends Mailable {
 		$personalMessage = "";
 		
 		if($this->message != ""){ 
-				$personalMessage = '<br />Personal Message from ' . Auth::user()->name . ': ' . $message;
+				$personalMessage = '<br />Personal Message from ' . Auth::user()->name . ': ' . $this->message;
 		}
 		
 		return $this->view('vendor.notifications.email')
