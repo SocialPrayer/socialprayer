@@ -5,4 +5,8 @@
 /.idea
 Homestead.json
 Homestead.yaml
+*.DS_Store
+.phpintel/
+/laradock
+dump.rdb
 .env

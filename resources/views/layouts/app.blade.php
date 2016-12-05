@@ -69,12 +69,18 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Join Now</a></li>
                     @else
+                        @if (count($prayersForLater))
+                            <li><a href="{{ url('/prayers/prayers-for-later') }}"><span class="praylatercnt">{{ count($prayersForLater) }}</span> Prayer(s) Saved For Later</a></li>
+                        @else
+                            <li class="hidden praylaterlink"><a href="{{ url('/prayers/prayers-for-later') }}"><span class="praylatercnt">{{ count($prayersForLater) }}</span> Prayer(s) Saved For Later</a></li>
+                        @endif
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/user/profile/'.Auth::user()->id).'/edit' }}" data-remote="false" data-toggle="modal" data-target="#myModal">Profile</a></li>
                                 <li><a href="{{ url('/user/invite-friends') }}" data-remote="false" data-toggle="modal" data-target="#myModal">Invite Friends</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
@@ -97,7 +103,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+            <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2" id="innerContent">
             @yield('content')
             </div>
         </div>
@@ -118,7 +124,8 @@
 
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
 
     <script>
     $(function(){

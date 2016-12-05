@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\UserProfile;
 use App\User;
 use Config;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -46,23 +47,33 @@ class RegisterController extends Controller {
 	 * @return \Illuminate\Contracts\Validation\Validator
 	 */
 	protected function validator(array $data) {
-
-		$recaptcha = new \ReCaptcha\ReCaptcha(Config::get('services.google_reCaptcha.secret'));
-		$resp = $recaptcha->verify($data['g-recaptcha-response'], Request::ip());
-		if ($resp->isSuccess()) {
-			return Validator::make($data, [
-				'name' => 'required|max:255',
-				'email' => 'required|email|max:255|unique:users',
-				'password' => 'required|min:6|confirmed',
-			]);
+		if (env('APP_ENV') == 'Production') {
+			$recaptcha = new \ReCaptcha\ReCaptcha(Config::get('services.google_reCaptcha.secret'));
+			$resp = $recaptcha->verify($data['g-recaptcha-response'], Request::ip());
+			if ($resp->isSuccess()) {
+				return Validator::make($data, [
+					'firstname' => 'required|max:255',
+					'lastname' => 'required|max:255',
+					'email' => 'required|email|max:255|unique:users',
+					'password' => 'required|min:6|confirmed',
+				]);
+			} else {
+				return Validator::make($data, [
+					'firstname' => 'required|max:255',
+					'lastname' => 'required|max:255',
+					'email' => 'required|email|max:255|unique:users',
+					'password' => 'required|min:6|confirmed',
+					'g-recaptcha-response' => 'required|max:5',
+				]);
+				$errors = $resp->getErrorCodes();
+			}
 		} else {
 			return Validator::make($data, [
-				'name' => 'required|max:255',
+				'firstname' => 'required|max:255',
+				'lastname' => 'required|max:255',
 				'email' => 'required|email|max:255|unique:users',
 				'password' => 'required|min:6|confirmed',
-				'g-recaptcha-response' => 'required|max:5',
 			]);
-			$errors = $resp->getErrorCodes();
 		}
 	}
 
@@ -73,10 +84,21 @@ class RegisterController extends Controller {
 	 * @return User
 	 */
 	protected function create(array $data) {
-		return User::create([
-			'name' => $data['name'],
+
+		$user = User::create([
+			'name' => $data['firstname'] . ' ' . $data['lastname'],
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
 		]);
+
+		$userProfile = UserProfile::create([
+			'firstname' => $data['firstname'],
+			'lastname' => $data['lastname'],
+			'email' => $data['email'],
+			'user_id' => $user->id,
+		]);
+
+		return $user;
+
 	}
 }

@@ -182,8 +182,6 @@ return [
 		Laracasts\Flash\FlashServiceProvider::class,
 		'GrahamCampbell\Throttle\ThrottleServiceProvider',
 		Laravel\Socialite\SocialiteServiceProvider::class,
-		Winternight\LaravelErrorHandler\ServiceProvider::class,
-
 	],
 
 	/*
@@ -231,7 +229,7 @@ return [
 		'URL' => Illuminate\Support\Facades\URL::class,
 		'Validator' => Illuminate\Support\Facades\Validator::class,
 		'View' => Illuminate\Support\Facades\View::class,
-		//'Form' => Collective\Html\FormFacade::class,
+		'Form' => Collective\Html\FormFacade::class,
 		'Html' => Collective\Html\HtmlFacade::class,
 		'Throttle' => 'GrahamCampbell\Throttle\Facades\Throttle',
 		'Socialite' => Laravel\Socialite\Facades\Socialite::class,

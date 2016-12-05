@@ -28,8 +28,12 @@ class Prayer extends Model {
 		return $this->belongsTo('App\PrivacySetting');
 	}
 
-	public function prayalong() {
-		return $this->hasMany('App\PrayAlong');
+	public function prayedalong() {
+		return $this->hasMany('App\PrayAlong')->where('prayed',1);
+	}
+
+	public function praylater() {
+		return $this->hasMany('App\PrayAlong')->where('prayed',0);
 	}
 
 }

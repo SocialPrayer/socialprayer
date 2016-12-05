@@ -11,7 +11,6 @@ if (Auth::check()) {
 	$pannelclass = "panel-default";
 }
 ?>
-
     <div class="panel {{$pannelclass}} prayer">
         <div class="panel-heading">
         	<div class="prayer-user" style="float: left; vertical-align: top; text-decoration: underline;">
@@ -43,52 +42,81 @@ if (Auth::check()) {
                      data-content="<button class='btn btn-primary addfriend' data-id='{{ $prayer->user->id }}'>Add Friend</button>" style="cursor: pointer;">{{ $prayer->user->name }}</span>
                 @endif
         	</div>
-        	<div style="float: right;" class="prayer-time text-muted" title="{{ $prayer->created_at->format('M j, y g:i A') }}">
+        	<div class="pull-right" title="{{ $prayer->created_at->format('M j, y g:i A') }}">
                 {{ $prayer->created_at->diffForHumans() }}
             </div>
         	<br />
         </div>
         <div class="panel-body">
-        	<div class="prayer-text" style="float: left;">
-            	{{ $prayer->text }}
-            </div>
-            <div style="float: right;">
-            	<span class="prayedalongcount small" data-id="{{ $prayer->id }}">
-            	@php ($buttonclass = "btn-default")
-            	@foreach ($prayer->prayalong as $prayalong)
-            		@if ($prayalong->user_id == Auth::id() )
-            			@php ($buttonclass = "btn-info disabled")
-            			You
-            		@endif
-            	@endforeach
-
-            	@if (count($prayer->prayalong) == 1)
-            		@if ($buttonclass == "btn-info disabled")
-            			prayed along
-            		@else
-            			{{ count($prayer->prayalong) }} person prayed along
-            		@endif
-            	@elseif (count($prayer->prayalong) == 2)
-            		@if ($buttonclass == "btn-info disabled")
-            			and
-            			{{ count($prayer->prayalong)-1 }} person prayed along
-            		@else
-            			{{ count($prayer->prayalong) }} people prayed along
-            		@endif
-            	@elseif (count($prayer->prayalong) > 2)
-            		@if ($buttonclass == "btn-info disabled")
-            			and
-            			{{ count($prayer->prayalong)-1 }} people prayed along
-            		@else
-            			{{ count($prayer->prayalong) }} people prayed along
-            		@endif
-            	@endif
-            	</span>
-                @if(Auth::check())
-                    <a href="#" role="button" class="btn {{ $buttonclass }} btn-md prayalong" data-toggle="tooltip" data-placement="bottom" title="Pray Along" data-id="{{ $prayer->id }}">
-                    	<img src="{{ asset('images/social-prayer-logo.png') }}" height="20px" />
-                    </a>
-                @endif
+            <div>
+            	<div class="prayer-text pull-left">
+                	{{ $prayer->text }}
+                </div>
+                <div class="prayalongdiv pull-right">
+                	<span class="prayedalongcount small" data-id="{{ $prayer->id }}">
+                    @var ($youPrayed = 0)
+                	@foreach ($prayer->prayedalong as $prayedalong) 
+                		@if ($prayedalong->user_id == Auth::id() and $youPrayed == 0)
+                			You
+                            @var ($youPrayed = 1)
+                		@endif
+                	@endforeach
+                	@if (count($prayer->prayedalong) == 1)
+                		@if ($prayedalong->user_id == Auth::id() )
+                			prayed along
+                		@else
+                			{{ count($prayer->prayedalong) }} person prayed along
+                		@endif
+                	@elseif (count($prayer->prayedalong) == 2)
+                		@if ($prayedalong->user_id == Auth::id() )
+                			and
+                			{{ count($prayer->prayedalong)-1 }} person prayed along
+                		@else
+                			{{ count($prayer->prayedalong) }} people prayed along
+                		@endif
+                	@elseif (count($prayer->prayedalong) > 2)
+                		@if ($prayedalong->user_id == Auth::id() )
+                			and
+                			{{ count($prayer->prayedalong)-1 }} people prayed along
+                		@else
+                			{{ count($prayer->prayedalong) }} people prayed along
+                		@endif
+                	@endif
+                	</span>
+                    @if(Auth::check())
+                        @if (isset($titleHeader) and $titleHeader=='Saved Prayers For Later')
+                        <a role="button" class="btn btn-default btn-md prayNow" data-toggle="dropdown" title="Pray Along" data-id="{{ $prayer->id }}">
+                            <img src="{{ asset('images/social-prayer-logo.png') }}" height="20px" />
+                        </a>
+                        @else
+                        <div class="btn-group">
+                            <a role="button" class="btn btn-default btn-md dropdown-toggle prayalong" data-toggle="dropdown" title="Pray Along" data-id="{{ $prayer->id }}">
+                            	<img src="{{ asset('images/social-prayer-logo.png') }}" height="20px" />
+                                <span class="caret" style="margin-left: 5px;"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a href="javascript:;" class="prayNow" data-id="{{ $prayer->id }}">
+                                        Quick prayer now
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" class="prayLater" data-id="{{ $prayer->id }}">
+                                        Remind me to pray later
+                                    </a>
+                                </li>
+                                <!--
+                                <li>
+                                    <a href="#" class="prayResponse">
+                                        Write a prayer response
+                                    </a>
+                                </li>
+                                -->
+                            </ul>
+                        </div>
+                        @endif
+                    @endif
+                </div>
             </div>
         </div>
         <div class="panel-info">

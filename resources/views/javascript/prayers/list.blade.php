@@ -1,8 +1,5 @@
-<script src="/js/vendor/jquery.ns-autogrow.js"></script>
-<!-- <script src="/js/vendor/bootstrap/tooltip.js"></script>
-<script src="/js/vendor/bootstrap/popover.js"></script> -->
-<script src="/js/vendor/jquery.jscroll.min.js"></script>
 <script>
+window.$ = window.jQuery;
 $(function(){
     $('[data-toggle="popover"]').popover({ trigger: "manual" , html: true, animation:false})
         .on("click", function () {
@@ -38,7 +35,6 @@ $(function(){
                 }
             }, 600);
     });
-    $('[data-toggle="tooltip"]').tooltip();
 @if (Auth::check())
     $('#newPrayer').on('submit',function(e){
         $.ajaxSetup({
@@ -55,9 +51,8 @@ $(function(){
             //$('#success').hide('slow');
             if(prayerPrivacy>0) {
                 var newPrayerDiv = $( ".prayer" ).first().clone();
-                newPrayerDiv.removeClass('panel-info');
                 newPrayerDiv.removeClass('panel-default');
-                newPrayerDiv.addClass('panel-success');
+                newPrayerDiv.addClass('panel-info');
                 newPrayerDiv.find('.prayalong').data("id", 1);
                 newPrayerDiv.find('.prayalong').removeClass("btn-info");
                 newPrayerDiv.find('.prayalong').addClass("btn-default");
@@ -92,18 +87,33 @@ $(function(){
                             }
                         }, 300);
                 });
-                $('[data-toggle="tooltip"]').tooltip();
-
-                $('.prayalong').click(function(){
-                    var prayer_id = $(this).data("id");
-                    var $thisselector = $(this);
-                    $(this).addClass("disabled");
-                    $(this).removeClass("btn-default");
-                    $(this).addClass("btn-info");
-                    $.get('/prayer/pray-along/' + prayer_id, function( data ) {
-                        $thisselector.prev('.prayedalongcount').html(data);
-                    });
+                $('.prayNow').click(function(){
+                var prayer_id = $(this).parents('.dropdown-menu').prev('.prayalong').data("id");
+                var $prayedAlongDiv = $(this).parents('.btn-group').prev('.prayedalongcount');
+                $(this).parents('.dropdown-menu').prev('.prayalong').addClass("disabled");
+                $(this).parents('.dropdown-menu').prev('.prayalong').removeClass("btn-default");
+                $(this).parents('.dropdown-menu').prev('.prayalong').addClass("btn-disabled");
+                $.get('/prayer/pray-along/' + prayer_id, function( data ) {
+                    $prayedAlongDiv.html(data);
+                    var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height" style="text-align:center; font-size: 56px;">Amen!</div>');
+                    overlay.appendTo('.prayers').delay(1000).fadeOut();
                 });
+            });
+            $('.prayLater').click(function(){
+                var prayer_id = $(this).parents('.dropdown-menu').prev('.prayalong').data("id");
+                $.get('/prayer/pray-along/later/' + prayer_id, function() {
+                    var currcount = parseInt($('.praylatercnt').html());
+                    if(currcount==0){
+                        $('.praylaterlink').removeClass('hidden');
+                    }
+                    $('').removeClass('hidden');
+                    $('.praylatercnt').html(currcount+1);
+                    var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height" style="text-align:center; font-size: 56px;">Prayer Added to<br />Prayer List for Later</div>');
+                    overlay.appendTo('.prayers').delay(1000).fadeOut();
+                });
+            });
+            //$('.prayalong').tooltip();
+            $('.prayalong').dropdown();
             }
             $('#newPrayer')[0].reset();
             $('#newPrayerSubmit').prop('disabled','');
@@ -114,16 +124,34 @@ $(function(){
         });
     });
 @endif
-    $('.prayalong').click(function(){
+    $('.prayNow').click(function(){
         var prayer_id = $(this).data("id");
-        var $thisselector = $(this);
-        $(this).addClass("disabled");
-        $(this).removeClass("btn-default");
-        $(this).addClass("btn-info");
+        var $prayedAlongCount = $(this).parents('.prayalongdiv').children('.prayedalongcount');
+        // $(this).parents('.dropdown-menu').prev('.prayalong').addClass("disabled");
+        // $(this).parents('.dropdown-menu').prev('.prayalong').removeClass("btn-default");
+        // $(this).parents('.dropdown-menu').prev('.prayalong').addClass("btn-disabled");
         $.get('/prayer/pray-along/' + prayer_id, function( data ) {
-            $thisselector.prev('.prayedalongcount').html(data);
+            $prayedAlongCount.html(data);
+            var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height" style="text-align:center; font-size: 56px;">Amen!</div>');
+            overlay.appendTo('.prayers').delay(1000).fadeOut();
         });
     });
+    $('.prayLater').click(function(){
+        var prayer_id = $(this).data("id");
+        $(this).parent().addClass('disabled');
+        $.get('/prayer/pray-along/later/' + prayer_id, function() {
+
+            var currcount = parseInt($('.praylatercnt').html());
+            if(currcount==0){
+                $('.praylaterlink').removeClass('hidden');
+            }
+            $('.praylatercnt').html(currcount+1);
+            var overlay = $('<div id="overlay" class="flex-center position-ref m-b-md full-height" style="text-align:center; font-size: 56px;">Prayer Added to<br />Prayer List for Later</div>');
+            overlay.appendTo('.prayers').delay(1000).fadeOut();
+        });
+    });
+    //$('.prayalong').tooltip();
+    $('.prayalong').dropdown();
 
     $(document).on("click", ".addfriend", function(){
         var friend_id = $(this).data("id");
@@ -138,67 +166,67 @@ $(function(){
     });
 	$('.prayerText textarea').autogrow({vertical: true, horizontal: false});
     //hides the default paginator
-    $('ul.pagination:visible:first').hide();
+    //$('ul.pagination:visible:first').hide();
 
     //init jscroll and tell it a few key configuration details
     //nextSelector - this will look for the automatically created
     //contentSelector - this is the element wrapper which is cloned and appended with new paginated data
-    $('.prayers-section').jscroll({
-        debug: true,
-        autoTrigger: true,
-        loadingHtml: '<div style="text-align: center;"><img src="/images/loading.gif" alt="Loading" height="75px" /></div>',
-        nextSelector: '.pagination li.active + li a',
-        contentSelector: '.prayers',
-        callback: function() {
+    // $('.prayers-section').jscroll({
+    //     debug: true,
+    //     autoTrigger: true,
+    //     loadingHtml: '<div style="text-align: center;"><img src="/images/loading.gif" alt="Loading" height="75px" /></div>',
+    //     nextSelector: '.pagination li.active + li a',
+    //     contentSelector: '.prayers',
+    //     callback: function() {
 
-            //again hide the paginator from view
-            $('ul.pagination:visible:first').hide();
-            $('[data-toggle="popover"]').popover({ trigger: "manual" , html: true, animation:false})
-                .on("click", function () {
-                    var _this = this;
-                    $(this).popover("show");
-                    $(".popover").on("click", function () {
-                        $(_this).popover('hide');
-                    });
-                    $(".popover").on("mouseleave", function () {
-                        $(_this).popover('hide');
-                    });
-                    $(".container").on("mouseleave", function () {
-                        $(_this).popover('hide');
-                    });
-                }).on("mouseleave", function () {
-                    var _this = this;
-                    setTimeout(function () {
-                        if (!$(".popover:hover").length) {
-                            $(_this).popover("hide");
-                        }
-                    }, 300);
-            });
-            $('[data-toggle="tooltip"]').tooltip();
+    //         //again hide the paginator from view
+    //         $('ul.pagination:visible:first').hide();
+    //         // $('[data-toggle="popover"]').popover({ trigger: "manual" , html: true, animation:false})
+    //         //     .on("click", function () {
+    //         //         var _this = this;
+    //         //         $(this).popover("show");
+    //         //         $(".popover").on("click", function () {
+    //         //             $(_this).popover('hide');
+    //         //         });
+    //         //         $(".popover").on("mouseleave", function () {
+    //         //             $(_this).popover('hide');
+    //         //         });
+    //         //         $(".container").on("mouseleave", function () {
+    //         //             $(_this).popover('hide');
+    //         //         });
+    //         //     }).on("mouseleave", function () {
+    //         //         var _this = this;
+    //         //         setTimeout(function () {
+    //         //             if (!$(".popover:hover").length) {
+    //         //                 $(_this).popover("hide");
+    //         //             }
+    //         //         }, 300);
+    //         // });
+    //         // $('[data-toggle="tooltip"]').tooltip();
 
-            $('.prayalong').click(function(){
-                var prayer_id = $(this).data("id");
-                var $thisselector = $(this);
-                $(this).addClass("disabled");
-                $(this).removeClass("btn-default");
-                $(this).addClass("btn-info");
-                $.get('/prayer/pray-along/' + prayer_id, function( data ) {
-                    $thisselector.prev('.prayedalongcount').html(data);
-                });
-            });
+    //         // $('.prayalong').click(function(){
+    //         //     var prayer_id = $(this).data("id");
+    //         //     var $thisselector = $(this);
+    //         //     $(this).addClass("disabled");
+    //         //     $(this).removeClass("btn-default");
+    //         //     $(this).addClass("btn-disabled");
+    //         //     $.get('/prayer/pray-along/' + prayer_id, function( data ) {
+    //         //         $thisselector.prev('.prayedalongcount').html(data);
+    //         //     });
+    //         // });
 
-            $(document).on("click", ".addfriend", function(){
-                var friend_id = $(this).data("id");
-                var $thisselector = $(this);
-                $(this).addClass("disabled");
-                $(this).prev('.user-popover').data('content','Friendship Requested');
-                $.get('/user/addfriend/' + friend_id, function( data ) {
-                    $thisselector.html('Friendship Requested');
-                });
-            });
+    //         // $(document).on("click", ".addfriend", function(){
+    //         //     var friend_id = $(this).data("id");
+    //         //     var $thisselector = $(this);
+    //         //     $(this).addClass("disabled");
+    //         //     $(this).prev('.user-popover').data('content','Friendship Requested');
+    //         //     $.get('/user/addfriend/' + friend_id, function( data ) {
+    //         //         $thisselector.html('Friendship Requested');
+    //         //     });
+    //         // });
 
-        }
-    });
+    //     }
+    // });
 
     window.setTimeout(function() {
       $(".alert").fadeTo(500, 0).slideUp(500, function(){

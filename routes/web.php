@@ -11,7 +11,7 @@
 |
  */
 
-Route::get('/', 'HomeController@guest');
+Route::get('/', 'HomeController@guestView');
 
 Auth::routes();
 
@@ -24,6 +24,8 @@ Route::get('/terms-and-conditions', function () {
 	return view('legal/termsandconditions');
 });
 
+Route::get('/user/removefriend/{friendid}', 'UserController@removeFriend');
+
 Route::get('/user/addfriend/{friendid}', 'UserController@addFriendRequest');
 
 Route::get('/user/invite-friends/', 'UserController@inviteFriendsForm');
@@ -34,7 +36,17 @@ Route::get('/user/acceptfriend/{friendshipid}', 'UserController@acceptFriendRequ
 
 Route::resource('/prayer', 'PrayerController');
 
-Route::get('/prayer/pray-along/{prayerid}', 'PrayerController@prayAlong');
+Route::resource('/prayers/user', 'PrayerController@fromUser');
+
+Route::resource('/user/profile', 'UserProfileController');
+
+Route::post('/user/profile/{id}', 'UserProfileController@update');
+
+Route::get('/prayer/pray-along/{prayerid}', 'PrayerController@prayAlongNow');
+
+Route::get('/prayers/prayers-for-later', 'PrayerController@prayersForLaterView');
+
+Route::get('/prayer/pray-along/later/{prayerid}', 'PrayerController@prayAlongLater');
 
 Route::get('auth/OAuth/{driver}', 'Auth\SocialiteAuthController@redirectToProvider');
 

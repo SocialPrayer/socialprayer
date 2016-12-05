@@ -1,0 +1,1 @@
+{"/Users/josephtaylor/Code/socialprayer/gulpfile.js":{"sha1":"f11890f0a12638c88c6c0dc67eca855ffed4419b","tasks":{"default":{"name":"default","dependencies":""},"tdd":{"name":"tdd","dependencies":""},"watch":{"name":"watch","dependencies":""},"sass":{"name":"sass","dependencies":""},"copy":{"name":"copy","dependencies":""}}}}

@@ -11,7 +11,7 @@ class HomeController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->middleware('auth', ['except' => ['guest']]);
+		$this->middleware('auth', ['except' => ['guestView']]);
 	}
 
 	/**
@@ -24,11 +24,18 @@ class HomeController extends Controller {
 		// $volumes = $dbt->getLibraryVolume(null, null, 'text', null, null, 'ENG');
 		// $volumes = json_decode($volumes);
 		$prayers = new PrayerController;
-		return view('prayers/list', ['prayers' => $prayers->index()[0], 'privacysettings' => $prayers->index()[1]]);
+		return view('prayers/list', 
+			[
+				'prayers' => $prayers->index(), 
+				'privacysettings' => $prayers->getPrivacySettings(), 
+				'prayersForLater' => $prayers->prayersForLater(),
+				'createPrayer' => 1
+			]
+		);
 
 	}
 
-	public function guest() {
+	public function guestView() {
 		$prayers = new PrayerController;
 		return view('welcome', ['prayers' => $prayers->guest()[0], 'privacysettings' => $prayers->guest()[1]]);
 	}
