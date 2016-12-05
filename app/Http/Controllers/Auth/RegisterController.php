@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\UserProfileController as UserProfile;
+use App\UserProfile;
 use App\User;
 use Config;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -95,9 +95,10 @@ class RegisterController extends Controller {
 			'firstname' => $data['firstname'],
 			'lastname' => $data['lastname'],
 			'email' => $data['email'],
+			'user_id' => $user->id,
 		]);
 
 		return $user;
-		
+
 	}
 }
