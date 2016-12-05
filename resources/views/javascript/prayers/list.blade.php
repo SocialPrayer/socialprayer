@@ -1,4 +1,5 @@
 <script>
+window.$ = window.jQuery;
 $(function(){
     $('[data-toggle="popover"]').popover({ trigger: "manual" , html: true, animation:false})
         .on("click", function () {

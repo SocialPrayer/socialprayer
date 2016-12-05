@@ -14,7 +14,7 @@
         <link href="/css/app.css" rel="stylesheet">
 
         <link rel="apple-touch-icon" href="/images/apple-touch-icon-iphone-retina.png">
-
+        <script src="/js/jquery.js"></script> 
         <!-- Styles -->
         <style>
             html, body {
@@ -181,5 +181,7 @@
                 </div> -->
             </div>
         </div>
+    <script src="/js/vendor/jquery.ns-autogrow.js"></script>
+    <script src="/js/bootstrap.js"></script>
     </body>
 </html>
