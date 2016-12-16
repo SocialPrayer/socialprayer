@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('head')
+<link href="/css/vendor/speech-input.css" rel="stylesheet">
+@endsection
+
 @section('content')
 	<section class="prayers-section col-centered">
 
@@ -24,5 +28,6 @@
 
 @section('footer')
 <script src="/js/vendor/jquery.ns-autogrow.js"></script>
+<script src="/js/vendor/speech-input.js"></script>
 @include('javascript/prayers/list')
 @endsection

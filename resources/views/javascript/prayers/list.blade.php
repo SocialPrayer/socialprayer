@@ -1,6 +1,17 @@
 <script>
 window.$ = window.jQuery;
 $(function(){
+    
+
+    $(document).on('click','#newPrayerVoice', function() {
+        var recognition = new webkitSpeechRecognition();
+        recognition.interimResults = true;
+        recognition.onresult = function(event) { 
+          $('#prayerText').val(event.results[0][0].transcript);
+        }
+        recognition.start();
+    });
+
     $('[data-toggle="popover"]').popover({ trigger: "manual" , html: true, animation:false})
         .on("click", function () {
             var _this = this;

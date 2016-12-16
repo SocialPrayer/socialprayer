@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
+    @yield('head')
+
     <link rel="apple-touch-icon" href="/images/apple-touch-icon-iphone-retina.png">
 
     <!-- Scripts -->
