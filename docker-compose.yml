@@ -1,0 +1,18 @@
+version: "2"
+services:
+  web:
+    image: socialprayer-laravel53
+    ports:
+      - 8000:8000
+    # links:
+        # - db
+    volumes: 
+      - .:/app
+    # command: ["php", "/app/artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+  # db:
+  #   image: mysql:5.7
+  #   environment:
+  #       - MYSQL_ROOT_PASSWORD=password
+  #       - MYSQL_DATABASE=socialprayer
+  #       - MYSQL_USER=socialprayer
+  #       - MYSQL_PASSWORD=p455w0rd

@@ -48,25 +48,25 @@ class RegisterController extends Controller {
 	 */
 	protected function validator(array $data) {
 		if (env('APP_ENV') == 'Production') {
-			$recaptcha = new \ReCaptcha\ReCaptcha(Config::get('services.google_reCaptcha.secret'));
-			$resp = $recaptcha->verify($data['g-recaptcha-response'], Request::ip());
-			if ($resp->isSuccess()) {
+			// $recaptcha = new \ReCaptcha\ReCaptcha(Config::get('services.google_reCaptcha.secret'));
+			// $resp = $recaptcha->verify($data['g-recaptcha-response'], Request::ip());
+			// if ($resp->isSuccess()) {
 				return Validator::make($data, [
 					'firstname' => 'required|max:255',
 					'lastname' => 'required|max:255',
 					'email' => 'required|email|max:255|unique:users',
 					'password' => 'required|min:6|confirmed',
 				]);
-			} else {
-				return Validator::make($data, [
-					'firstname' => 'required|max:255',
-					'lastname' => 'required|max:255',
-					'email' => 'required|email|max:255|unique:users',
-					'password' => 'required|min:6|confirmed',
-					'g-recaptcha-response' => 'required|max:5',
-				]);
-				$errors = $resp->getErrorCodes();
-			}
+			// } else {
+			// 	return Validator::make($data, [
+			// 		'firstname' => 'required|max:255',
+			// 		'lastname' => 'required|max:255',
+			// 		'email' => 'required|email|max:255|unique:users',
+			// 		'password' => 'required|min:6|confirmed',
+			// 		'g-recaptcha-response' => 'required|max:5',
+			// 	]);
+			// 	$errors = $resp->getErrorCodes();
+			// }
 		} else {
 			return Validator::make($data, [
 				'firstname' => 'required|max:255',
