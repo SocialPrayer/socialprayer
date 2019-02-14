@@ -1,5 +1,5 @@
 FROM php:7-cli
-RUN apt-get update -y && apt-get install -y openssl zlib1g-dev zip
+RUN apt-get update -y && apt-get install -y openssl zlib1g-dev libzip-dev
 RUN docker-php-ext-install zip mbstring pdo pdo_mysql
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 COPY . /app
